@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffda0f" },
     { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],,
+  ],
 
   // Verification (add your verification codes when you have them)
   // verification: {
