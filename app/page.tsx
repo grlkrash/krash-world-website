@@ -165,9 +165,7 @@ export default function KrashWorldWebsite() {
                 <pointLight position={[-10, -10, -10]} intensity={0.5} color="#00ff88" />
 
                 <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
-                  {/* Uncomment this when you have your 3D file */}
-                  {/* <GLTFCharacter modelPath="/models/grlkrash.glb" position={[0, 0, 0]} /> */}
-                  <InteractiveGRLKRASH position={[0, 0, 0]} />
+                  <GLTFCharacter modelPath="/models/grlkrash.glb" position={[0, 0, 0]} />
                 </Float>
 
                 <OrbitControls
