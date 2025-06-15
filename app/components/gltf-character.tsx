@@ -9,9 +9,10 @@ import type * as THREE from "three"
 interface GLTFCharacterProps {
   position?: [number, number, number]
   modelPath: string // Path to your .glb/.gltf file
+  scale?: number
 }
 
-export default function GLTFCharacter({ position = [0, 0, 0], modelPath }: GLTFCharacterProps) {
+export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale = 1 }: GLTFCharacterProps) {
   const meshRef = useRef<THREE.Group>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
@@ -54,7 +55,7 @@ export default function GLTFCharacter({ position = [0, 0, 0], modelPath }: GLTFC
     <group ref={meshRef} position={position}>
       <primitive
         object={gltf.scene}
-        scale={2}
+        scale={scale}
         onPointerEnter={() => setIsHovered(true)}
         onPointerLeave={() => setIsHovered(false)}
         onClick={handleClick}
