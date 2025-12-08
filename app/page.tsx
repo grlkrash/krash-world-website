@@ -12,6 +12,7 @@ import SocialLinks from "./components/social-links"
 import NavigationMenu from "./components/navigation-menu"
 import AudioPlayer from "./components/audio-player"
 import GLTFCharacter from "./components/gltf-character" // Uncomment when you have a 3D file
+import { GRLKRASHChat } from "./components/grlkrash-chat"
 
 export default function KrashWorldWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -209,6 +210,9 @@ export default function KrashWorldWebsite() {
 
       {/* Audio Player */}
       <AudioPlayer />
+
+      {/* Chat Widget */}
+      <GRLKRASHChat />
 
       {/* Bottom Info */}
       <div className="fixed bottom-4 left-6 text-xs text-gray-500 font-mono">
