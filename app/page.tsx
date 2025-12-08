@@ -66,7 +66,7 @@ export default function KrashWorldWebsite() {
             <Image src="/images/krash-logo.png" alt="KRASH" width={40} height={40} className="brightness-110" />
             <div className="hidden md:block">
               <div className="text-[#ffda0f] font-black text-lg">KRASH WORLD</div>
-              <div className="text-gray-400 text-xs">CINCINNATI BASED</div>
+              <div className="text-gray-400 text-xs">LA BASED</div>
             </div>
           </div>
 
@@ -107,7 +107,7 @@ export default function KrashWorldWebsite() {
             {/* Left Side - Info */}
             <div className="space-y-8">
               <div>
-                <div className="text-[#ffda0f] text-sm font-mono mb-2">CINCINNATI BASED</div>
+                <div className="text-[#ffda0f] text-sm font-mono mb-2">LA BASED</div>
                 <h1 className="text-4xl md:text-6xl font-black mb-4">
                   <span className="text-white">WELCOME TO</span>
                   <br />
@@ -200,7 +200,7 @@ export default function KrashWorldWebsite() {
       <section className="py-16 border-t border-[#ffda0f]/20">
         <div className="container mx-auto px-6 text-center">
           <div className="text-[#ffda0f] text-sm font-mono mb-4">TRANSMEDIA IP ART PROJECT</div>
-          <h2 className="text-2xl font-black text-white mb-4">BY CINCINNATI-BASED MULTIMEDIA ARTIST GRLKRASH</h2>
+          <h2 className="text-2xl font-black text-white mb-4">BY LA-BASED MULTIMEDIA ARTIST GRLKRASH</h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             Krash World is an immersive universe spanning music, games, art, and storytelling - exploring themes of
             love, resistance, and authentic human connection.
@@ -232,7 +232,7 @@ export default function KrashWorldWebsite() {
 
       <div className="fixed bottom-4 right-6 text-xs text-gray-500 font-mono">
         <div>MULTIMEDIA_ART_PROJECT</div>
-        <div>CINCINNATI_BASED</div>
+        <div>LA_BASED</div>
       </div>
     </div>
   )

@@ -6,13 +6,13 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
+  title: "Krash World | LA-Based Multimedia Artist GRLKRASH",
   description:
     "Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and resistance. Transmedia IP art project spanning music, games, art, and storytelling.",
   keywords: [
     "Krash World",
     "GRLKRASH",
-    "Cincinnati artist",
+    "LA artist",
     "multimedia art",
     "transmedia",
     "music",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
 
   // Open Graph
   openGraph: {
-    title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
+    title: "Krash World | LA-Based Multimedia Artist GRLKRASH",
     description:
       "Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and resistance against oppressive forces.",
     url: "https://krash.world",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   // Twitter
   twitter: {
     card: "summary_large_image",
-    title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
+    title: "Krash World | LA-Based Multimedia Artist GRLKRASH",
     description:
       "Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and resistance.",
     images: ["/images/grlkrash-nature.png"],
@@ -122,7 +122,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "GRLKRASH",
               alternateName: "Krash World",
-              description: "Cincinnati-based multimedia artist creating transmedia IP art projects",
+              description: "LA-based multimedia artist creating transmedia IP art projects",
               url: "https://krash.world",
               sameAs: [
                 "https://instagram.com/grlkrash",
@@ -137,7 +137,7 @@ export default function RootLayout({
               },
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Cincinnati",
+                addressLocality: "Los Angeles",
                 addressRegion: "OH",
                 addressCountry: "US",
               },

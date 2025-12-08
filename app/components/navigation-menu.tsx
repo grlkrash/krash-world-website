@@ -1,5 +1,5 @@
 "use client"
-import { ExternalLink, Music, Gamepad2, Mail } from "lucide-react"
+import { ExternalLink, Music, Gamepad2, Mail, BookOpen } from "lucide-react"
 
 // Custom Discord Icon Component
 const DiscordIcon = ({ size = 20 }: { size?: number }) => (
@@ -55,6 +55,13 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
       },
       icon: <Mail size={20} />,
       color: "#00aaff",
+    },
+    {
+      title: "KRASH COURSES",
+      description: "HOW TO FUND CREATIVE EVENTS: THE $20K BLUEPRINT",
+      href: "https://krashworld.gumroad.com",
+      icon: <BookOpen size={20} />,
+      color: "#ff6b9d",
     },
   ]
 

@@ -25,23 +25,15 @@ export default function NewsletterPopup({ isOpen, onClose }: NewsletterPopupProp
     setIsSubmitting(true)
 
     try {
-      // Submit to Google Sheets via a form endpoint
-      const formData = new FormData()
-      formData.append("Email", email)
-      formData.append("Name", name || "Anonymous")
-      formData.append("Timestamp", new Date().toISOString())
-      formData.append("Source", "Krash World Website")
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name: name || 'Anonymous' }),
+      })
 
-      // You'll need to create a Google Form and use its action URL
-      // For now, I'll simulate the submission
-      await new Promise((resolve) => setTimeout(resolve, 1000))
+      const data = await response.json()
 
-      // Replace this URL with your actual Google Form action URL
-      // const response = await fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
-      //   method: 'POST',
-      //   body: formData,
-      //   mode: 'no-cors'
-      // })
+      if (!response.ok || !data.success) throw new Error('Submission failed')
 
       setStatus("success")
       setTimeout(() => {
