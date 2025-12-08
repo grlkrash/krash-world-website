@@ -7,10 +7,20 @@ import type { ChatMessage } from "@/app/services/chat/chatService"
 
 interface GRLKRASHChatProps {
   apiUrl?: string
+  isOpen?: boolean
+  onOpenChange?: (open: boolean) => void
 }
 
-export function GRLKRASHChat({ apiUrl = "/api/chat" }: GRLKRASHChatProps) {
-  const [isOpen, setIsOpen] = useState(false)
+export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, onOpenChange }: GRLKRASHChatProps) {
+  const [internalIsOpen, setInternalIsOpen] = useState(false)
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen
+  const setIsOpen = (open: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(open)
+    } else {
+      setInternalIsOpen(open)
+    }
+  }
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
@@ -36,6 +46,13 @@ export function GRLKRASHChat({ apiUrl = "/api/chat" }: GRLKRASHChatProps) {
       inputRef.current.focus()
     }
   }, [isOpen])
+
+  // Sync internal state with controlled state
+  useEffect(() => {
+    if (controlledIsOpen !== undefined) {
+      setInternalIsOpen(controlledIsOpen)
+    }
+  }, [controlledIsOpen])
 
   const handleSend = async () => {
     if (!input.trim() || isLoading) return
@@ -65,7 +82,8 @@ export function GRLKRASHChat({ apiUrl = "/api/chat" }: GRLKRASHChatProps) {
       })
 
       if (!response.ok) {
-        throw new Error("Failed to get response")
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || `HTTP ${response.status}`)
       }
 
       const data = await response.json()
@@ -73,7 +91,7 @@ export function GRLKRASHChat({ apiUrl = "/api/chat" }: GRLKRASHChatProps) {
       // Add assistant response
       const assistantMessage: ChatMessage = {
         role: "assistant",
-        content: data.message || "Hey! What's up?",
+        content: data.message || data.error || "Hey! What's up?",
       }
       setMessages((prev) => [...prev, assistantMessage])
       
@@ -84,7 +102,9 @@ export function GRLKRASHChat({ apiUrl = "/api/chat" }: GRLKRASHChatProps) {
       console.error("Chat error:", error)
       const errorMessage: ChatMessage = {
         role: "assistant",
-        content: "Oops! Something went wrong. Try again?",
+        content: error instanceof Error && error.message.includes('Failed to fetch')
+          ? "Hey! Can't connect right now. Check your internet and try again?"
+          : "Oops! Something went wrong. Try again?",
       }
       setMessages((prev) => [...prev, errorMessage])
     } finally {

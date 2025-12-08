@@ -10,9 +10,10 @@ interface GLTFCharacterProps {
   position?: [number, number, number]
   modelPath: string // Path to your .glb/.gltf file
   scale?: number
+  onChatOpen?: () => void // Callback to open chat
 }
 
-export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale = 1 }: GLTFCharacterProps) {
+export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale = 1, onChatOpen }: GLTFCharacterProps) {
   const meshRef = useRef<THREE.Group>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [showMessage, setShowMessage] = useState(false)
@@ -46,6 +47,13 @@ export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale =
     setShowMessage(true)
     setCurrentMessage((prev) => (prev + 1) % messages.length)
 
+    // Open chat window when character is clicked
+    if (onChatOpen) {
+      setTimeout(() => {
+        onChatOpen()
+      }, 500) // Small delay to show message first
+    }
+
     setTimeout(() => {
       setShowMessage(false)
     }, 3000)
@@ -73,7 +81,9 @@ export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale =
       {/* Hover Hint */}
       {isHovered && !showMessage && (
         <Html position={[0, -2, 0]} center>
-          <div className="text-[#ffda0f] text-xs font-mono animate-pulse">&gt; CLICK_TO_CHAT</div>
+          <div className="text-[#ffda0f] text-xs font-mono animate-pulse cursor-pointer">
+            &gt; CLICK_TO_CHAT
+          </div>
         </Html>
       )}
     </group>

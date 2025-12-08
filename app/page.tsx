@@ -18,6 +18,7 @@ export default function KrashWorldWebsite() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [showNewsletter, setShowNewsletter] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
+  const [chatOpen, setChatOpen] = useState(false)
 
   useEffect(() => {
     const updateTime = () => {
@@ -166,7 +167,12 @@ export default function KrashWorldWebsite() {
                 <pointLight position={[-10, -10, -10]} intensity={0.5} color="#00ff88" />
 
                 <Float speed={1.5} rotationIntensity={0.3} floatIntensity={0.5}>
-                  <GLTFCharacter modelPath="/models/grlkrash.glb" position={[0, 0, 0]} scale={0.7} />
+                  <GLTFCharacter 
+                    modelPath="/models/grlkrash.glb" 
+                    position={[0, 0, 0]} 
+                    scale={0.7}
+                    onChatOpen={() => setChatOpen(true)}
+                  />
                 </Float>
 
                 <OrbitControls
@@ -182,7 +188,7 @@ export default function KrashWorldWebsite() {
               {/* Interaction Hint */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                 <div className="bg-black/80 text-[#ffda0f] px-4 py-2 rounded-full text-sm font-mono border border-[#ffda0f]/30">
-                  CLICK TO INTERACT WITH GRLKRASH
+                  CLICK GRLKRASH TO CHAT
                 </div>
               </div>
             </div>
@@ -212,7 +218,11 @@ export default function KrashWorldWebsite() {
       <AudioPlayer />
 
       {/* Chat Widget */}
-      <GRLKRASHChat />
+      <GRLKRASHChat 
+        apiUrl="/api/chat"
+        isOpen={chatOpen}
+        onOpenChange={setChatOpen}
+      />
 
       {/* Bottom Info */}
       <div className="fixed bottom-4 left-6 text-xs text-gray-500 font-mono">
