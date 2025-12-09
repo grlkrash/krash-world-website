@@ -4,7 +4,7 @@ export async function POST(request: Request) {
   // Log email for easy access (backup method)
   console.log('📧 Newsletter Signup:', { email, name, timestamp: new Date().toISOString() })
 
-  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbztZyRAZRn7jXYu1lQK52WrvWTt-rgDyj9yV8hrdRDkxMQ-BMRXIWfC65FrBGohrm5uKw/exec'
+  const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzgy2fJ1KQ3pjB7wOyWHwB-jcNfzCp_iJYftmB20Df65Jy_vbZwMqD6U4kyn_GgYZCP5g/exec'
 
   try {
     const response = await fetch(WEB_APP_URL, {
