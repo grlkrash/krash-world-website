@@ -11,6 +11,14 @@ interface GRLKRASHChatProps {
   onOpenChange?: (open: boolean) => void
 }
 
+// Pool of example questions
+const EXAMPLE_QUESTIONS = [
+  "WHO ARE YOU?",
+  "WHERE DID YOU COME FROM?",
+  "WHY ARE YOU DANCING?",
+  "WHAT IS KRASH WORLD?",
+]
+
 export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, onOpenChange }: GRLKRASHChatProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false)
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen
@@ -32,6 +40,7 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const [musicLink, setMusicLink] = useState<string | undefined>()
+  const [suggestedQuestions, setSuggestedQuestions] = useState<string[]>([])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -54,10 +63,16 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
     }
   }, [controlledIsOpen])
 
-  const handleSend = async () => {
-    if (!input.trim() || isLoading) return
+  // Randomly select 2 questions on mount
+  useEffect(() => {
+    const shuffled = [...EXAMPLE_QUESTIONS].sort(() => Math.random() - 0.5)
+    setSuggestedQuestions(shuffled.slice(0, 2))
+  }, [])
 
-    const userMessage = input.trim()
+  const handleSend = async (messageOverride?: string) => {
+    const userMessage = messageOverride || input.trim()
+    if (!userMessage || isLoading) return
+
     setInput("")
     setMusicLink(undefined)
 
@@ -119,6 +134,14 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
     }
   }
 
+  const handleSuggestionClick = (question: string) => {
+    handleSend(question)
+  }
+
+  // Check if user has sent any messages (only first message is assistant welcome)
+  const hasUserMessages = messages.some(msg => msg.role === "user")
+  const showSuggestions = !hasUserMessages && suggestedQuestions.length > 0
+
   return (
     <>
       {/* Floating Chat Button */}
@@ -166,6 +189,22 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
                 </div>
               </div>
             ))}
+
+            {/* Suggestion Chips */}
+            {showSuggestions && (
+              <div className="flex flex-wrap gap-2 justify-start">
+                {suggestedQuestions.map((question, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleSuggestionClick(question)}
+                    className="bg-[#ffda0f]/10 text-[#ffda0f] border border-[#ffda0f]/50 px-3 py-1.5 rounded-full text-xs font-medium hover:bg-[#ffda0f]/20 transition-colors"
+                    disabled={isLoading}
+                  >
+                    {question}
+                  </button>
+                ))}
+              </div>
+            )}
             
             {isLoading && (
               <div className="flex justify-start">
