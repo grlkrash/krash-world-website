@@ -93,3 +93,77 @@
   letter-spacing: 0.1em;
   text-shadow: 2px 2px 0px #000, -2px -2px 0px #000, 2px -2px 0px #000, -2px 2px 0px #000;
 }
+
+/* 2010 iMessage Style Chat Bubbles */
+.imessage-bubble-user {
+  background: linear-gradient(180deg, #ffda0f 0%, #e5c300 100%);
+  color: #000;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.imessage-bubble-assistant {
+  background: linear-gradient(180deg, #3a3a3a 0%, #2a2a2a 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 218, 15, 0.2);
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Speech Bubble Tails - 2010 iMessage Style */
+.imessage-tail-user {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid #e5c300;
+  border-top: 8px solid #e5c300;
+  border-bottom: 8px solid transparent;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+.imessage-tail-assistant {
+  width: 0;
+  height: 0;
+  border-left: 8px solid #2a2a2a;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #2a2a2a;
+  border-bottom: 8px solid transparent;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+/* Music/Action Bubble */
+.imessage-bubble-music {
+  background: linear-gradient(180deg, #00ff88 0%, #00e07a 100%);
+  color: #000;
+  box-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-decoration: none;
+}
+
+.imessage-tail-music {
+  width: 0;
+  height: 0;
+  border-left: 8px solid #00e07a;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #00e07a;
+  border-bottom: 8px solid transparent;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.15));
+}
+
+/* Chat Background - Textured like 2010 iMessage */
+.imessage-bg {
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(255, 218, 15, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 255, 136, 0.03) 0%, transparent 50%),
+    linear-gradient(180deg, #0a0a0a 0%, #000000 100%);
+  background-size: 100% 100%;
+}

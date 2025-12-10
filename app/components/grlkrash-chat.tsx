@@ -11,6 +11,11 @@ interface GRLKRASHChatProps {
   onOpenChange?: (open: boolean) => void
 }
 
+interface ChatMessageWithTimestamp extends ChatMessage {
+  timestamp?: Date
+  isRead?: boolean
+}
+
 // Pool of example questions
 const EXAMPLE_QUESTIONS = [
   "WHO ARE YOU?",
@@ -29,10 +34,12 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
       setInternalIsOpen(open)
     }
   }
-  const [messages, setMessages] = useState<ChatMessage[]>([
+  const [messages, setMessages] = useState<ChatMessageWithTimestamp[]>([
     {
       role: "assistant",
       content: "HEYY IT'S GRL! ✨ WHAT YOU WANNA KNOW?",
+      timestamp: new Date(),
+      isRead: true,
     },
   ])
   const [input, setInput] = useState("")
@@ -77,9 +84,10 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
     setMusicLink(undefined)
 
     // Add user message
-    const newUserMessage: ChatMessage = {
+    const newUserMessage: ChatMessageWithTimestamp = {
       role: "user",
       content: userMessage,
+      timestamp: new Date(),
     }
     setMessages((prev) => [...prev, newUserMessage])
     setIsLoading(true)
@@ -103,23 +111,38 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
 
       const data = await response.json()
       
-      // Add assistant response
-      const assistantMessage: ChatMessage = {
-        role: "assistant",
-        content: data.message || data.error || "Hey! What's up?",
-      }
-      setMessages((prev) => [...prev, assistantMessage])
+      // Mark user message as read
+      setMessages((prev) => 
+        prev.map((msg, idx) => 
+          idx === prev.length - 1 && msg.role === "user" 
+            ? { ...msg, isRead: true } 
+            : msg
+        )
+      )
+      
+      // Add assistant response with slight delay for read receipt
+      setTimeout(() => {
+        const assistantMessage: ChatMessageWithTimestamp = {
+          role: "assistant",
+          content: data.message || data.error || "Hey! What's up?",
+          timestamp: new Date(),
+          isRead: true,
+        }
+        setMessages((prev) => [...prev, assistantMessage])
+      }, 300)
       
       if (data.musicLink) {
         setMusicLink(data.musicLink)
       }
     } catch (error) {
       console.error("Chat error:", error)
-      const errorMessage: ChatMessage = {
+      const errorMessage: ChatMessageWithTimestamp = {
         role: "assistant",
         content: error instanceof Error && error.message.includes('Failed to fetch')
           ? "Hey! Can't connect right now. Check your internet and try again?"
           : "Oops! Something went wrong. Try again?",
+        timestamp: new Date(),
+        isRead: true,
       }
       setMessages((prev) => [...prev, errorMessage])
     } finally {
@@ -172,63 +195,119 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
           </div>
 
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 bg-black">
+          <div className="flex-1 overflow-y-auto p-4 space-y-3 imessage-bg">
             {messages.map((msg, idx) => (
               <div
                 key={idx}
-                className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
               >
-                <div
-                  className={`max-w-[80%] px-4 py-2 rounded-lg ${
-                    msg.role === "user"
-                      ? "bg-[#ffda0f] text-black"
-                      : "bg-gray-800 text-white border border-[#ffda0f]/30"
-                  }`}
-                >
-                  <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                <div className="relative max-w-[75%]">
+                  {/* Message Bubble with Tail */}
+                  <div
+                    className={`relative px-4 py-2.5 ${
+                      msg.role === "user"
+                        ? "imessage-bubble-user rounded-[18px]"
+                        : "imessage-bubble-assistant rounded-[18px]"
+                    }`}
+                  >
+                    {/* Speech Bubble Tail */}
+                    <div
+                      className={`absolute bottom-0 ${
+                        msg.role === "user"
+                          ? "imessage-tail-user -right-1.5"
+                          : "imessage-tail-assistant -left-1.5"
+                      }`}
+                    />
+                    
+                    {/* Glossy Shine Effect */}
+                    <div
+                      className={`absolute top-1 left-3 right-3 h-[40%] rounded-t-[15px] opacity-40 pointer-events-none ${
+                        msg.role === "user" 
+                          ? "bg-gradient-to-b from-white to-transparent"
+                          : "bg-gradient-to-b from-white/20 to-transparent"
+                      }`}
+                    />
+                    
+                    <p className="text-sm whitespace-pre-wrap relative z-10">{msg.content}</p>
+                  </div>
+                </div>
+                
+                {/* Timestamp and Read Receipt */}
+                <div className={`flex items-center gap-1.5 mt-1 px-1 ${
+                  msg.role === "user" ? "flex-row-reverse" : "flex-row"
+                }`}>
+                  <span className="text-[10px] text-gray-500">
+                    {msg.timestamp?.toLocaleTimeString('en-US', { 
+                      hour: 'numeric', 
+                      minute: '2-digit',
+                      hour12: true 
+                    })}
+                  </span>
+                  {msg.role === "user" && msg.isRead && (
+                    <span className="text-[10px] text-gray-500 font-medium">Read</span>
+                  )}
                 </div>
               </div>
             ))}
 
             {/* Suggestion Chips */}
             {showSuggestions && (
-              <div className="flex flex-wrap gap-2 justify-start">
+              <div className="flex flex-wrap gap-2 justify-start mt-2">
                 {suggestedQuestions.map((question, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleSuggestionClick(question)}
-                    className="bg-[#ffda0f]/10 text-[#ffda0f] border border-[#ffda0f]/50 px-3 py-1.5 rounded-full text-xs font-medium hover:bg-[#ffda0f]/20 transition-colors"
+                    className="relative bg-gradient-to-b from-[#2a2a2a] to-[#1a1a1a] text-[#ffda0f] border border-[#ffda0f]/30 px-4 py-2 rounded-[16px] text-xs font-medium hover:border-[#ffda0f]/60 transition-all shadow-md"
                     disabled={isLoading}
                   >
-                    {question}
+                    <span className="relative z-10">{question}</span>
+                    <div className="absolute top-0.5 left-2 right-2 h-[30%] rounded-t-[14px] bg-gradient-to-b from-white/10 to-transparent opacity-50 pointer-events-none" />
                   </button>
                 ))}
               </div>
             )}
             
             {isLoading && (
-              <div className="flex justify-start">
-                <div className="bg-gray-800 text-white border border-[#ffda0f]/30 px-4 py-2 rounded-lg">
-                  <div className="flex space-x-1">
-                    <div className="w-2 h-2 bg-[#ffda0f] rounded-full animate-bounce" style={{ animationDelay: "0s" }} />
-                    <div className="w-2 h-2 bg-[#ffda0f] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
-                    <div className="w-2 h-2 bg-[#ffda0f] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
+              <div className="flex flex-col items-start">
+                <div className="relative max-w-[75%]">
+                  <div className="relative imessage-bubble-assistant rounded-[18px] px-4 py-3">
+                    {/* Speech Bubble Tail */}
+                    <div className="absolute bottom-0 imessage-tail-assistant -left-1.5" />
+                    
+                    {/* Glossy Shine Effect */}
+                    <div className="absolute top-1 left-3 right-3 h-[40%] rounded-t-[15px] bg-gradient-to-b from-white/20 to-transparent opacity-40 pointer-events-none" />
+                    
+                    <div className="flex space-x-1 relative z-10">
+                      <div className="w-2 h-2 bg-[#ffda0f] rounded-full animate-bounce" style={{ animationDelay: "0s" }} />
+                      <div className="w-2 h-2 bg-[#ffda0f] rounded-full animate-bounce" style={{ animationDelay: "0.2s" }} />
+                      <div className="w-2 h-2 bg-[#ffda0f] rounded-full animate-bounce" style={{ animationDelay: "0.4s" }} />
+                    </div>
                   </div>
                 </div>
               </div>
             )}
             
             {musicLink && (
-              <div className="flex justify-start">
-                <a
-                  href={musicLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-[#00ff88] text-black px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-[#00ff88]/80 transition-colors"
-                >
-                  <Music size={16} />
-                  <span className="text-sm font-bold">Listen on Spotify</span>
-                </a>
+              <div className="flex flex-col items-start">
+                <div className="relative max-w-[75%]">
+                  <a
+                    href={musicLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="relative block imessage-bubble-music rounded-[18px] px-4 py-2.5 hover:opacity-90 transition-opacity"
+                  >
+                    {/* Speech Bubble Tail */}
+                    <div className="absolute bottom-0 imessage-tail-music -left-1.5" />
+                    
+                    {/* Glossy Shine Effect */}
+                    <div className="absolute top-1 left-3 right-3 h-[40%] rounded-t-[15px] bg-gradient-to-b from-white/50 to-transparent opacity-60 pointer-events-none" />
+                    
+                    <div className="flex items-center space-x-2 relative z-10">
+                      <Music size={16} />
+                      <span className="text-sm font-bold">Listen on Spotify</span>
+                    </div>
+                  </a>
+                </div>
               </div>
             )}
             
@@ -236,26 +315,28 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
           </div>
 
           {/* Input */}
-          <div className="border-t border-[#ffda0f]/30 p-4 bg-black">
-            <div className="flex space-x-2">
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyPress={handleKeyPress}
-                placeholder="Type a message..."
-                className="flex-1 bg-gray-900 text-white border border-[#ffda0f]/30 rounded-lg px-4 py-2 focus:outline-none focus:border-[#ffda0f] text-sm"
-                disabled={isLoading}
-              />
-              <Button
-                onClick={handleSend}
+          <div className="border-t border-[#ffda0f]/30 p-3 bg-black">
+            <div className="flex items-center space-x-2">
+              <div className="flex-1 relative">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  onKeyPress={handleKeyPress}
+                  placeholder="iMessage"
+                  className="w-full bg-[#1a1a1a] text-white border border-[#333] rounded-[20px] px-4 py-2.5 pr-12 focus:outline-none focus:border-[#ffda0f]/50 text-sm placeholder:text-gray-600 shadow-inner"
+                  disabled={isLoading}
+                />
+              </div>
+              <button
+                onClick={() => handleSend()}
                 disabled={!input.trim() || isLoading}
-                className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 disabled:opacity-50"
-                size="icon"
+                className="w-9 h-9 rounded-full bg-gradient-to-b from-[#ffda0f] to-[#e5c300] text-black hover:from-[#e5c300] hover:to-[#ccaf00] disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center shadow-lg transition-all"
+                aria-label="Send message"
               >
-                <Send size={18} />
-              </Button>
+                <Send size={16} className="-mr-0.5" />
+              </button>
             </div>
           </div>
         </div>
