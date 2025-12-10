@@ -24,7 +24,7 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       role: "assistant",
-      content: "Hey! I'm GRLKRASH from Krash World. Ready to save the world? The resistance needs us! What's on your mind?",
+      content: "HEYY IT'S GRL! ✨ WHAT YOU WANNA KNOW?",
     },
   ])
   const [input, setInput] = useState("")
