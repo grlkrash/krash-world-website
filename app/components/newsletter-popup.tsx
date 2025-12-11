@@ -67,7 +67,7 @@ export default function NewsletterPopup({ isOpen, onClose }: NewsletterPopupProp
           </div>
           <h2 className="text-2xl font-black text-[#ffda0f] mb-2">JOIN THE RESISTANCE</h2>
           <p className="text-gray-300 text-sm">
-            Get exclusive updates on GRLKRASH's journey and the Krash World universe
+            GET EXCLUSIVE UPDATES ON THE KRASH WORLD UNIVERSE
           </p>
         </div>
 
