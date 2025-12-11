@@ -187,9 +187,14 @@ export default function KrashWorldWebsite() {
 
               {/* Interaction Hint */}
               <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-                <div className="bg-black/80 text-[#ffda0f] px-4 py-2 rounded-full text-sm font-mono border border-[#ffda0f]/30">
+                <button
+                  onClick={() => setChatOpen(true)}
+                  className="bg-black/80 text-[#ffda0f] px-4 py-2 rounded-full text-sm font-mono border border-[#ffda0f]/30 hover:bg-[#ffda0f] hover:text-black hover:border-[#ffda0f] transition-all duration-300 cursor-pointer hover:scale-105 active:scale-95"
+                  tabIndex={0}
+                  aria-label="Click to open chat with GRLKRASH"
+                >
                   CLICK GRLKRASH TO CHAT
-                </div>
+                </button>
               </div>
             </div>
           </div>
