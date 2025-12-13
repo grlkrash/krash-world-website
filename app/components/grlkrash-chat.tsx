@@ -113,15 +113,39 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
       const data = await response.json()
       
       // Debug: Log the actual backend response
-      console.log('Backend response:', data)
+      console.log('🔍 Backend response data:', JSON.stringify(data, null, 2))
+      console.log('🔍 Response keys:', Object.keys(data))
+      console.log('🔍 data.response:', data.response)
+      console.log('🔍 data.message:', data.message)
+      console.log('🔍 Full data object:', data)
       
       // Extract response text - Railway backend returns { response: "..." }
-      // Fallback to data.message for compatibility with other formats
-      const aiResponse = data.response || data.message || data.error
+      // Try multiple possible fields and nested structures
+      let aiResponse = data.response || data.message || data.content || data.text || data.error
+      
+      // Handle nested response objects
+      if (!aiResponse && data.data) {
+        aiResponse = data.data.response || data.data.message || data.data.content
+      }
+      
+      // Handle if response is an object with a text/message property
+      if (typeof aiResponse === 'object' && aiResponse !== null) {
+        aiResponse = aiResponse.text || aiResponse.message || aiResponse.content || aiResponse.response
+      }
+      
+      console.log('🔍 Extracted aiResponse:', aiResponse)
+      console.log('🔍 aiResponse type:', typeof aiResponse)
       
       if (!aiResponse || typeof aiResponse !== 'string') {
-        console.error('Invalid response format from backend:', data)
-        throw new Error('Invalid response format from backend')
+        console.error('❌ Invalid response format from backend:', data)
+        console.error('❌ aiResponse value:', aiResponse, 'type:', typeof aiResponse)
+        throw new Error(`Invalid response format from backend. Received: ${JSON.stringify(data)}`)
+      }
+      
+      // Ensure we have a non-empty string
+      if (aiResponse.trim().length === 0) {
+        console.error('❌ Empty response string from backend')
+        throw new Error('Backend returned empty response')
       }
       
       // Mark user message as read
@@ -137,10 +161,11 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
       setTimeout(() => {
         const assistantMessage: ChatMessageWithTimestamp = {
           role: "assistant",
-          content: aiResponse,
+          content: aiResponse.trim(), // Ensure we use the actual backend response
           timestamp: new Date(),
           isRead: true,
         }
+        console.log('✅ Adding assistant message:', assistantMessage.content)
         setMessages((prev) => [...prev, assistantMessage])
       }, 300)
       
@@ -148,12 +173,18 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
         setMusicLink(data.musicLink)
       }
     } catch (error) {
-      console.error("Chat error:", error)
+      console.error("❌ Chat error:", error)
+      console.error("❌ Error details:", {
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined
+      })
       const errorMessage: ChatMessageWithTimestamp = {
         role: "assistant",
         content: error instanceof Error && error.message.includes('Failed to fetch')
           ? "Hey! Can't connect right now. Check your internet and try again?"
-          : "Oops! Something went wrong. Try again?",
+          : error instanceof Error 
+            ? `Error: ${error.message}` 
+            : "Oops! Something went wrong. Try again?",
         timestamp: new Date(),
         isRead: true,
       }
