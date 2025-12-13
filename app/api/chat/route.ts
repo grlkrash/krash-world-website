@@ -1,4 +1,3 @@
-import { processChatMessage, type ChatMessage } from '@/app/services/chat/chatService'
 import { NextResponse } from 'next/server'
 
 function getCorsHeaders(origin: string | null) {
@@ -24,24 +23,17 @@ function getCorsHeaders(origin: string | null) {
 export async function POST(request: Request) {
   try {
     const origin = request.headers.get('origin')
-    const { message, history = [] } = await request.json()
-
-    if (!message || typeof message !== 'string') {
-      return NextResponse.json(
-        { error: 'Message is required' },
-        { 
-          status: 400,
-          headers: getCorsHeaders(origin),
-        }
-      )
-    }
-
-    const chatHistory: ChatMessage[] = Array.isArray(history) ? history : []
-    const response = await processChatMessage(message, chatHistory)
-
-    return NextResponse.json(response, {
-      headers: getCorsHeaders(origin),
+    const body = await request.json()
+    const railwayUrl = process.env.RAILWAY_API_URL || 'https://your-railway-app.railway.app/api/chat'
+    
+    const response = await fetch(railwayUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
     })
+    
+    const data = await response.json()
+    return NextResponse.json(data, { headers: getCorsHeaders(origin) })
   } catch (error) {
     console.error('Chat API error:', error)
     return NextResponse.json(
