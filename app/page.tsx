@@ -224,7 +224,13 @@ export default function KrashWorldWebsite() {
 
       {/* Chat Widget */}
       <GRLKRASHChat 
-        apiUrl="/api/chat"
+        apiUrl={
+          process.env.NEXT_PUBLIC_RAILWAY_API_URL 
+            ? process.env.NEXT_PUBLIC_RAILWAY_API_URL.startsWith('http')
+              ? process.env.NEXT_PUBLIC_RAILWAY_API_URL
+              : `https://${process.env.NEXT_PUBLIC_RAILWAY_API_URL}`
+            : '/api/chat'
+        }
         isOpen={chatOpen}
         onOpenChange={setChatOpen}
       />
