@@ -111,6 +111,17 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
 
       const data = await response.json()
       
+      // Debug: Log the actual backend response
+      console.log('Backend response:', data)
+      
+      // Extract response text - Railway backend returns data.response, fallback to data.message for compatibility
+      const aiResponse = data.response || data.message || data.error
+      
+      if (!aiResponse || typeof aiResponse !== 'string') {
+        console.error('Invalid response format from backend:', data)
+        throw new Error('Invalid response format from backend')
+      }
+      
       // Mark user message as read
       setMessages((prev) => 
         prev.map((msg, idx) => 
@@ -124,7 +135,7 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
       setTimeout(() => {
         const assistantMessage: ChatMessageWithTimestamp = {
           role: "assistant",
-          content: data.message || data.error || "Hey! What's up?",
+          content: aiResponse,
           timestamp: new Date(),
           isRead: true,
         }
