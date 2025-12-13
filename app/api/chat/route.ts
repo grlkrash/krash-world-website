@@ -24,7 +24,10 @@ export async function POST(request: Request) {
   try {
     const origin = request.headers.get('origin')
     const body = await request.json()
-    const railwayUrl = process.env.RAILWAY_API_URL || 'https://your-railway-app.railway.app/api/chat'
+    let railwayUrl = process.env.RAILWAY_API_URL || 'https://your-railway-app.railway.app/api/chat'
+    if (railwayUrl && !railwayUrl.startsWith('http')) {
+      railwayUrl = `https://${railwayUrl}`
+    }
     
     const response = await fetch(railwayUrl, {
       method: 'POST',
