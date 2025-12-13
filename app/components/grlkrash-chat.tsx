@@ -106,7 +106,8 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}))
-        throw new Error(errorData.error || `HTTP ${response.status}`)
+        console.error('API request failed:', response.status, errorData)
+        throw new Error(errorData.error || errorData.message || `HTTP ${response.status}`)
       }
 
       const data = await response.json()
@@ -114,7 +115,8 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
       // Debug: Log the actual backend response
       console.log('Backend response:', data)
       
-      // Extract response text - Railway backend returns data.response, fallback to data.message for compatibility
+      // Extract response text - Railway backend returns { response: "..." }
+      // Fallback to data.message for compatibility with other formats
       const aiResponse = data.response || data.message || data.error
       
       if (!aiResponse || typeof aiResponse !== 'string') {
