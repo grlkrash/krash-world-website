@@ -24,6 +24,54 @@ const EXAMPLE_QUESTIONS = [
   "WHAT IS KRASH WORLD?",
 ]
 
+// Split message into 3 chunks for better readability
+function splitIntoChunks(text: string, numChunks: number = 3): string[] {
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(s => s.trim().length > 0)
+  
+  if (sentences.length <= numChunks) {
+    return [text] // If too few sentences, return as single message
+  }
+  
+  const chunkSize = Math.ceil(sentences.length / numChunks)
+  const chunks: string[] = []
+  
+  for (let i = 0; i < sentences.length; i += chunkSize) {
+    chunks.push(sentences.slice(i, i + chunkSize).join(' '))
+  }
+  
+  return chunks
+}
+
+// Display message in chunks with delay
+async function displayChunkedMessage(
+  fullMessage: string, 
+  addMessage: (msg: ChatMessageWithTimestamp) => void
+) {
+  const chunks = splitIntoChunks(fullMessage, 3)
+  
+  if (chunks.length === 1) {
+    // If only one chunk, display immediately
+    addMessage({
+      role: "assistant",
+      content: fullMessage.trim(),
+      timestamp: new Date(),
+      isRead: true,
+    })
+    return
+  }
+  
+  // Display each chunk with a delay
+  for (let i = 0; i < chunks.length; i++) {
+    await new Promise(resolve => setTimeout(resolve, i === 0 ? 0 : 800)) // 800ms delay between chunks
+    addMessage({
+      role: "assistant",
+      content: chunks[i].trim(),
+      timestamp: new Date(),
+      isRead: true,
+    })
+  }
+}
+
 export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, onOpenChange }: GRLKRASHChatProps) {
   const [internalIsOpen, setInternalIsOpen] = useState(false)
   const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen
@@ -157,16 +205,13 @@ export function GRLKRASHChat({ apiUrl = "/api/chat", isOpen: controlledIsOpen, o
         )
       )
       
-      // Add assistant response with slight delay for read receipt
-      setTimeout(() => {
-        const assistantMessage: ChatMessageWithTimestamp = {
-          role: "assistant",
-          content: aiResponse.trim(), // Ensure we use the actual backend response
-          timestamp: new Date(),
-          isRead: true,
-        }
-        console.log('✅ Adding assistant message:', assistantMessage.content)
-        setMessages((prev) => [...prev, assistantMessage])
+      // Add assistant response in chunks with delay for better readability
+      setTimeout(async () => {
+        console.log('✅ Displaying chunked assistant message')
+        await displayChunkedMessage(aiResponse.trim(), (chunkMessage) => {
+          console.log('✅ Adding chunk:', chunkMessage.content)
+          setMessages((prev) => [...prev, chunkMessage])
+        })
       }, 300)
       
       if (data.musicLink) {
