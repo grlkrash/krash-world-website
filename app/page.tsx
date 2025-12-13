@@ -114,8 +114,7 @@ export default function KrashWorldWebsite() {
                   <span className="text-[#ffda0f]">KRASH WORLD</span>
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-                  Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and
-                  resistance against oppressive forces.
+                  Separated from everyone she loves, an exiled krashite becomes Earth's superpowered defender, fighting The Directorate through music and dance - protecting the free expression they fear most.
                 </p>
               </div>
 
