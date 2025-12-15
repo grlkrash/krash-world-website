@@ -138,7 +138,7 @@ export default function RootLayout({
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Los Angeles",
-                addressRegion: "OH",
+                addressRegion: "CA",
                 addressCountry: "US",
               },
             }),

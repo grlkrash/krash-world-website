@@ -205,9 +205,15 @@ export default function KrashWorldWebsite() {
         <div className="container mx-auto px-6 text-center">
           <div className="text-[#ffda0f] text-sm font-mono mb-4">TRANSMEDIA IP ART PROJECT</div>
           <h2 className="text-2xl font-black text-white mb-4">BY LA-BASED MULTIMEDIA ARTIST GRLKRASH</h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-400 max-w-2xl mx-auto mb-2">
             Krash World is an immersive universe spanning music, games, art, and storytelling - exploring themes of
             love, resistance, and authentic human connection.
+          </p>
+          <p className="text-gray-500 text-sm italic max-w-2xl mx-auto mb-4">
+            A transmedia IP art project by GRLKRASH, featuring the character GRLKRASH
+          </p>
+          <p className="text-gray-400 text-sm max-w-2xl mx-auto">
+            GRLKRASH is a multimedia artist from Cincinnati, now based in LA, creating immersive worlds that blend music, visual art, and interactive storytelling.
           </p>
         </div>
       </section>
