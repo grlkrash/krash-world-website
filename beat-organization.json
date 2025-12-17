@@ -1,0 +1,952 @@
+{
+  "beats": [
+    {
+      "id": "beat-1",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/10.27 v2.wav",
+      "filename": "10.27 v2.wav",
+      "sanitized": "10_27_v2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-2",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/10.29.wav",
+      "filename": "10.29.wav",
+      "sanitized": "10_29",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-3",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/10.7.wav",
+      "filename": "10.7.wav",
+      "sanitized": "10_7",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-4",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/10.9.wav",
+      "filename": "10.9.wav",
+      "sanitized": "10_9",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-5",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/11.16.wav",
+      "filename": "11.16.wav",
+      "sanitized": "11_16",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-6",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/11.19.wav",
+      "filename": "11.19.wav",
+      "sanitized": "11_19",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-7",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/12.17.wav",
+      "filename": "12.17.wav",
+      "sanitized": "12_17",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-8",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/24 (juiced).mp3",
+      "filename": "24 (juiced).mp3",
+      "sanitized": "24__juiced_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-9",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/24 (juiced).wav",
+      "filename": "24 (juiced).wav",
+      "sanitized": "24__juiced_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-10",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/26 (xtra juice).mp3",
+      "filename": "26 (xtra juice).mp3",
+      "sanitized": "26__xtra_juice_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-11",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/27.wav",
+      "filename": "27.wav",
+      "sanitized": "27",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-12",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/4.8 vibe melody main.mp3",
+      "filename": "4.8 vibe melody main.mp3",
+      "sanitized": "4_8_vibe_melody_main",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-13",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/5.30.wav",
+      "filename": "5.30.wav",
+      "sanitized": "5_30",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-14",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/6.27.wav",
+      "filename": "6.27.wav",
+      "sanitized": "6_27",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-15",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/6.29.wav",
+      "filename": "6.29.wav",
+      "sanitized": "6_29",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-16",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/6inthemorning v5.mp3",
+      "filename": "6inthemorning v5.mp3",
+      "sanitized": "6inthemorning_v5",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-17",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/7.30.wav",
+      "filename": "7.30.wav",
+      "sanitized": "7_30",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-18",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/7.7 .wav",
+      "filename": "7.7 .wav",
+      "sanitized": "7_7_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-19",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/8.13.wav",
+      "filename": "8.13.wav",
+      "sanitized": "8_13",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-20",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/8.14 v2.wav",
+      "filename": "8.14 v2.wav",
+      "sanitized": "8_14_v2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-21",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/9.10 v3.wav",
+      "filename": "9.10 v3.wav",
+      "sanitized": "9_10_v3",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-22",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/9.30.wav",
+      "filename": "9.30.wav",
+      "sanitized": "9_30",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-23",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/BAMBOO.wav",
+      "filename": "BAMBOO.wav",
+      "sanitized": "bamboo",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-24",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/BLAM!.wav",
+      "filename": "BLAM!.wav",
+      "sanitized": "blam_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-25",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/CANES.mp3",
+      "filename": "CANES.mp3",
+      "sanitized": "canes",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-26",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/EYES ON U.mp3",
+      "filename": "EYES ON U.mp3",
+      "sanitized": "eyes_on_u",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-27",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/EYES ON U.wav",
+      "filename": "EYES ON U.wav",
+      "sanitized": "eyes_on_u",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-28",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/GO FAST.wav",
+      "filename": "GO FAST.wav",
+      "sanitized": "go_fast",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-29",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/HOPE no drums.mp3",
+      "filename": "HOPE no drums.mp3",
+      "sanitized": "hope_no_drums",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-30",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/HOPE no drums.wav",
+      "filename": "HOPE no drums.wav",
+      "sanitized": "hope_no_drums",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-31",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/HOPE.mp3",
+      "filename": "HOPE.mp3",
+      "sanitized": "hope",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-32",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/HOPE.wav",
+      "filename": "HOPE.wav",
+      "sanitized": "hope",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-33",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/KRASH111.wav",
+      "filename": "KRASH111.wav",
+      "sanitized": "krash111",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-34",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/MANCHESTER! 2.wav",
+      "filename": "MANCHESTER! 2.wav",
+      "sanitized": "manchester__2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-35",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/MANCHESTER!.wav",
+      "filename": "MANCHESTER!.wav",
+      "sanitized": "manchester_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-36",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/PUSH  V2.mp3",
+      "filename": "PUSH  V2.mp3",
+      "sanitized": "push__v2",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-37",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/PUSH  V2.wav",
+      "filename": "PUSH  V2.wav",
+      "sanitized": "push__v2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-38",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/SCREAM!.wav",
+      "filename": "SCREAM!.wav",
+      "sanitized": "scream_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-39",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/UNDERWATER 1.wav",
+      "filename": "UNDERWATER 1.wav",
+      "sanitized": "underwater_1",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-40",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/alien.mp3",
+      "filename": "alien.mp3",
+      "sanitized": "alien",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-41",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/ass in the front.wav",
+      "filename": "ass in the front.wav",
+      "sanitized": "ass_in_the_front",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-42",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/cute plucks.mp3",
+      "filename": "cute plucks.mp3",
+      "sanitized": "cute_plucks",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-43",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/go crazy go stupid.mp3",
+      "filename": "go crazy go stupid.mp3",
+      "sanitized": "go_crazy_go_stupid",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-44",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/guitar beat.wav",
+      "filename": "guitar beat.wav",
+      "sanitized": "guitar_beat",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-45",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/heart strings 1v hook.wav",
+      "filename": "heart strings 1v hook.wav",
+      "sanitized": "heart_strings_1v_hook",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-46",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/i cant wait to go to california.mp3",
+      "filename": "i cant wait to go to california.mp3",
+      "sanitized": "i_cant_wait_to_go_to_california",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-47",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/i cant wait to go to california.wav",
+      "filename": "i cant wait to go to california.wav",
+      "sanitized": "i_cant_wait_to_go_to_california",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-48",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/impeach v2.wav",
+      "filename": "impeach v2.wav",
+      "sanitized": "impeach_v2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-49",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/in my dreams 152bpm (grl + rocco).wav",
+      "filename": "in my dreams 152bpm (grl + rocco).wav",
+      "sanitized": "in_my_dreams_152bpm__grl___rocco_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-50",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/kaash-nomet.mp3",
+      "filename": "kaash-nomet.mp3",
+      "sanitized": "kaash_nomet",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-51",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/let it go.mp3",
+      "filename": "let it go.mp3",
+      "sanitized": "let_it_go",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-52",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/outter space.mp3",
+      "filename": "outter space.mp3",
+      "sanitized": "outter_space",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-53",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/outter space.wav",
+      "filename": "outter space.wav",
+      "sanitized": "outter_space",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-54",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/powrpuff grls (mix v2).wav",
+      "filename": "powrpuff grls (mix v2).wav",
+      "sanitized": "powrpuff_grls__mix_v2_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-55",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/praise mixed.wav",
+      "filename": "praise mixed.wav",
+      "sanitized": "praise_mixed",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-56",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/praise.mp3",
+      "filename": "praise.mp3",
+      "sanitized": "praise",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-57",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/princess v2.mp3",
+      "filename": "princess v2.mp3",
+      "sanitized": "princess_v2",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-58",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/september 15 (pangeux co pro).mp3",
+      "filename": "september 15 (pangeux co pro).mp3",
+      "sanitized": "september_15__pangeux_co_pro_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-59",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/so long v3.wav",
+      "filename": "so long v3.wav",
+      "sanitized": "so_long_v3",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-60",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/the end .mp3",
+      "filename": "the end .mp3",
+      "sanitized": "the_end_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-61",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/the end .wav",
+      "filename": "the end .wav",
+      "sanitized": "the_end_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-62",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/uber eats mix 2.mp3",
+      "filename": "uber eats mix 2.mp3",
+      "sanitized": "uber_eats_mix_2",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-63",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/ur a jerk ik_slowed.mp3",
+      "filename": "ur a jerk ik_slowed.mp3",
+      "sanitized": "ur_a_jerk_ik_slowed",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-64",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/ur a jerk ik_slowed.wav",
+      "filename": "ur a jerk ik_slowed.wav",
+      "sanitized": "ur_a_jerk_ik_slowed",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-65",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/where u been .mp3",
+      "filename": "where u been .mp3",
+      "sanitized": "where_u_been_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-66",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/10.10.wav",
+      "filename": "10.10.wav",
+      "sanitized": "10_10",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-67",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/11.19v2.wav",
+      "filename": "11.19v2.wav",
+      "sanitized": "11_19v2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-68",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/2.16.mp3",
+      "filename": "2.16.mp3",
+      "sanitized": "2_16",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-69",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/26 (xtra juice).wav",
+      "filename": "26 (xtra juice).wav",
+      "sanitized": "26__xtra_juice_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-70",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/5.1.wav",
+      "filename": "5.1.wav",
+      "sanitized": "5_1",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-71",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Another time in space_.wav",
+      "filename": "Another time in space_.wav",
+      "sanitized": "another_time_in_space_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-72",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/BAD .mp3",
+      "filename": "BAD .mp3",
+      "sanitized": "bad_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-73",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/BAD .wav",
+      "filename": "BAD .wav",
+      "sanitized": "bad_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-74",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/F YOU _160BPM_Amin v2.wav",
+      "filename": "F YOU _160BPM_Amin v2.wav",
+      "sanitized": "f_you__160bpm_amin_v2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-75",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/FREE BEAT/bubblegumjerk.wav",
+      "filename": "bubblegumjerk.wav",
+      "sanitized": "bubblegumjerk",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-76",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/2.16.mp3",
+      "filename": "2.16.mp3",
+      "sanitized": "2_16",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-77",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/3.27.mp3",
+      "filename": "3.27.mp3",
+      "sanitized": "3_27",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-78",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/4.11 .wav",
+      "filename": "4.11 .wav",
+      "sanitized": "4_11_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-79",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/4.15.mp3",
+      "filename": "4.15.mp3",
+      "sanitized": "4_15",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-80",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/4.19.mp3",
+      "filename": "4.19.mp3",
+      "sanitized": "4_19",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-81",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/5.1.wav",
+      "filename": "5.1.wav",
+      "sanitized": "5_1",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-82",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/5.25.mp3",
+      "filename": "5.25.mp3",
+      "sanitized": "5_25",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-83",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/6.6 (mix).mp3",
+      "filename": "6.6 (mix).mp3",
+      "sanitized": "6_6__mix_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-84",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/Copy of 4.15.mp3",
+      "filename": "Copy of 4.15.mp3",
+      "sanitized": "copy_of_4_15",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-85",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/Copy of 4.19.mp3",
+      "filename": "Copy of 4.19.mp3",
+      "sanitized": "copy_of_4_19",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-86",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/Copy of confetti.wav",
+      "filename": "Copy of confetti.wav",
+      "sanitized": "copy_of_confetti",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-87",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/another year.mp3",
+      "filename": "another year.mp3",
+      "sanitized": "another_year",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-88",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/ethereal.mp3",
+      "filename": "ethereal.mp3",
+      "sanitized": "ethereal",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-89",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/grls.mp3",
+      "filename": "grls.mp3",
+      "sanitized": "grls",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-90",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/inside out .mp3",
+      "filename": "inside out .mp3",
+      "sanitized": "inside_out_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-91",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/loser.wav",
+      "filename": "loser.wav",
+      "sanitized": "loser",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-92",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/notice me.wav",
+      "filename": "notice me.wav",
+      "sanitized": "notice_me",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-93",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/praise mixed.mp3",
+      "filename": "praise mixed.mp3",
+      "sanitized": "praise_mixed",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-94",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/Older Beats/skate fast 2.mp3",
+      "filename": "skate fast 2.mp3",
+      "sanitized": "skate_fast_2",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-95",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/PUSH (165 BPM).wav",
+      "filename": "PUSH (165 BPM).wav",
+      "sanitized": "push__165_bpm_",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-96",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/at the beach with a bad b_tchv1_instrumental(166bpm).mp3",
+      "filename": "at the beach with a bad b_tchv1_instrumental(166bpm).mp3",
+      "sanitized": "at_the_beach_with_a_bad_b_tchv1_instrumental_166bp",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-97",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/baby come over unfinished.mp3",
+      "filename": "baby come over unfinished.mp3",
+      "sanitized": "baby_come_over_unfinished",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-98",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/dreamer.mp3",
+      "filename": "dreamer.mp3",
+      "sanitized": "dreamer",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-99",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/dundundun.wav",
+      "filename": "dundundun.wav",
+      "sanitized": "dundundun",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-100",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/extasygnd.wav",
+      "filename": "extasygnd.wav",
+      "sanitized": "extasygnd",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-101",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/eyes on u v1.2.mp3",
+      "filename": "eyes on u v1.2.mp3",
+      "sanitized": "eyes_on_u_v1_2",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-102",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/fun beat .mp3",
+      "filename": "fun beat .mp3",
+      "sanitized": "fun_beat_",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-103",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/i wanna see you dance instrumental.mp3",
+      "filename": "i wanna see you dance instrumental.mp3",
+      "sanitized": "i_wanna_see_you_dance_instrumental",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-104",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/impeach v2.mp3",
+      "filename": "impeach v2.mp3",
+      "sanitized": "impeach_v2",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-105",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/just some random shit.mp3",
+      "filename": "just some random shit.mp3",
+      "sanitized": "just_some_random_shit",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "beat-106",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/princess mix 2.wav",
+      "filename": "princess mix 2.wav",
+      "sanitized": "princess_mix_2",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "beat-107",
+      "originalFile": "/Users/sonia/Downloads/BEATS 24-25 3/ur a jerk ik.wav",
+      "filename": "ur a jerk ik.wav",
+      "sanitized": "ur_a_jerk_ik",
+      "isWav": true,
+      "isMp3": false
+    }
+  ],
+  "loops": [
+    {
+      "id": "loop-1",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/5 loop guitar.mp3",
+      "filename": "5 loop guitar.mp3",
+      "sanitized": "5_loop_guitar",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-2",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/7.24_idea.mp3",
+      "filename": "7.24_idea.mp3",
+      "sanitized": "7_24_idea",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-3",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/7.25_idea.mp3",
+      "filename": "7.25_idea.mp3",
+      "sanitized": "7_25_idea",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-4",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/7.26_idea.mp3",
+      "filename": "7.26_idea.mp3",
+      "sanitized": "7_26_idea",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-5",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/9.7 loop.wav",
+      "filename": "9.7 loop.wav",
+      "sanitized": "9_7_loop",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "loop-6",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/9.9 loop extended no met.wav",
+      "filename": "9.9 loop extended no met.wav",
+      "sanitized": "9_9_loop_extended_no_met",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "loop-7",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/DESIRE loop.wav",
+      "filename": "DESIRE loop.wav",
+      "sanitized": "desire_loop",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "loop-8",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/ea loop sped.wav",
+      "filename": "ea loop sped.wav",
+      "sanitized": "ea_loop_sped",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "loop-9",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/ea loop.mp3",
+      "filename": "ea loop.mp3",
+      "sanitized": "ea_loop",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-10",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/god loop.mp3",
+      "filename": "god loop.mp3",
+      "sanitized": "god_loop",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-11",
+      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/god loop.wav",
+      "filename": "god loop.wav",
+      "sanitized": "god_loop",
+      "isWav": true,
+      "isMp3": false
+    }
+  ],
+  "totalBeats": 107,
+  "totalLoops": 11
+}
