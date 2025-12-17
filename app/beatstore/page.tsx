@@ -15,6 +15,8 @@ interface Beat {
   price: number
   previewUrl: string
   coverImage: string
+  includesWav?: boolean
+  fileFormat?: string
 }
 
 export default function BeatstorePage() {
@@ -173,8 +175,8 @@ export default function BeatstorePage() {
                 <div className="text-sm">Download link sent to your email after purchase</div>
               </div>
               <div>
-                <div className="text-white font-bold mb-2">COMMERCIAL RIGHTS</div>
-                <div className="text-sm">Use in your projects with full commercial rights</div>
+                <div className="text-white font-bold mb-2">50% PUBLISHING RIGHTS</div>
+                <div className="text-sm">Standard lease includes 50/50 publishing split and 2,500 unit distribution</div>
               </div>
             </div>
           </div>

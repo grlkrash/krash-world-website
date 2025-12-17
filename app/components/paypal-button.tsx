@@ -2,13 +2,17 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
 
 interface Beat {
   id: string
   title: string
   price: number
-  downloadUrl: string
+  downloadUrl?: string
+  includesWav?: boolean
+  fileFormat?: string
 }
 
 interface PayPalButtonProps {
@@ -39,6 +43,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
   const paypalButtonRef = useRef<HTMLDivElement>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [isScriptLoaded, setIsScriptLoaded] = useState(false)
+  const [termsAccepted, setTermsAccepted] = useState(false)
 
   useEffect(() => {
     // Load PayPal SDK
@@ -61,7 +66,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
   }, [])
 
   useEffect(() => {
-    if (!isScriptLoaded || !window.paypal || !paypalButtonRef.current) return
+    if (!isScriptLoaded || !window.paypal || !paypalButtonRef.current || !termsAccepted) return
 
     setIsLoading(true)
 
@@ -69,10 +74,11 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
       window.paypal
         .Buttons({
           createOrder: function (data, actions) {
+            const format = beat.fileFormat || "MP3"
             return actions.order.create({
               purchase_units: [
                 {
-                  description: `${beat.title} - WAV + Stems`,
+                  description: `${beat.title} - Standard Lease (${format}) - 50% Publishing`,
                   amount: {
                     value: beat.price.toFixed(2),
                   },
@@ -129,7 +135,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
       console.error("Error rendering PayPal button:", error)
       setIsLoading(false)
     }
-  }, [isScriptLoaded, beat])
+  }, [isScriptLoaded, beat, termsAccepted])
 
   if (!process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID) {
     return (
@@ -148,5 +154,32 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
     )
   }
 
-  return <div ref={paypalButtonRef} className="w-full" />
+  return (
+    <div className="w-full space-y-3">
+      <div className="flex items-start space-x-2">
+        <Checkbox
+          id={`terms-${beat.id}`}
+          checked={termsAccepted}
+          onCheckedChange={(checked) => setTermsAccepted(checked === true)}
+          className="mt-1 border-[#ffda0f]/50 data-[state=checked]:bg-[#ffda0f] data-[state=checked]:border-[#ffda0f]"
+        />
+        <Label
+          htmlFor={`terms-${beat.id}`}
+          className="text-xs text-gray-300 leading-tight cursor-pointer"
+        >
+          I agree to the <span className="text-[#ffda0f] underline">Lease Terms</span> and understand 
+          this purchase includes 50% publishing rights and distribution up to 2,500 units.
+        </Label>
+      </div>
+      <div 
+        ref={paypalButtonRef} 
+        className={`w-full ${!termsAccepted ? "opacity-50 pointer-events-none" : ""}`}
+      />
+      {!termsAccepted && (
+        <p className="text-xs text-gray-500 text-center">
+          Please accept the terms to proceed with purchase
+        </p>
+      )}
+    </div>
+  )
 }

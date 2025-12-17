@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Play, Pause } from "lucide-react"
@@ -14,6 +15,8 @@ interface Beat {
   price: number
   previewUrl: string
   coverImage: string
+  includesWav?: boolean
+  fileFormat?: string
 }
 
 interface BeatCardProps {
@@ -85,10 +88,34 @@ export default function BeatCard({ beat }: BeatCardProps) {
           </div>
         </div>
 
-        {/* Price */}
-        <div className="flex items-baseline gap-2">
-          <span className="text-3xl font-black text-[#ffda0f]">${beat.price}</span>
-          <span className="text-gray-400 text-sm">USD</span>
+        {/* File Format & Price */}
+        <div className="space-y-2">
+          {beat.fileFormat && (
+            <div className="text-xs text-gray-400">
+              Format: <span className="text-[#ffda0f] font-semibold">{beat.fileFormat}</span>
+            </div>
+          )}
+          <div className="flex items-baseline gap-2">
+            <span className="text-3xl font-black text-[#ffda0f]">${beat.price}</span>
+            <span className="text-gray-400 text-sm">USD</span>
+          </div>
+        </div>
+
+        {/* Lease Terms Summary */}
+        <div className="bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10 space-y-2">
+          <div className="text-xs font-semibold text-[#ffda0f] mb-1">STANDARD LEASE INCLUDES:</div>
+          <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
+            <li>50% Publishing Rights (50/50 split)</li>
+            <li>2,500 Unit Distribution Limit</li>
+            <li>Commercial Use Rights</li>
+            <li>Lifetime License Term</li>
+          </ul>
+          <Link
+            href="/lease-terms"
+            className="text-xs text-[#ffda0f] hover:underline inline-block mt-2"
+          >
+            View Full Terms →
+          </Link>
         </div>
       </CardContent>
       <CardFooter className="p-6 pt-0">
