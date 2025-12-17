@@ -25,3 +25,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Large media files - use AWS S3 or CDN for production
+# Exclude large download ZIPs from git (use S3/CDN instead)
+/public/downloads/
+# Keep preview files for the site (they're smaller)
