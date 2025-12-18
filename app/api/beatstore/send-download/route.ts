@@ -107,68 +107,7 @@ export async function POST(request: Request) {
       console.log(`⚠️ EmailJS not configured (missing: ${missingVars.join(", ")})`)
     }
 
-    // Option 2: Use SendGrid (server-side email service)
-    const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
-    const SENDGRID_FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || "noreply@krash.world"
-
-    if (SENDGRID_API_KEY) {
-      try {
-        console.log("📧 Attempting SendGrid send...")
-        const sendgridResponse = await fetch("https://api.sendgrid.com/v3/mail/send", {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${SENDGRID_API_KEY}`,
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            personalizations: [
-              {
-                to: [{ email }],
-                subject: `Your ${beatTitle || "Beat"} Download - KRASH WORLD`,
-              },
-            ],
-            from: { email: SENDGRID_FROM_EMAIL },
-            content: [
-              {
-                type: "text/html",
-                value: `
-                  <html>
-                    <body style="font-family: Arial, sans-serif; background: #000; color: #fff; padding: 20px;">
-                      <div style="max-width: 600px; margin: 0 auto; background: #111; padding: 30px; border-radius: 10px; border: 1px solid #ffda0f;">
-                        <h1 style="color: #ffda0f; font-size: 24px; margin-bottom: 20px;">THANK YOU FOR YOUR PURCHASE!</h1>
-                        <p style="color: #fff; line-height: 1.6;">Your beat <strong>${beatTitle || "Beat"}</strong> is ready for download.</p>
-                        <div style="margin: 30px 0;">
-                          <a href="${secureDownloadUrl}" style="display: inline-block; background: #ffda0f; color: #000; padding: 15px 30px; text-decoration: none; border-radius: 5px; font-weight: bold;">DOWNLOAD BEAT</a>
-                        </div>
-                        <p style="color: #999; font-size: 12px; margin-top: 30px;">Transaction ID: ${transactionId}</p>
-                        <p style="color: #999; font-size: 12px;">KRASH WORLD © 2024</p>
-                      </div>
-                    </body>
-                  </html>
-                `,
-              },
-            ],
-          }),
-        })
-
-        const sendgridBody = await sendgridResponse.text()
-        console.log(`📧 SendGrid response: ${sendgridResponse.status} ${sendgridResponse.statusText}`)
-        if (sendgridBody) console.log(`📧 SendGrid body:`, sendgridBody)
-
-        if (sendgridResponse.ok) {
-          console.log("✅ SendGrid email sent successfully")
-          return Response.json({ success: true, method: "sendgrid" })
-        } else {
-          console.error("❌ SendGrid failed:", sendgridBody)
-        }
-      } catch (error) {
-        console.error("❌ SendGrid error:", error)
-      }
-    } else {
-      console.log("⚠️ SendGrid not configured (missing SENDGRID_API_KEY)")
-    }
-
-    // Option 3: Use Google Sheets (like newsletter) as fallback
+    // Option 2: Use Google Sheets (like newsletter) as fallback
     // You can set up a Google Apps Script to send emails
     const GOOGLE_SHEETS_WEBHOOK = process.env.GOOGLE_SHEETS_BEATSTORE_WEBHOOK
 
