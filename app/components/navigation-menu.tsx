@@ -1,6 +1,6 @@
 "use client"
 import Link from "next/link"
-import { ExternalLink, Music, Gamepad2, Mail, BookOpen, MessageSquare } from "lucide-react"
+import { ExternalLink, Music, Gamepad2, Mail, BookOpen, MessageSquare, ShoppingBag, FileText } from "lucide-react"
 
 // Custom Discord Icon Component
 const DiscordIcon = ({ size = 20 }: { size?: number }) => (
@@ -20,6 +20,13 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
 
   const menuItems = [
     {
+      title: "BEATSTORE",
+      description: "Browse beats, loops & templates",
+      href: "/beatstore",
+      icon: <ShoppingBag size={20} />,
+      color: "#ffda0f",
+    },
+    {
       title: "PLAY GAME",
       description: "Enter the Krash World universe",
       href: "https://play.krash.world",
@@ -32,6 +39,20 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
       href: "https://Venice.lnk.to/psilocybin-remix",
       icon: <Music size={20} />,
       color: "#ff6b9d",
+    },
+    {
+      title: "CONTACT",
+      description: "Get in touch with GRLKRASH",
+      href: "/contact",
+      icon: <MessageSquare size={20} />,
+      color: "#ffda0f",
+    },
+    {
+      title: "LEASE TERMS",
+      description: "View beat licensing information",
+      href: "/lease-terms",
+      icon: <FileText size={20} />,
+      color: "#00ff88",
     },
     {
       title: "DISCORD",
@@ -58,13 +79,6 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
       color: "#00aaff",
     },
     {
-      title: "CONTACT",
-      description: "Get in touch with GRLKRASH",
-      href: "/contact",
-      icon: <MessageSquare size={20} />,
-      color: "#ffda0f",
-    },
-    {
       title: "KRASH COURSES",
       description: "HOW TO FUND CREATIVE EVENTS: THE $20K BLUEPRINT",
       href: "https://krashworld.gumroad.com",
@@ -74,7 +88,7 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
   ]
 
   return (
-    <div className="md:hidden bg-black/95 backdrop-blur-md border-t border-[#ffda0f]/20">
+    <div className="fixed inset-0 top-16 z-50 bg-black/95 backdrop-blur-md border-t border-[#ffda0f]/20 overflow-y-auto">
       <div className="container mx-auto px-6 py-6 space-y-4">
         {menuItems.map((item, index) => (
           <div key={index}>
