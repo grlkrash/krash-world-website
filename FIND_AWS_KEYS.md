@@ -15,11 +15,26 @@
 ### Option A: Create New User (Recommended for S3)
 
 1. In IAM, click **"Users"** in the left sidebar
-2. Click **"Create user"**
-3. Username: `s3-uploader` (or any name)
-4. Check **"Provide user access to the AWS Management Console"** - **NO, don't check this**
-5. Instead, check **"Access key - Programmatic access"**
-6. Click **"Next"**
+2. Click **"Create user"** button
+3. **Step 1 - User details:**
+   - Username: `s3-uploader` (or any name)
+   - Click **"Next"**
+4. **Step 2 - Set permissions:**
+   - Select **"Attach policies directly"**
+   - Search for and check: **"AmazonS3FullAccess"** (or create a custom policy for just your bucket)
+   - Click **"Next"**
+5. **Step 3 - Review and create:**
+   - Review the settings
+   - Click **"Create user"**
+6. **After user is created:**
+   - Click on the user you just created
+   - Go to **"Security credentials"** tab
+   - Scroll to **"Access keys"** section
+   - Click **"Create access key"**
+   - Select **"Command Line Interface (CLI)"**
+   - Check the confirmation box
+   - Click **"Next"**
+   - Click **"Create access key"**
 
 ### Option B: Use Your Root Account (Faster, but less secure)
 
