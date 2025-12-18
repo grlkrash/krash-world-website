@@ -73,15 +73,34 @@ export async function POST(request: Request) {
     const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY
     const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY
 
-    if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && EMAILJS_PRIVATE_KEY) {
+    // Validate EmailJS configuration (check for non-empty strings)
+    const isEmailJSConfigured = 
+      EMAILJS_SERVICE_ID?.trim() && 
+      EMAILJS_TEMPLATE_ID?.trim() && 
+      EMAILJS_PUBLIC_KEY?.trim() && 
+      EMAILJS_PRIVATE_KEY?.trim()
+
+    console.log("📧 EmailJS Configuration Check:")
+    console.log(`   SERVICE_ID: ${EMAILJS_SERVICE_ID ? `✅ Set (${EMAILJS_SERVICE_ID.length} chars)` : "❌ Missing"}`)
+    console.log(`   TEMPLATE_ID: ${EMAILJS_TEMPLATE_ID ? `✅ Set (${EMAILJS_TEMPLATE_ID.length} chars)` : "❌ Missing"}`)
+    console.log(`   PUBLIC_KEY: ${EMAILJS_PUBLIC_KEY ? `✅ Set (${EMAILJS_PUBLIC_KEY.length} chars)` : "❌ Missing"}`)
+    console.log(`   PRIVATE_KEY: ${EMAILJS_PRIVATE_KEY ? `✅ Set (${EMAILJS_PRIVATE_KEY.length} chars)` : "❌ Missing"}`)
+
+    if (isEmailJSConfigured) {
       try {
         console.log("📧 Attempting EmailJS send...")
+        console.log("📧 EmailJS init with keys (lengths):", {
+          publicKeyLength: EMAILJS_PUBLIC_KEY.length,
+          privateKeyLength: EMAILJS_PRIVATE_KEY.length,
+        })
         
         // Initialize EmailJS with public and private keys
         emailjs.init({
           publicKey: EMAILJS_PUBLIC_KEY,
           privateKey: EMAILJS_PRIVATE_KEY,
         })
+
+        console.log("📧 EmailJS initialized, sending email...")
 
         // Send email using EmailJS
         const emailjsResponse = await emailjs.send(
@@ -106,17 +125,38 @@ export async function POST(request: Request) {
       } catch (error) {
         console.error("❌ EmailJS error:", error)
         const errorMessage = error instanceof Error ? error.message : String(error)
-        if (errorMessage.includes("non-browser")) {
-          console.error("⚠️ EmailJS API for non-browser applications is disabled. Enable it in EmailJS dashboard: Account → Security → Allow EmailJS API for non-browser applications")
+        const errorStack = error instanceof Error ? error.stack : undefined
+        
+        console.error("❌ EmailJS error details:", {
+          message: errorMessage,
+          stack: errorStack,
+        })
+
+        // Handle specific EmailJS errors
+        if (errorMessage.includes("strict mode") || errorMessage.includes("private key")) {
+          console.error("⚠️ EmailJS STRICT MODE ERROR:")
+          console.error("   Your EmailJS account is in strict mode and requires a private key.")
+          console.error("   Solution:")
+          console.error("   1. Go to EmailJS Dashboard: https://dashboard.emailjs.com/")
+          console.error("   2. Navigate to: Account → Security")
+          console.error("   3. Find your Private Key (or generate a new one)")
+          console.error("   4. Add it to Vercel environment variables as: EMAILJS_PRIVATE_KEY")
+          console.error("   5. Redeploy your application")
+        } else if (errorMessage.includes("non-browser")) {
+          console.error("⚠️ EmailJS API for non-browser applications is disabled.")
+          console.error("   Enable it in EmailJS dashboard: Account → Security → Allow EmailJS API for non-browser applications")
         }
       }
     } else {
       const missingVars = []
-      if (!EMAILJS_SERVICE_ID) missingVars.push("EMAILJS_SERVICE_ID")
-      if (!EMAILJS_TEMPLATE_ID) missingVars.push("EMAILJS_TEMPLATE_ID")
-      if (!EMAILJS_PUBLIC_KEY) missingVars.push("EMAILJS_PUBLIC_KEY")
-      if (!EMAILJS_PRIVATE_KEY) missingVars.push("EMAILJS_PRIVATE_KEY")
-      console.log(`⚠️ EmailJS not configured (missing: ${missingVars.join(", ")})`)
+      if (!EMAILJS_SERVICE_ID?.trim()) missingVars.push("EMAILJS_SERVICE_ID")
+      if (!EMAILJS_TEMPLATE_ID?.trim()) missingVars.push("EMAILJS_TEMPLATE_ID")
+      if (!EMAILJS_PUBLIC_KEY?.trim()) missingVars.push("EMAILJS_PUBLIC_KEY")
+      if (!EMAILJS_PRIVATE_KEY?.trim()) missingVars.push("EMAILJS_PRIVATE_KEY")
+      console.log(`⚠️ EmailJS not configured (missing or empty: ${missingVars.join(", ")})`)
+      if (missingVars.includes("EMAILJS_PRIVATE_KEY")) {
+        console.log("💡 Note: EmailJS strict mode requires EMAILJS_PRIVATE_KEY to be set in Vercel environment variables")
+      }
     }
 
     // Option 2: Use Google Sheets (like newsletter) as fallback
