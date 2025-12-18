@@ -1,7 +1,7 @@
-// Transaction store with Vercel KV support and in-memory fallback
-// Vercel KV provides persistent storage across serverless function invocations
+// Transaction store with Upstash Redis support and in-memory fallback
+// Upstash Redis provides persistent storage across serverless function invocations
 
-import { kv } from "@vercel/kv"
+import { Redis } from "@upstash/redis"
 
 interface Transaction {
   transactionId: string
@@ -13,23 +13,31 @@ interface Transaction {
   downloaded: boolean
 }
 
-// In-memory fallback store (used if Vercel KV is not configured)
+// Initialize Redis using Vercel-provided environment variables
+// Vercel sets KV_REST_API_URL and KV_REST_API_TOKEN when Upstash is connected
+// Falls back gracefully if not configured
+let redis: Redis | null = null
+try {
+  if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
+    redis = new Redis({
+      url: process.env.KV_REST_API_URL,
+      token: process.env.KV_REST_API_TOKEN,
+    })
+    console.log("✅ Upstash Redis initialized")
+  } else {
+    console.log("⚠️ Upstash Redis not configured (missing env vars), using in-memory fallback")
+  }
+} catch (error) {
+  console.log("⚠️ Upstash Redis initialization failed, using in-memory fallback:", error)
+  redis = null
+}
+
+// In-memory fallback store (used if Upstash Redis is not configured)
 // WARNING: This doesn't work reliably on Vercel serverless functions
 // because each invocation may run on a different instance
 const transactions = new Map<string, Transaction>()
 
-// Check if Vercel KV is available
-let kvAvailable = false
-try {
-  // Test KV connection (will fail if not configured)
-  kvAvailable = typeof process.env.KV_REST_API_URL !== "undefined" && 
-                typeof process.env.KV_REST_API_TOKEN !== "undefined"
-} catch {
-  kvAvailable = false
-}
-
 const KV_PREFIX = "transaction:"
-const KV_TTL = 48 * 60 * 60 // 48 hours in seconds
 
 // Helper to get KV key
 function getKVKey(transactionId: string): string {
@@ -54,44 +62,44 @@ export async function storeTransaction(
     downloaded: false,
   }
 
-  // Try Vercel KV first
-  if (kvAvailable) {
+  // Try Upstash Redis first
+  if (redis) {
     try {
       const ttl = expiresInHours * 60 * 60 // Convert to seconds
-      await kv.set(getKVKey(transactionId), transaction, { ex: ttl })
-      console.log(`✅ Transaction ${transactionId} stored in Vercel KV`)
+      await redis.set(getKVKey(transactionId), transaction, { ex: ttl })
+      console.log(`✅ Transaction ${transactionId} stored in Upstash Redis`)
       return
     } catch (error) {
-      console.error(`❌ Failed to store transaction in KV, falling back to memory:`, error)
+      console.error(`❌ Failed to store transaction in Redis, falling back to memory:`, error)
     }
   }
 
   // Fallback to in-memory (not reliable on serverless)
   transactions.set(transactionId, transaction)
-  console.log(`⚠️ Transaction ${transactionId} stored in memory (KV not available - may not persist across invocations)`)
+  console.log(`⚠️ Transaction ${transactionId} stored in memory (Redis not available - may not persist across invocations)`)
 }
 
 export async function getTransaction(transactionId: string): Promise<Transaction | undefined> {
-  // Try Vercel KV first
-  if (kvAvailable) {
+  // Try Upstash Redis first
+  if (redis) {
     try {
-      const transaction = await kv.get<Transaction>(getKVKey(transactionId))
+      const transaction = await redis.get<Transaction>(getKVKey(transactionId))
       if (!transaction) {
-        console.log(`🔍 Transaction ${transactionId} not found in KV`)
+        console.log(`🔍 Transaction ${transactionId} not found in Redis`)
         return undefined
       }
 
       // Check if expired
       if (transaction.expiresAt < Date.now()) {
-        await kv.del(getKVKey(transactionId))
+        await redis.del(getKVKey(transactionId))
         console.log(`⏰ Transaction ${transactionId} expired`)
         return undefined
       }
 
-      console.log(`✅ Transaction ${transactionId} found in KV`)
+      console.log(`✅ Transaction ${transactionId} found in Redis`)
       return transaction
     } catch (error) {
-      console.error(`❌ Failed to get transaction from KV, falling back to memory:`, error)
+      console.error(`❌ Failed to get transaction from Redis, falling back to memory:`, error)
     }
   }
 
@@ -119,16 +127,16 @@ export async function markAsDownloaded(transactionId: string): Promise<boolean> 
 
   transaction.downloaded = true
 
-  // Update in KV or memory
-  if (kvAvailable) {
+  // Update in Redis or memory
+  if (redis) {
     try {
       const remainingTtl = Math.max(0, Math.floor((transaction.expiresAt - Date.now()) / 1000))
       if (remainingTtl > 0) {
-        await kv.set(getKVKey(transactionId), transaction, { ex: remainingTtl })
+        await redis.set(getKVKey(transactionId), transaction, { ex: remainingTtl })
       }
       return true
     } catch (error) {
-      console.error(`❌ Failed to update transaction in KV:`, error)
+      console.error(`❌ Failed to update transaction in Redis:`, error)
     }
   }
 
