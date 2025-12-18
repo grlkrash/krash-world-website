@@ -14,19 +14,29 @@ const DOWNLOADS_DIR = path.join(__dirname, '../public/downloads')
 const orgData = JSON.parse(fs.readFileSync(path.join(__dirname, '../beat-organization.json'), 'utf8'))
 
 function createZip(beat, outputPath) {
-  const zip = new AdmZip()
-  const sourceFile = beat.originalFile
-  
-  // Add the main file
-  const filename = path.basename(sourceFile)
-  zip.addLocalFile(sourceFile)
-  
-  // If there's a WAV version, prefer that, otherwise use MP3
-  // For now, just add what we have
-  
-  // Save ZIP
-  zip.writeZip(outputPath)
-  console.log(`   ✅ Created ZIP (${(fs.statSync(outputPath).size / 1024 / 1024).toFixed(2)} MB)`)
+  try {
+    const zip = new AdmZip()
+    const sourceFile = beat.originalFile
+    
+    // Check if source file exists
+    if (!fs.existsSync(sourceFile)) {
+      console.log(`   ⚠️  Source file not found: ${sourceFile}`)
+      return
+    }
+    
+    // Add the main file
+    const filename = path.basename(sourceFile)
+    zip.addLocalFile(sourceFile)
+    
+    // If there's a WAV version, prefer that, otherwise use MP3
+    // For now, just add what we have
+    
+    // Save ZIP
+    zip.writeZip(outputPath)
+    console.log(`   ✅ Created ZIP (${(fs.statSync(outputPath).size / 1024 / 1024).toFixed(2)} MB)`)
+  } catch (error) {
+    console.log(`   ❌ Error creating ZIP: ${error.message}`)
+  }
 }
 
 function processBeats() {
