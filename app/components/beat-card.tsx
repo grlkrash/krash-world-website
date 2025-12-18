@@ -34,22 +34,43 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const handlePlayPause = async () => {
     try {
       if (!audio) {
+        console.log("🎵 Loading audio:", beat.previewUrl)
         const newAudio = new Audio(beat.previewUrl)
         newAudio.preload = "auto"
         
         newAudio.addEventListener("ended", () => setIsPlaying(false))
         newAudio.addEventListener("error", (e) => {
-          console.error("Audio error:", e)
+          console.error("❌ Audio error:", e)
+          console.error("❌ Audio src:", newAudio.src)
+          console.error("❌ Audio networkState:", newAudio.networkState)
+          console.error("❌ Audio error code:", newAudio.error?.code, newAudio.error?.message)
           setAudioError(true)
           setIsPlaying(false)
         })
         newAudio.addEventListener("canplaythrough", () => {
+          console.log("✅ Audio can play through")
           setAudioError(false)
+        })
+        newAudio.addEventListener("loadstart", () => {
+          console.log("🔄 Audio load started")
+        })
+        newAudio.addEventListener("loadeddata", () => {
+          console.log("✅ Audio data loaded")
+        })
+        newAudio.addEventListener("stalled", () => {
+          console.warn("⚠️ Audio loading stalled")
         })
         
         setAudio(newAudio)
-        await newAudio.play()
-        setIsPlaying(true)
+        try {
+          await newAudio.play()
+          console.log("✅ Audio playback started")
+          setIsPlaying(true)
+        } catch (playError) {
+          console.error("❌ Play error:", playError)
+          setAudioError(true)
+          setIsPlaying(false)
+        }
       } else {
         if (isPlaying) {
           audio.pause()
@@ -60,7 +81,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         }
       }
     } catch (error) {
-      console.error("Playback error:", error)
+      console.error("❌ Playback error:", error)
       setAudioError(true)
       setIsPlaying(false)
     }
@@ -211,7 +232,11 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
             </Button>
             <div className="flex-1">
               <div className="text-xs text-gray-400 mb-1">
-                {audioError ? "Preview unavailable" : "PREVIEW"}
+                {audioError ? (
+                  <span className="text-red-400">Preview unavailable - Check console for details</span>
+                ) : (
+                  "PREVIEW"
+                )}
               </div>
               {!audioError && (
                 <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
