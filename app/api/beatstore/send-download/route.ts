@@ -57,6 +57,7 @@ export async function POST(request: Request) {
 
     if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
       try {
+        console.log("📧 Attempting EmailJS send...")
         const emailjsResponse = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "POST",
           headers: {
@@ -75,12 +76,21 @@ export async function POST(request: Request) {
           }),
         })
 
+        const emailjsBody = await emailjsResponse.text()
+        console.log(`📧 EmailJS response: ${emailjsResponse.status} ${emailjsResponse.statusText}`)
+        console.log(`📧 EmailJS body:`, emailjsBody)
+
         if (emailjsResponse.ok) {
+          console.log("✅ EmailJS email sent successfully")
           return Response.json({ success: true, method: "emailjs" })
+        } else {
+          console.error("❌ EmailJS failed:", emailjsBody)
         }
       } catch (error) {
-        console.error("EmailJS error:", error)
+        console.error("❌ EmailJS error:", error)
       }
+    } else {
+      console.log("⚠️ EmailJS not configured (missing env vars)")
     }
 
     // Option 2: Use SendGrid (if configured)
@@ -89,6 +99,7 @@ export async function POST(request: Request) {
 
     if (SENDGRID_API_KEY) {
       try {
+        console.log("📧 Attempting SendGrid send...")
         const sendgridResponse = await fetch("https://api.sendgrid.com/v3/mail/send", {
           method: "POST",
           headers: {
@@ -126,12 +137,21 @@ export async function POST(request: Request) {
           }),
         })
 
+        const sendgridBody = await sendgridResponse.text()
+        console.log(`📧 SendGrid response: ${sendgridResponse.status} ${sendgridResponse.statusText}`)
+        if (sendgridBody) console.log(`📧 SendGrid body:`, sendgridBody)
+
         if (sendgridResponse.ok) {
+          console.log("✅ SendGrid email sent successfully")
           return Response.json({ success: true, method: "sendgrid" })
+        } else {
+          console.error("❌ SendGrid failed:", sendgridBody)
         }
       } catch (error) {
-        console.error("SendGrid error:", error)
+        console.error("❌ SendGrid error:", error)
       }
+    } else {
+      console.log("⚠️ SendGrid not configured (missing SENDGRID_API_KEY)")
     }
 
     // Option 3: Use Google Sheets (like newsletter) as fallback
@@ -140,6 +160,7 @@ export async function POST(request: Request) {
 
     if (GOOGLE_SHEETS_WEBHOOK) {
       try {
+        console.log("📧 Attempting Google Sheets webhook...")
         const sheetsResponse = await fetch(GOOGLE_SHEETS_WEBHOOK, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -153,20 +174,32 @@ export async function POST(request: Request) {
           }),
         })
 
+        const sheetsBody = await sheetsResponse.text()
+        console.log(`📧 Google Sheets response: ${sheetsResponse.status} ${sheetsResponse.statusText}`)
+        if (sheetsBody) console.log(`📧 Google Sheets body:`, sheetsBody)
+
         if (sheetsResponse.ok) {
+          console.log("✅ Google Sheets webhook called successfully")
           return Response.json({ success: true, method: "google-sheets" })
+        } else {
+          console.error("❌ Google Sheets webhook failed:", sheetsBody)
         }
       } catch (error) {
-        console.error("Google Sheets error:", error)
+        console.error("❌ Google Sheets error:", error)
       }
+    } else {
+      console.log("⚠️ Google Sheets webhook not configured (missing GOOGLE_SHEETS_BEATSTORE_WEBHOOK)")
     }
 
-    // If no email service is configured, still return success
+    // If no email service is configured or all failed, still return success
     // The purchase is logged above, and you can manually send the email
+    console.warn("⚠️ No email service succeeded. Purchase logged but email not sent.")
+    console.log(`📧 Manual download link: ${secureDownloadUrl}`)
     return Response.json({
       success: true,
       method: "manual",
       message: "Purchase logged. Please send download link manually.",
+      downloadUrl: secureDownloadUrl,
     })
   } catch (error) {
     console.error("Send download error:", error)
