@@ -58,13 +58,9 @@ try {
   require('adm-zip')
   processBeats()
 } catch (error) {
-  console.log(`\n❌ adm-zip package not found. Installing...\n`)
-  try {
-    execSync('npm install adm-zip --save-dev', { stdio: 'inherit', cwd: path.join(__dirname, '..') })
-    console.log(`\n✅ Installed. Running again...\n`)
-    processBeats()
-  } catch (installError) {
-    console.error(`\n❌ Failed to install adm-zip. Please run: npm install adm-zip --save-dev`)
-    process.exit(1)
-  }
+  console.error(`\n❌ adm-zip package not found.`)
+  console.error(`\nPlease install it manually with:`)
+  console.error(`   npm install adm-zip --save-dev --legacy-peer-deps`)
+  console.error(`\nThen run this script again.\n`)
+  process.exit(1)
 }
