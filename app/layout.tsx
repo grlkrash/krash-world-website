@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import { Analytics } from "@vercel/analytics/react"
 import "./globals.css"
@@ -82,18 +82,19 @@ export const metadata: Metadata = {
   // Manifest
   manifest: "/site.webmanifest",
 
-  // Theme
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffda0f" },
-    { media: "(prefers-color-scheme: dark)", color: "#000000" },
-  ],
-
   // Verification (add your verification codes when you have them)
   // verification: {
   //   google: 'your-google-verification-code',
   //   yandex: 'your-yandex-verification-code',
   // },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
+}
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffda0f" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 }
 
 export default function RootLayout({

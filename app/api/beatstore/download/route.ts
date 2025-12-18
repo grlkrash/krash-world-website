@@ -16,15 +16,21 @@ const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || "krash-beatstore-aws"
 const S3_REGION = process.env.AWS_REGION || "us-east-2"
 
 export async function GET(request: NextRequest) {
-  console.log("🔵 Download route called:", request.nextUrl.toString())
+  const url = request.nextUrl.toString()
+  console.log("🔵 Download route called:", url)
+  console.log("🔵 Request method:", request.method)
+  console.log("🔵 Request headers:", Object.fromEntries(request.headers.entries()))
+  
   try {
     const searchParams = request.nextUrl.searchParams
     const transactionId = searchParams.get("token")
     const beatId = searchParams.get("beatId")
     
     console.log(`📥 Download request - token: ${transactionId}, beatId: ${beatId}`)
+    console.log(`📥 All search params:`, Object.fromEntries(searchParams.entries()))
 
     if (!transactionId || !beatId) {
+      console.error(`❌ Missing required parameters - token: ${transactionId}, beatId: ${beatId}`)
       return NextResponse.json({ error: "Missing token or beatId" }, { status: 400 })
     }
 
@@ -37,10 +43,19 @@ export async function GET(request: NextRequest) {
       console.log(`   1. Transaction stored in different serverless instance (in-memory issue)`)
       console.log(`   2. Transaction expired (48 hour limit)`)
       console.log(`   3. Vercel KV not configured`)
+      console.log(`   4. Transaction ID mismatch`)
       return NextResponse.json({ error: "Invalid or expired download link" }, { status: 404 })
     }
 
+    console.log(`✅ Transaction found:`, {
+      transactionId: transaction.transactionId,
+      beatId: transaction.beatId,
+      email: transaction.email,
+      beatTitle: transaction.beatTitle,
+    })
+
     if (transaction.beatId !== beatId) {
+      console.error(`❌ Beat ID mismatch - transaction beatId: ${transaction.beatId}, requested beatId: ${beatId}`)
       return NextResponse.json({ error: "Transaction does not match beat" }, { status: 403 })
     }
 
@@ -106,14 +121,24 @@ export async function GET(request: NextRequest) {
 
     if (!fileBuffer) {
       console.error(`❌ S3 download failed for all locations`)
-      console.error(`   Last error:`, lastError)
+      console.error(`   Last error:`, lastError?.message || lastError)
+      console.error(`   Last error stack:`, lastError?.stack)
       console.error(`   Tried locations:`, s3Keys)
+      console.error(`   Beat ID: ${beatId}`)
+      console.error(`   Bucket: ${S3_BUCKET_NAME}`)
+      console.error(`   Region: ${S3_REGION}`)
       console.error(`   💡 Make sure:`)
       console.error(`      1. ZIP files are uploaded to S3 bucket: ${S3_BUCKET_NAME}`)
       console.error(`      2. Files are in 'downloads/' folder or root`)
       console.error(`      3. AWS credentials have s3:GetObject permission`)
+      console.error(`      4. File name matches: ${beatId}.zip`)
       return NextResponse.json(
-        { error: "File not found. Please contact support with your transaction ID." },
+        { 
+          error: "File not found. Please contact support with your transaction ID.",
+          details: `Tried: ${s3Keys.join(", ")}`,
+          beatId,
+          transactionId,
+        },
         { status: 404 },
       )
     }
@@ -130,7 +155,19 @@ export async function GET(request: NextRequest) {
       },
     })
   } catch (error) {
-    console.error("Download error:", error)
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 })
+    console.error("❌ Download route error:", error)
+    console.error("❌ Error stack:", error instanceof Error ? error.stack : "No stack trace")
+    console.error("❌ Error details:", {
+      message: error instanceof Error ? error.message : String(error),
+      name: error instanceof Error ? error.name : "Unknown",
+    })
+    return NextResponse.json({ 
+      error: "Internal server error",
+      message: error instanceof Error ? error.message : "Unknown error",
+    }, { status: 500 })
   }
 }
+
+// Export runtime configuration
+export const runtime = "nodejs"
+export const dynamic = "force-dynamic"
