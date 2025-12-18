@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 import { markAsDownloaded, getTransaction } from "@/app/services/beatstore/transaction-store"
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3"
+import { readFile } from "fs/promises"
+import { join } from "path"
 
 const s3Client = new S3Client({
   region: process.env.AWS_REGION || "us-east-2",
@@ -67,9 +69,9 @@ export async function GET(request: NextRequest) {
     console.log(`   AWS_SECRET_ACCESS_KEY: ${process.env.AWS_SECRET_ACCESS_KEY ? "✅ Set" : "❌ Missing"}`)
 
     // Get the S3 key for the ZIP file
-    // Try downloads/ prefix first, then root level
+    // Files are in beats/ folder in S3
     const fileName = `${beatId}.zip`
-    const s3Keys = [`downloads/${fileName}`, fileName]
+    const s3Keys = [`beats/${fileName}`, `downloads/${fileName}`, fileName]
 
     let fileBuffer: Buffer | null = null
     let lastError: Error | null = null
@@ -119,28 +121,36 @@ export async function GET(request: NextRequest) {
       }
     }
 
+    // If S3 failed, try local public/downloads folder as fallback
     if (!fileBuffer) {
-      console.error(`❌ S3 download failed for all locations`)
-      console.error(`   Last error:`, lastError?.message || lastError)
-      console.error(`   Last error stack:`, lastError?.stack)
-      console.error(`   Tried locations:`, s3Keys)
-      console.error(`   Beat ID: ${beatId}`)
-      console.error(`   Bucket: ${S3_BUCKET_NAME}`)
-      console.error(`   Region: ${S3_REGION}`)
-      console.error(`   💡 Make sure:`)
-      console.error(`      1. ZIP files are uploaded to S3 bucket: ${S3_BUCKET_NAME}`)
-      console.error(`      2. Files are in 'downloads/' folder or root`)
-      console.error(`      3. AWS credentials have s3:GetObject permission`)
-      console.error(`      4. File name matches: ${beatId}.zip`)
-      return NextResponse.json(
-        { 
-          error: "File not found. Please contact support with your transaction ID.",
-          details: `Tried: ${s3Keys.join(", ")}`,
-          beatId,
-          transactionId,
-        },
-        { status: 404 },
-      )
+      console.log(`⚠️ S3 download failed, trying local filesystem fallback...`)
+      
+      // Try local folders as fallback
+      const localPaths = [
+        join(process.cwd(), "public", "downloads", `${beatId}.zip`),
+        join(process.cwd(), "public", "beats", `${beatId}.zip`),
+      ]
+      
+      for (const localPath of localPaths) {
+        try {
+          console.log(`📁 Attempting local file: ${localPath}`)
+          fileBuffer = await readFile(localPath)
+          console.log(`✅ File found locally, size: ${fileBuffer.length} bytes`)
+          break
+        } catch {
+          continue
+        }
+      }
+      
+      if (!fileBuffer) {
+        console.error(`❌ Download failed - Beat ID: ${beatId}`)
+        console.error(`   Tried S3: ${s3Keys.join(", ")}`)
+        console.error(`   Tried local: ${localPaths.join(", ")}`)
+        return NextResponse.json(
+          { error: "File not found. Please contact support." },
+          { status: 404 },
+        )
+      }
     }
 
     // Mark as downloaded (optional)
