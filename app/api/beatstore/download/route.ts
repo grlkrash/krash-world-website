@@ -69,9 +69,12 @@ export async function GET(request: NextRequest) {
     console.log(`   AWS_SECRET_ACCESS_KEY: ${process.env.AWS_SECRET_ACCESS_KEY ? "✅ Set" : "❌ Missing"}`)
 
     // Get the S3 key for the ZIP file
-    // Files are in beats/ folder in S3
+    // Try multiple locations in S3
     const fileName = `${beatId}.zip`
-    const s3Keys = [`beats/${fileName}`, `downloads/${fileName}`, fileName]
+    const s3Keys = [`downloads/${fileName}`, `beats/${fileName}`, fileName]
+    
+    console.log(`🔍 Looking for ZIP file: ${fileName}`)
+    console.log(`🔍 Will try S3 paths: ${s3Keys.join(", ")}`)
 
     let fileBuffer: Buffer | null = null
     let lastError: Error | null = null
