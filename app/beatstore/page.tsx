@@ -5,7 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import BeatCard from "../components/beat-card"
 import NavigationMenu from "../components/navigation-menu"
-import { Menu, X, ArrowLeft } from "lucide-react"
+import { Menu, X, ArrowLeft, Grid3x3, List } from "lucide-react"
 import beatData from "../../beat-data.json"
 
 interface Beat {
@@ -25,6 +25,7 @@ export default function BeatstorePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
   const [activeTab, setActiveTab] = useState<"beats" | "loops" | "templates">("beats")
+  const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
 
   // Update time
   useEffect(() => {
@@ -137,8 +138,8 @@ export default function BeatstorePage() {
                 : "Premium beats, loops, and Logic Pro templates for your next project."}
             </p>
 
-            {/* Tabs */}
-            <div className="flex items-center justify-center gap-4 flex-wrap">
+            {/* Tabs and View Toggle */}
+            <div className="flex items-center justify-center gap-4 flex-wrap mb-4">
               <button
                 onClick={() => setActiveTab("beats")}
                 className={`px-6 py-2 rounded-lg font-bold transition-all ${
@@ -172,6 +173,31 @@ export default function BeatstorePage() {
                 </button>
               )}
             </div>
+            {/* View Mode Toggle */}
+            <div className="flex items-center justify-center gap-2 mb-6">
+              <button
+                onClick={() => setViewMode("grid")}
+                className={`p-2 rounded-lg transition-all ${
+                  viewMode === "grid"
+                    ? "bg-[#ffda0f] text-black"
+                    : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                }`}
+                aria-label="Grid view"
+              >
+                <Grid3x3 size={20} />
+              </button>
+              <button
+                onClick={() => setViewMode("list")}
+                className={`p-2 rounded-lg transition-all ${
+                  viewMode === "list"
+                    ? "bg-[#ffda0f] text-black"
+                    : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                }`}
+                aria-label="List view"
+              >
+                <List size={20} />
+              </button>
+            </div>
           </div>
 
           {/* Featured Section */}
@@ -184,9 +210,12 @@ export default function BeatstorePage() {
                 </h2>
                 <p className="text-gray-400 text-sm">Handpicked premium tracks</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              <div className={viewMode === "list" 
+                ? "space-y-4 mb-12" 
+                : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12"
+              }>
                 {featuredItems.map((item) => (
-                  <BeatCard key={item.id} beat={item} />
+                  <BeatCard key={item.id} beat={item} viewMode={viewMode} />
                 ))}
               </div>
             </div>
@@ -203,9 +232,12 @@ export default function BeatstorePage() {
                   </h2>
                 </div>
               )}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+              <div className={viewMode === "list" 
+                ? "space-y-4 mb-16" 
+                : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+              }>
                 {regularItems.map((item) => (
-                  <BeatCard key={item.id} beat={item} />
+                  <BeatCard key={item.id} beat={item} viewMode={viewMode} />
                 ))}
               </div>
             </div>

@@ -81,8 +81,15 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
   ]
 
   return (
-    <div className="fixed inset-0 top-16 z-50 bg-black/95 backdrop-blur-md border-t border-[#ffda0f]/20 overflow-y-auto">
-      <div className="container mx-auto px-6 py-6 space-y-4">
+    <>
+      {/* Backdrop */}
+      <div 
+        className="fixed inset-0 bg-black/80 z-40"
+        onClick={onClose}
+      />
+      {/* Menu */}
+      <div className="fixed inset-0 top-16 z-50 bg-black/95 backdrop-blur-md border-t border-[#ffda0f]/20 overflow-y-auto">
+        <div className="container mx-auto px-6 py-6 space-y-4">
         {menuItems.map((item, index) => (
           <div key={index}>
             {item.href ? (
@@ -127,7 +134,8 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
             )}
           </div>
         ))}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
