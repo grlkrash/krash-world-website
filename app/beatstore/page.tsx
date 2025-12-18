@@ -54,10 +54,10 @@ export default function BeatstorePage() {
   const regularItems = allItems.filter(item => !item.featured)
 
   return (
-    <div className="min-h-screen bg-black text-white overflow-hidden relative">
+    <div className="min-h-screen bg-black text-white relative">
       {/* Grid Background */}
       <div
-        className="absolute inset-0 opacity-20"
+        className="fixed inset-0 opacity-20 pointer-events-none"
         style={{
           backgroundImage: `
             linear-gradient(rgba(255, 218, 15, 0.1) 1px, transparent 1px),
@@ -202,7 +202,7 @@ export default function BeatstorePage() {
 
           {/* Featured Section */}
           {featuredItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
-            <div className="mb-16">
+            <div className="mb-16 scroll-mt-24">
               <div className="text-center mb-8">
                 <div className="text-[#ffda0f] text-sm font-mono mb-2">PREMIUM SELECTION</div>
                 <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
@@ -223,7 +223,7 @@ export default function BeatstorePage() {
 
           {/* All Items Grid */}
           {allItems.length > 0 ? (
-            <div>
+            <div className="scroll-mt-24">
               {featuredItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
                 <div className="text-center mb-8">
                   <div className="text-[#ffda0f] text-sm font-mono mb-2">FULL CATALOG</div>

@@ -99,20 +99,6 @@
       ]
     },
     {
-      "id": "beat-8",
-      "title": "24",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-8-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-9",
       "title": "24",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -121,20 +107,6 @@
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-10",
-      "title": "26",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-10-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
       "featured": false,
       "genre": [
         "Hip-Hop"
@@ -337,20 +309,6 @@
       ]
     },
     {
-      "id": "beat-26",
-      "title": "EYES ON U",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-26-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-27",
       "title": "EYES ON U",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -379,20 +337,6 @@
       ]
     },
     {
-      "id": "beat-29",
-      "title": "HOPE NO DRUMS",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-29-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-30",
       "title": "HOPE NO DRUMS",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -401,20 +345,6 @@
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-31",
-      "title": "HOPE",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-31-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
       "featured": false,
       "genre": [
         "Hip-Hop"
@@ -471,20 +401,6 @@
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-36",
-      "title": "PUSH",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-36-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
       "featured": false,
       "genre": [
         "Hip-Hop"
@@ -617,20 +533,6 @@
       ]
     },
     {
-      "id": "beat-46",
-      "title": "I CANT WAIT TO GO TO CALIFORNIA",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-46-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-47",
       "title": "I CANT WAIT TO GO TO CALIFORNIA",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -692,20 +594,6 @@
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 35,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-51-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-52",
-      "title": "OUTTER SPACE",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-52-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
@@ -813,20 +701,6 @@
       ]
     },
     {
-      "id": "beat-60",
-      "title": "THE END",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-60-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-61",
       "title": "THE END",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -846,20 +720,6 @@
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 35,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-62-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-63",
-      "title": "UR A JERK IK_SLOWED",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-63-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
@@ -981,20 +841,6 @@
       ]
     },
     {
-      "id": "beat-72",
-      "title": "BAD",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-72-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-73",
       "title": "BAD",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -1031,20 +877,6 @@
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-76",
-      "title": "2.16",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-76-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
       "featured": false,
       "genre": [
         "Hip-Hop"
@@ -1101,20 +933,6 @@
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-81",
-      "title": "5.1",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-81-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
       "featured": false,
       "genre": [
         "Hip-Hop"
@@ -1275,20 +1093,6 @@
       ]
     },
     {
-      "id": "beat-93",
-      "title": "PRAISE MIXED",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-93-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-94",
       "title": "SKATE FAST 2",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -1297,20 +1101,6 @@
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-95",
-      "title": "PUSH",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-95-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
       "featured": false,
       "genre": [
         "Hip-Hop"
@@ -1426,20 +1216,6 @@
       "featured": false,
       "genre": [
         "Electronic"
-      ]
-    },
-    {
-      "id": "beat-104",
-      "title": "IMPEACH",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-104-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
       ]
     },
     {
@@ -1641,7 +1417,7 @@
       ]
     }
   ],
-  "totalBeats": 106,
+  "totalBeats": 90,
   "totalLoops": 11,
   "templates": [
     {
