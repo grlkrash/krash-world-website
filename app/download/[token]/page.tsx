@@ -10,22 +10,61 @@ import NavigationMenu from "@/app/components/navigation-menu"
 export default function DownloadPage() {
   const params = useParams()
   const router = useRouter()
-  const token = params.token as string
+  const token = params.token as string | undefined
   const [status, setStatus] = useState<"loading" | "success" | "error" | "downloading">("loading")
   const [errorMessage, setErrorMessage] = useState("")
   const [beatTitle, setBeatTitle] = useState("")
   const [beatId, setBeatId] = useState("")
 
   useEffect(() => {
+    // Log token extraction
+    console.log("📄 Download page mounted")
+    console.log("📄 URL params:", params)
+    console.log("📄 Extracted token:", token)
+    console.log("📄 Token type:", typeof token)
+    console.log("📄 Token length:", token?.length)
+
     // Verify token and get beat info
     async function verifyToken() {
+      if (!token) {
+        console.error("❌ No token provided")
+        setStatus("error")
+        setErrorMessage("Missing download token")
+        return
+      }
+
+      console.log("🔍 Verifying token:", token)
+      console.log("🔍 Token length:", token.length)
+      console.log("🔍 Token type:", typeof token)
+      
       try {
-        const response = await fetch(`/api/beatstore/verify?token=${token}`)
+        const verifyUrl = `/api/beatstore/verify?token=${encodeURIComponent(token)}`
+        console.log("🔍 Verify URL:", verifyUrl)
+        
+        const response = await fetch(verifyUrl)
+        console.log("🔍 Verify response status:", response.status)
+        console.log("🔍 Verify response ok:", response.ok)
+        
         const data = await response.json()
+        console.log("🔍 Verify response data:", data)
 
         if (!response.ok) {
+          console.error("❌ Verification failed:", data)
           setStatus("error")
           setErrorMessage(data.error || "Invalid download link")
+          return
+        }
+
+        console.log("✅ Verification successful:", {
+          beatId: data.beatId,
+          beatTitle: data.beatTitle,
+          email: data.email,
+        })
+
+        if (!data.beatId) {
+          console.error("❌ No beatId in verification response")
+          setStatus("error")
+          setErrorMessage("Invalid verification response: missing beatId")
           return
         }
 
@@ -33,34 +72,77 @@ export default function DownloadPage() {
         setBeatId(data.beatId)
         setStatus("success")
       } catch (error) {
-        console.error("Verification error:", error)
+        console.error("❌ Verification error:", error)
+        console.error("❌ Error details:", {
+          message: error instanceof Error ? error.message : String(error),
+          stack: error instanceof Error ? error.stack : undefined,
+        })
         setStatus("error")
-        setErrorMessage("Failed to verify download link")
+        setErrorMessage(`Failed to verify download link: ${error instanceof Error ? error.message : "Unknown error"}`)
       }
     }
 
     if (token) {
       verifyToken()
+    } else {
+      console.error("❌ No token in URL params")
+      setStatus("error")
+      setErrorMessage("Missing download token in URL")
     }
-  }, [token])
+  }, [token, params])
 
   async function handleDownload() {
-    if (!beatId) return
+    if (!beatId) {
+      console.error("❌ Cannot download: beatId is missing")
+      setStatus("error")
+      setErrorMessage("Beat ID is missing. Please refresh the page and try again.")
+      return
+    }
 
+    if (!token) {
+      console.error("❌ Cannot download: token is missing")
+      setStatus("error")
+      setErrorMessage("Download token is missing. Please use the link from your email.")
+      return
+    }
+
+    console.log("📥 Starting download:", { token, beatId, beatTitle })
     setStatus("downloading")
 
     try {
-      const response = await fetch(`/api/beatstore/download?token=${token}&beatId=${beatId}`)
+      const downloadUrl = `/api/beatstore/download?token=${encodeURIComponent(token)}&beatId=${encodeURIComponent(beatId)}`
+      console.log("📥 Download URL:", downloadUrl)
+      
+      const response = await fetch(downloadUrl)
+      console.log("📥 Download response status:", response.status)
+      console.log("📥 Download response ok:", response.ok)
+      console.log("📥 Download response headers:", Object.fromEntries(response.headers.entries()))
 
       if (!response.ok) {
-        const data = await response.json()
+        let errorData
+        try {
+          errorData = await response.json()
+          console.error("❌ Download failed:", errorData)
+        } catch (e) {
+          const text = await response.text()
+          console.error("❌ Download failed (non-JSON response):", text)
+          errorData = { error: `Download failed: ${response.status} ${response.statusText}` }
+        }
+        
         setStatus("error")
-        setErrorMessage(data.error || "Download failed")
+        setErrorMessage(errorData.error || errorData.message || `Download failed: ${response.status}`)
+        if (errorData.details) {
+          console.error("❌ Additional error details:", errorData.details)
+        }
         return
       }
 
+      console.log("✅ Download response OK, creating blob...")
+      
       // Get the blob and create download link
       const blob = await response.blob()
+      console.log("✅ Blob created, size:", blob.size, "bytes")
+      
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
@@ -70,11 +152,16 @@ export default function DownloadPage() {
       window.URL.revokeObjectURL(url)
       document.body.removeChild(a)
 
+      console.log("✅ Download completed successfully")
       setStatus("success")
     } catch (error) {
-      console.error("Download error:", error)
+      console.error("❌ Download error:", error)
+      console.error("❌ Error details:", {
+        message: error instanceof Error ? error.message : String(error),
+        stack: error instanceof Error ? error.stack : undefined,
+      })
       setStatus("error")
-      setErrorMessage("Failed to download file")
+      setErrorMessage(`Failed to download file: ${error instanceof Error ? error.message : "Unknown error"}`)
     }
   }
 
@@ -128,16 +215,29 @@ export default function DownloadPage() {
               <div className="space-y-6">
                 <XCircle className="h-16 w-16 text-red-500 mx-auto" />
                 <div className="text-2xl font-bold text-white mb-2">Download Link Invalid</div>
-                <div className="text-gray-300 mb-6">{errorMessage}</div>
-                <div className="text-sm text-gray-400">
-                  If you believe this is an error, please contact support with your transaction ID.
+                <div className="text-gray-300 mb-2">{errorMessage}</div>
+                {token && (
+                  <div className="text-xs text-gray-500 mb-4 font-mono break-all">
+                    Transaction ID: {token}
+                  </div>
+                )}
+                <div className="text-sm text-gray-400 mb-6">
+                  If you believe this is an error, please contact support with your transaction ID above.
                 </div>
-                <Link
-                  href="/beatstore"
-                  className="inline-block bg-[#ffda0f] text-black px-6 py-3 rounded font-bold hover:bg-[#ffda0f]/80 transition-colors"
-                >
-                  Back to Beatstore
-                </Link>
+                <div className="flex gap-4 justify-center">
+                  <button
+                    onClick={() => window.location.reload()}
+                    className="bg-gray-700 text-white px-6 py-3 rounded font-bold hover:bg-gray-600 transition-colors"
+                  >
+                    Retry
+                  </button>
+                  <Link
+                    href="/beatstore"
+                    className="inline-block bg-[#ffda0f] text-black px-6 py-3 rounded font-bold hover:bg-[#ffda0f]/80 transition-colors"
+                  >
+                    Back to Beatstore
+                  </Link>
+                </div>
               </div>
             )}
 
