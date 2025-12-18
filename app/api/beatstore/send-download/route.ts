@@ -10,7 +10,7 @@ export async function POST(request: Request) {
     }
 
     // Store transaction for download verification
-    storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48) // 48 hour expiry
+    await storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48) // 48 hour expiry
 
     // Generate secure download link
     // Priority: NEXT_PUBLIC_BASE_URL > production domain > VERCEL_URL (preview) > localhost
