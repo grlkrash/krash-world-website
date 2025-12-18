@@ -14,10 +14,19 @@ export async function POST(request: Request) {
 
     // Generate secure download link
     // Priority: NEXT_PUBLIC_BASE_URL > production domain > VERCEL_URL (preview) > localhost
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
+    let baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
       (process.env.NODE_ENV === "production" 
         ? "https://www.krash.world" 
         : (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000"))
+    
+    // Ensure URL always has protocol (https:// or http://)
+    if (!baseUrl.startsWith("http://") && !baseUrl.startsWith("https://")) {
+      baseUrl = `https://${baseUrl}`
+    }
+    
+    // Remove trailing slash if present
+    baseUrl = baseUrl.replace(/\/$/, "")
+    
     const secureDownloadUrl = `${baseUrl}/download/${transactionId}`
 
     // Log the purchase for easy access (backup method)
