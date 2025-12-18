@@ -90,26 +90,28 @@ export default function BeatCard({ beat }: BeatCardProps) {
           {beat.description}
         </CardDescription>
 
-        {/* Audio Preview */}
-        <div className="flex items-center gap-3 bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10">
-          <Button
-            onClick={handlePlayPause}
-            size="icon"
-            className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 flex-shrink-0"
-            aria-label={isPlaying ? "Pause preview" : "Play preview"}
-          >
-            {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-          </Button>
-          <div className="flex-1">
-            <div className="text-xs text-gray-400 mb-1">PREVIEW</div>
-            <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-[#ffda0f] transition-all duration-100"
-                style={{ width: audio && isPlaying ? "100%" : "0%" }}
-              />
+        {/* Audio Preview - Only for beats/loops */}
+        {!beat.genre?.includes("Template") && (
+          <div className="flex items-center gap-3 bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10">
+            <Button
+              onClick={handlePlayPause}
+              size="icon"
+              className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 flex-shrink-0"
+              aria-label={isPlaying ? "Pause preview" : "Play preview"}
+            >
+              {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            </Button>
+            <div className="flex-1">
+              <div className="text-xs text-gray-400 mb-1">PREVIEW</div>
+              <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-[#ffda0f] transition-all duration-100"
+                  style={{ width: audio && isPlaying ? "100%" : "0%" }}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        )}
 
         {/* File Format & Price */}
         <div className="space-y-2">
@@ -124,22 +126,37 @@ export default function BeatCard({ beat }: BeatCardProps) {
           </div>
         </div>
 
-        {/* Lease Terms Summary */}
-        <div className="bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10 space-y-2">
-          <div className="text-xs font-semibold text-[#ffda0f] mb-1">STANDARD LEASE INCLUDES:</div>
-          <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
-            <li>50% Publishing Rights (50/50 split)</li>
-            <li>2,500 Units • 50K Streams</li>
-            <li>1 Music Video • Unlimited Live</li>
-            <li>Lifetime License Term</li>
-          </ul>
-          <Link
-            href="/lease-terms"
-            className="text-xs text-[#ffda0f] hover:underline inline-block mt-2"
-          >
-            View Full Terms →
-          </Link>
-        </div>
+        {/* Lease Terms Summary - Only for beats/loops, not templates */}
+        {!beat.genre?.includes("Template") && (
+          <div className="bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10 space-y-2">
+            <div className="text-xs font-semibold text-[#ffda0f] mb-1">STANDARD LEASE INCLUDES:</div>
+            <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
+              <li>50% Publishing Rights (50/50 split)</li>
+              <li>2,500 Units • 50K Streams</li>
+              <li>1 Music Video • Unlimited Live</li>
+              <li>Lifetime License Term</li>
+            </ul>
+            <Link
+              href="/lease-terms"
+              className="text-xs text-[#ffda0f] hover:underline inline-block mt-2"
+            >
+              View Full Terms →
+            </Link>
+          </div>
+        )}
+        
+        {/* Template Info */}
+        {beat.genre?.includes("Template") && (
+          <div className="bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10 space-y-2">
+            <div className="text-xs font-semibold text-[#ffda0f] mb-1">TEMPLATE INCLUDES:</div>
+            <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
+              <li>Professional Channel Strip Settings</li>
+              <li>Ready-to-use Logic Pro template</li>
+              <li>Instant download after purchase</li>
+              <li>Commercial use included</li>
+            </ul>
+          </div>
+        )}
       </CardContent>
       <CardFooter className="p-6 pt-0">
         <PayPalButton beat={beat} />

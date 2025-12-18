@@ -24,7 +24,7 @@ interface Beat {
 export default function BeatstorePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
-  const [activeTab, setActiveTab] = useState<"beats" | "loops">("beats")
+  const [activeTab, setActiveTab] = useState<"beats" | "loops" | "templates">("beats")
 
   // Update time
   useEffect(() => {
@@ -44,7 +44,11 @@ export default function BeatstorePage() {
   }, [])
 
   // Separate featured and regular items
-  const allItems: Beat[] = activeTab === "beats" ? beatData.beats : beatData.loops
+  const allItems: Beat[] = activeTab === "beats" 
+    ? beatData.beats 
+    : activeTab === "loops" 
+    ? beatData.loops 
+    : (beatData.templates || [])
   const featuredItems = allItems.filter(item => item.featured)
   const regularItems = allItems.filter(item => !item.featured)
 
@@ -123,14 +127,18 @@ export default function BeatstorePage() {
             <h1 className="text-4xl md:text-6xl font-black mb-4">
               <span className="text-white">EXCLUSIVE</span>
               <br />
-              <span className="text-[#ffda0f]">BEATS & LOOPS</span>
+              <span className="text-[#ffda0f]">
+                {activeTab === "templates" ? "TEMPLATES" : activeTab === "loops" ? "BEATS & LOOPS" : "BEATS & LOOPS"}
+              </span>
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
-              Premium beats and loops for your next project. Each purchase includes full audio files.
+              {activeTab === "templates" 
+                ? "Professional Logic Pro mixing templates and channel strip settings."
+                : "Premium beats, loops, and Logic Pro templates for your next project."}
             </p>
 
             {/* Tabs */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4 flex-wrap">
               <button
                 onClick={() => setActiveTab("beats")}
                 className={`px-6 py-2 rounded-lg font-bold transition-all ${
@@ -151,11 +159,23 @@ export default function BeatstorePage() {
               >
                 LOOPS ({beatData.loops.length})
               </button>
+              {beatData.templates && beatData.templates.length > 0 && (
+                <button
+                  onClick={() => setActiveTab("templates")}
+                  className={`px-6 py-2 rounded-lg font-bold transition-all ${
+                    activeTab === "templates"
+                      ? "bg-[#ffda0f] text-black"
+                      : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                  }`}
+                >
+                  TEMPLATES ({beatData.templates.length})
+                </button>
+              )}
             </div>
           </div>
 
           {/* Featured Section */}
-          {featuredItems.length > 0 && activeTab === "beats" && (
+          {featuredItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
             <div className="mb-16">
               <div className="text-center mb-8">
                 <div className="text-[#ffda0f] text-sm font-mono mb-2">PREMIUM SELECTION</div>
@@ -175,7 +195,7 @@ export default function BeatstorePage() {
           {/* All Items Grid */}
           {allItems.length > 0 ? (
             <div>
-              {featuredItems.length > 0 && activeTab === "beats" && (
+              {featuredItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
                 <div className="text-center mb-8">
                   <div className="text-[#ffda0f] text-sm font-mono mb-2">FULL CATALOG</div>
                   <h2 className="text-2xl md:text-3xl font-black text-white">

@@ -1656,5 +1656,20 @@
     }
   ],
   "totalBeats": 107,
-  "totalLoops": 11
+  "totalLoops": 11,
+  "templates": [
+    {
+      "id": "template-1",
+      "title": "CLEAN STOCK 2",
+      "description": "Professional Logic Pro vocal mixing template. Channel strip settings for clean, polished vocals.",
+      "price": 25,
+      "previewUrl": "/images/beat-cover.jpg",
+      "coverImage": "/images/beat-cover.jpg",
+      "fileFormat": "Logic Pro .cst",
+      "category": "Logic Pro Templates",
+      "featured": false,
+      "genre": ["Template", "Logic Pro"]
+    }
+  ],
+  "totalTemplates": 1
 }

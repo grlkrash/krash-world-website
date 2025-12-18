@@ -2,7 +2,7 @@ import { storeTransaction } from "@/app/services/beatstore/transaction-store"
 
 export async function POST(request: Request) {
   try {
-    const { email, beatId, beatTitle, downloadUrl, transactionId } = await request.json()
+    const { email, beatId, beatTitle, downloadUrl, transactionId, optInNewsletter } = await request.json()
 
     if (!email || !beatId || !transactionId) {
       return Response.json({ error: "Missing required fields" }, { status: 400 })
@@ -24,7 +24,30 @@ export async function POST(request: Request) {
       transactionId,
       timestamp: new Date().toISOString(),
       downloadUrl: secureDownloadUrl,
+      optInNewsletter,
     })
+
+    // Add to newsletter if opted in
+    if (optInNewsletter) {
+      try {
+        // Call newsletter API using the same Google Sheets webhook
+        const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzgy2fJ1KQ3pjB7wOyWHwB-jcNfzCp_iJYftmB20Df65Jy_vbZwMqD6U4kyn_GgYZCP5g/exec'
+        const newsletterResponse = await fetch(WEB_APP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ 
+            email, 
+            name: email.split("@")[0] || "Customer" 
+          }),
+        })
+        if (newsletterResponse.ok) {
+          console.log("✅ Added to newsletter:", email)
+        }
+      } catch (error) {
+        console.error("Newsletter signup error:", error)
+        // Don't fail the purchase if newsletter signup fails
+      }
+    }
 
     // Option 1: Use EmailJS (free service)
     // You'll need to set up EmailJS at https://www.emailjs.com/
