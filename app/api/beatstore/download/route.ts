@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server"
-import { verifyTransaction, markAsDownloaded, getTransaction } from "@/app/services/beatstore/transaction-store"
+import { markAsDownloaded, getTransaction } from "@/app/services/beatstore/transaction-store"
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3"
 
 const s3Client = new S3Client({
@@ -16,10 +16,13 @@ const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || "krash-beatstore-aws"
 const S3_REGION = process.env.AWS_REGION || "us-east-2"
 
 export async function GET(request: NextRequest) {
+  console.log("🔵 Download route called:", request.nextUrl.toString())
   try {
     const searchParams = request.nextUrl.searchParams
     const transactionId = searchParams.get("token")
     const beatId = searchParams.get("beatId")
+    
+    console.log(`📥 Download request - token: ${transactionId}, beatId: ${beatId}`)
 
     if (!transactionId || !beatId) {
       return NextResponse.json({ error: "Missing token or beatId" }, { status: 400 })
