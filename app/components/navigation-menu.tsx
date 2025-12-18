@@ -1,5 +1,6 @@
 "use client"
-import { ExternalLink, Music, Gamepad2, Mail, BookOpen } from "lucide-react"
+import Link from "next/link"
+import { ExternalLink, Music, Gamepad2, Mail, BookOpen, MessageSquare } from "lucide-react"
 
 // Custom Discord Icon Component
 const DiscordIcon = ({ size = 20 }: { size?: number }) => (
@@ -57,6 +58,13 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
       color: "#00aaff",
     },
     {
+      title: "CONTACT",
+      description: "Get in touch with GRLKRASH",
+      href: "/contact",
+      icon: <MessageSquare size={20} />,
+      color: "#ffda0f",
+    },
+    {
       title: "KRASH COURSES",
       description: "HOW TO FUND CREATIVE EVENTS: THE $20K BLUEPRINT",
       href: "https://krashworld.gumroad.com",
@@ -71,19 +79,33 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
         {menuItems.map((item, index) => (
           <div key={index}>
             {item.href ? (
-              <a
-                href={item.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#ffda0f]/10 transition-colors group"
-                onClick={onClose}
-              >
-                <div style={{ color: item.color }}>{item.icon}</div>
-                <div>
-                  <div className="text-white font-bold group-hover:text-[#ffda0f] transition-colors">{item.title}</div>
-                  <div className="text-gray-400 text-sm">{item.description}</div>
-                </div>
-              </a>
+              item.href.startsWith("http") ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#ffda0f]/10 transition-colors group"
+                  onClick={onClose}
+                >
+                  <div style={{ color: item.color }}>{item.icon}</div>
+                  <div>
+                    <div className="text-white font-bold group-hover:text-[#ffda0f] transition-colors">{item.title}</div>
+                    <div className="text-gray-400 text-sm">{item.description}</div>
+                  </div>
+                </a>
+              ) : (
+                <Link
+                  href={item.href}
+                  className="flex items-center space-x-3 p-3 rounded-lg hover:bg-[#ffda0f]/10 transition-colors group"
+                  onClick={onClose}
+                >
+                  <div style={{ color: item.color }}>{item.icon}</div>
+                  <div>
+                    <div className="text-white font-bold group-hover:text-[#ffda0f] transition-colors">{item.title}</div>
+                    <div className="text-gray-400 text-sm">{item.description}</div>
+                  </div>
+                </Link>
+              )
             ) : (
               <button
                 onClick={item.action}

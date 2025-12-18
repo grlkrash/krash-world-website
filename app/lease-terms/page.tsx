@@ -168,6 +168,33 @@ export default function LeaseTermsPage() {
                 </div>
 
                 <div>
+                  <h3 className="text-white font-bold mb-2 text-lg">11. EXCLUSIVE RIGHTS</h3>
+                  <p>
+                    This is a <strong className="text-white">non-exclusive license</strong>, meaning the Producer 
+                    may license the same Beat to other artists. If you are interested in purchasing 
+                    <strong className="text-[#ffda0f]"> exclusive rights</strong> to a beat, please contact us.
+                  </p>
+                  <p className="mt-2">
+                    Exclusive rights include:
+                  </p>
+                  <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+                    <li>Full ownership and exclusive use of the Beat</li>
+                    <li>Unlimited distribution and streams</li>
+                    <li>100% publishing rights (or negotiated split)</li>
+                    <li>Removal of the Beat from the beatstore</li>
+                    <li>Custom pricing based on the specific beat</li>
+                  </ul>
+                  <p className="mt-3">
+                    <Link 
+                      href="/contact" 
+                      className="text-[#ffda0f] hover:underline font-semibold"
+                    >
+                      Contact us for exclusive rights inquiries →
+                    </Link>
+                  </p>
+                </div>
+
+                <div>
                   <h3 className="text-white font-bold mb-2 text-lg">7. TERMINATION</h3>
                   <p>
                     Producer reserves the right to terminate this license immediately if Licensee violates 

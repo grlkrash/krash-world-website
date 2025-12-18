@@ -180,6 +180,20 @@ export default function BeatstorePage() {
               </div>
             </div>
           </div>
+
+          {/* Contact Section */}
+          <div className="mt-12 text-center border-t border-[#ffda0f]/20 pt-12">
+            <div className="text-[#ffda0f] text-sm font-mono mb-4">NEED EXCLUSIVE RIGHTS?</div>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Interested in purchasing exclusive rights to a beat? Contact us to discuss pricing and terms.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-block bg-[#ffda0f] text-black px-8 py-3 rounded-lg font-bold hover:bg-[#ffda0f]/80 transition-colors"
+            >
+              CONTACT US
+            </Link>
+          </div>
         </div>
       </main>
 
