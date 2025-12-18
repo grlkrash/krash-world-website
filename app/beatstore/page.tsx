@@ -101,14 +101,14 @@ export default function BeatstorePage() {
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <NavigationMenu
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-          onNewsletterOpen={() => {}}
-        />
       </header>
+
+      {/* Mobile Menu - Outside header for proper z-index stacking */}
+      <NavigationMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onNewsletterOpen={() => {}}
+      />
 
       {/* Main Content */}
       <main className="relative z-10 min-h-screen pt-24 pb-16">

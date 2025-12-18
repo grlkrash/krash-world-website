@@ -87,18 +87,19 @@ export default function KrashWorldWebsite() {
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="text-[#ffda0f] hover:text-[#ffda0f]/80 transition-colors"
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
-
-        {/* Mobile Menu */}
-        <NavigationMenu
-          isOpen={isMenuOpen}
-          onClose={() => setIsMenuOpen(false)}
-          onNewsletterOpen={() => setShowNewsletter(true)}
-        />
       </header>
+
+      {/* Mobile Menu - Outside header for proper z-index stacking */}
+      <NavigationMenu
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        onNewsletterOpen={() => setShowNewsletter(true)}
+      />
 
       {/* Main Content */}
       <main className="relative z-10 min-h-screen flex items-center justify-center pt-20">
