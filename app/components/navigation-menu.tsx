@@ -62,13 +62,6 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
       color: "#7289da",
     },
     {
-      title: "GAME PASS",
-      description: "Collect on Zora",
-      href: "https://zora.co/collect/base:0x1bf81236cacd7fd0c630fe0bb36e49cffda37b4c/1?referrer=0x4f6d0ca7e66d5e447862793f23904ba15f51f4de",
-      icon: <ExternalLink size={20} />,
-      color: "#ffda0f",
-    },
-    {
       title: "NEWSLETTER",
       description: "Join the resistance",
       action: () => {
