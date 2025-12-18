@@ -155,20 +155,6 @@
       ]
     },
     {
-      "id": "beat-12",
-      "title": "4.8 VIBE MELODY MAIN",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "/beats/beat-12-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
       "id": "beat-13",
       "title": "5.30",
       "description": "Premium beat for your next project. Includes full audio file.",
@@ -1642,10 +1628,10 @@
     },
     {
       "id": "loop-11",
-      "title": "GOD LOOP",
+      "title": "4.8 VIBE MELODY MAIN",
       "description": "Musical loop perfect for your projects. Includes full audio file.",
       "price": 25,
-      "previewUrl": "/beats/loop-11-preview.mp3",
+      "previewUrl": "/beats/beat-12-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
@@ -1655,7 +1641,7 @@
       ]
     }
   ],
-  "totalBeats": 107,
+  "totalBeats": 106,
   "totalLoops": 11,
   "templates": [
     {
