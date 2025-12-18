@@ -1,4 +1,5 @@
 import { storeTransaction } from "@/app/services/beatstore/transaction-store"
+import emailjs from "@emailjs/nodejs"
 
 export async function POST(request: Request) {
   try {
@@ -54,51 +55,59 @@ export async function POST(request: Request) {
       console.warn("⚠️ Newsletter opt-in was checked but no email provided")
     }
 
-    // Option 1: Use EmailJS (free service)
-    // You'll need to set up EmailJS at https://www.emailjs.com/
+    // Option 1: Use EmailJS (server-side email service)
     const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID
     const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID
     const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY
+    const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY
 
-    if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY) {
+    if (EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY && EMAILJS_PRIVATE_KEY) {
       try {
         console.log("📧 Attempting EmailJS send...")
-        const emailjsResponse = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            service_id: EMAILJS_SERVICE_ID,
-            template_id: EMAILJS_TEMPLATE_ID,
-            user_id: EMAILJS_PUBLIC_KEY,
-            template_params: {
-              to_email: email,
-              beat_title: beatTitle || "Your Beat",
-              download_link: secureDownloadUrl,
-              transaction_id: transactionId,
-            },
-          }),
+        
+        // Initialize EmailJS with public and private keys
+        emailjs.init({
+          publicKey: EMAILJS_PUBLIC_KEY,
+          privateKey: EMAILJS_PRIVATE_KEY,
         })
 
-        const emailjsBody = await emailjsResponse.text()
-        console.log(`📧 EmailJS response: ${emailjsResponse.status} ${emailjsResponse.statusText}`)
-        console.log(`📧 EmailJS body:`, emailjsBody)
+        // Send email using EmailJS
+        const emailjsResponse = await emailjs.send(
+          EMAILJS_SERVICE_ID,
+          EMAILJS_TEMPLATE_ID,
+          {
+            to_email: email,
+            beat_title: beatTitle || "Beat",
+            download_link: secureDownloadUrl,
+            transaction_id: transactionId,
+          }
+        )
 
-        if (emailjsResponse.ok) {
+        console.log(`📧 EmailJS response: ${emailjsResponse.status} ${emailjsResponse.text}`)
+        
+        if (emailjsResponse.status === 200) {
           console.log("✅ EmailJS email sent successfully")
           return Response.json({ success: true, method: "emailjs" })
         } else {
-          console.error("❌ EmailJS failed:", emailjsBody)
+          console.error("❌ EmailJS failed:", emailjsResponse.text)
         }
       } catch (error) {
         console.error("❌ EmailJS error:", error)
+        const errorMessage = error instanceof Error ? error.message : String(error)
+        if (errorMessage.includes("non-browser")) {
+          console.error("⚠️ EmailJS API for non-browser applications is disabled. Enable it in EmailJS dashboard: Account → Security → Allow EmailJS API for non-browser applications")
+        }
       }
     } else {
-      console.log("⚠️ EmailJS not configured (missing env vars)")
+      const missingVars = []
+      if (!EMAILJS_SERVICE_ID) missingVars.push("EMAILJS_SERVICE_ID")
+      if (!EMAILJS_TEMPLATE_ID) missingVars.push("EMAILJS_TEMPLATE_ID")
+      if (!EMAILJS_PUBLIC_KEY) missingVars.push("EMAILJS_PUBLIC_KEY")
+      if (!EMAILJS_PRIVATE_KEY) missingVars.push("EMAILJS_PRIVATE_KEY")
+      console.log(`⚠️ EmailJS not configured (missing: ${missingVars.join(", ")})`)
     }
 
-    // Option 2: Use SendGrid (if configured)
+    // Option 2: Use SendGrid (server-side email service)
     const SENDGRID_API_KEY = process.env.SENDGRID_API_KEY
     const SENDGRID_FROM_EMAIL = process.env.SENDGRID_FROM_EMAIL || "noreply@krash.world"
 
