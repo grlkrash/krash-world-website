@@ -17,6 +17,8 @@ interface Beat {
   coverImage: string
   includesWav?: boolean
   fileFormat?: string
+  featured?: boolean
+  genre?: string[]
 }
 
 export default function BeatstorePage() {
@@ -41,7 +43,10 @@ export default function BeatstorePage() {
     return () => clearInterval(interval)
   }, [])
 
-  const currentItems: Beat[] = activeTab === "beats" ? beatData.beats : beatData.loops
+  // Separate featured and regular items
+  const allItems: Beat[] = activeTab === "beats" ? beatData.beats : beatData.loops
+  const featuredItems = allItems.filter(item => item.featured)
+  const regularItems = allItems.filter(item => !item.featured)
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
@@ -149,12 +154,40 @@ export default function BeatstorePage() {
             </div>
           </div>
 
-          {/* Items Grid */}
-          {currentItems.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-              {currentItems.map((item) => (
-                <BeatCard key={item.id} beat={item} />
-              ))}
+          {/* Featured Section */}
+          {featuredItems.length > 0 && activeTab === "beats" && (
+            <div className="mb-16">
+              <div className="text-center mb-8">
+                <div className="text-[#ffda0f] text-sm font-mono mb-2">PREMIUM SELECTION</div>
+                <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
+                  FEATURED <span className="text-[#ffda0f]">BEATS</span>
+                </h2>
+                <p className="text-gray-400 text-sm">Handpicked premium tracks</p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                {featuredItems.map((item) => (
+                  <BeatCard key={item.id} beat={item} />
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* All Items Grid */}
+          {allItems.length > 0 ? (
+            <div>
+              {featuredItems.length > 0 && activeTab === "beats" && (
+                <div className="text-center mb-8">
+                  <div className="text-[#ffda0f] text-sm font-mono mb-2">FULL CATALOG</div>
+                  <h2 className="text-2xl md:text-3xl font-black text-white">
+                    ALL <span className="text-[#ffda0f]">BEATS</span>
+                  </h2>
+                </div>
+              )}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+                {regularItems.map((item) => (
+                  <BeatCard key={item.id} beat={item} />
+                ))}
+              </div>
             </div>
           ) : (
             <div className="text-center py-16 text-gray-400">

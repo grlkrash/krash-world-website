@@ -8,7 +8,11 @@
       "previewUrl": "/beats/beat-1-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": true,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-2",
@@ -18,7 +22,11 @@
       "previewUrl": "/beats/beat-2-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": true,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-3",
@@ -28,7 +36,11 @@
       "previewUrl": "/beats/beat-3-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": true,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-4",
@@ -38,7 +50,11 @@
       "previewUrl": "/beats/beat-4-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-5",
@@ -48,7 +64,11 @@
       "previewUrl": "/beats/beat-5-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-6",
@@ -58,7 +78,11 @@
       "previewUrl": "/beats/beat-6-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-7",
@@ -68,7 +92,11 @@
       "previewUrl": "/beats/beat-7-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-8",
@@ -78,7 +106,11 @@
       "previewUrl": "/beats/beat-8-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-9",
@@ -88,7 +120,11 @@
       "previewUrl": "/beats/beat-9-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-10",
@@ -98,7 +134,11 @@
       "previewUrl": "/beats/beat-10-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-11",
@@ -108,7 +148,11 @@
       "previewUrl": "/beats/beat-11-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-12",
@@ -118,7 +162,11 @@
       "previewUrl": "/beats/beat-12-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-13",
@@ -128,7 +176,11 @@
       "previewUrl": "/beats/beat-13-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-14",
@@ -138,7 +190,11 @@
       "previewUrl": "/beats/beat-14-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-15",
@@ -148,7 +204,11 @@
       "previewUrl": "/beats/beat-15-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-16",
@@ -158,7 +218,11 @@
       "previewUrl": "/beats/beat-16-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-17",
@@ -168,7 +232,11 @@
       "previewUrl": "/beats/beat-17-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-18",
@@ -178,7 +246,11 @@
       "previewUrl": "/beats/beat-18-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-19",
@@ -188,7 +260,11 @@
       "previewUrl": "/beats/beat-19-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-20",
@@ -198,7 +274,11 @@
       "previewUrl": "/beats/beat-20-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-21",
@@ -208,7 +288,11 @@
       "previewUrl": "/beats/beat-21-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-22",
@@ -218,7 +302,11 @@
       "previewUrl": "/beats/beat-22-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-23",
@@ -228,7 +316,11 @@
       "previewUrl": "/beats/beat-23-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-24",
@@ -238,7 +330,11 @@
       "previewUrl": "/beats/beat-24-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-25",
@@ -248,7 +344,11 @@
       "previewUrl": "/beats/beat-25-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-26",
@@ -258,7 +358,11 @@
       "previewUrl": "/beats/beat-26-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-27",
@@ -268,7 +372,11 @@
       "previewUrl": "/beats/beat-27-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-28",
@@ -278,7 +386,11 @@
       "previewUrl": "/beats/beat-28-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-29",
@@ -288,7 +400,11 @@
       "previewUrl": "/beats/beat-29-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-30",
@@ -298,7 +414,11 @@
       "previewUrl": "/beats/beat-30-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-31",
@@ -308,7 +428,11 @@
       "previewUrl": "/beats/beat-31-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-32",
@@ -318,7 +442,11 @@
       "previewUrl": "/beats/beat-32-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-33",
@@ -328,7 +456,11 @@
       "previewUrl": "/beats/beat-33-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-34",
@@ -338,7 +470,11 @@
       "previewUrl": "/beats/beat-34-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-35",
@@ -348,7 +484,11 @@
       "previewUrl": "/beats/beat-35-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-36",
@@ -358,7 +498,11 @@
       "previewUrl": "/beats/beat-36-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-37",
@@ -368,7 +512,11 @@
       "previewUrl": "/beats/beat-37-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-38",
@@ -378,7 +526,11 @@
       "previewUrl": "/beats/beat-38-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-39",
@@ -388,7 +540,11 @@
       "previewUrl": "/beats/beat-39-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-40",
@@ -398,7 +554,11 @@
       "previewUrl": "/beats/beat-40-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-41",
@@ -408,7 +568,11 @@
       "previewUrl": "/beats/beat-41-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-42",
@@ -418,7 +582,11 @@
       "previewUrl": "/beats/beat-42-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-43",
@@ -428,7 +596,11 @@
       "previewUrl": "/beats/beat-43-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-44",
@@ -438,7 +610,11 @@
       "previewUrl": "/beats/beat-44-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-45",
@@ -448,7 +624,11 @@
       "previewUrl": "/beats/beat-45-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-46",
@@ -458,7 +638,11 @@
       "previewUrl": "/beats/beat-46-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-47",
@@ -468,7 +652,11 @@
       "previewUrl": "/beats/beat-47-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-48",
@@ -478,7 +666,11 @@
       "previewUrl": "/beats/beat-48-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-49",
@@ -488,7 +680,11 @@
       "previewUrl": "/beats/beat-49-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-50",
@@ -498,7 +694,11 @@
       "previewUrl": "/beats/beat-50-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-51",
@@ -508,7 +708,11 @@
       "previewUrl": "/beats/beat-51-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-52",
@@ -518,7 +722,11 @@
       "previewUrl": "/beats/beat-52-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-53",
@@ -528,7 +736,11 @@
       "previewUrl": "/beats/beat-53-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-54",
@@ -538,7 +750,11 @@
       "previewUrl": "/beats/beat-54-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-55",
@@ -548,7 +764,11 @@
       "previewUrl": "/beats/beat-55-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-56",
@@ -558,7 +778,11 @@
       "previewUrl": "/beats/beat-56-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-57",
@@ -568,7 +792,11 @@
       "previewUrl": "/beats/beat-57-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-58",
@@ -578,7 +806,11 @@
       "previewUrl": "/beats/beat-58-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-59",
@@ -588,7 +820,11 @@
       "previewUrl": "/beats/beat-59-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-60",
@@ -598,7 +834,11 @@
       "previewUrl": "/beats/beat-60-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-61",
@@ -608,7 +848,11 @@
       "previewUrl": "/beats/beat-61-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-62",
@@ -618,7 +862,11 @@
       "previewUrl": "/beats/beat-62-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-63",
@@ -628,7 +876,11 @@
       "previewUrl": "/beats/beat-63-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-64",
@@ -638,7 +890,11 @@
       "previewUrl": "/beats/beat-64-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-65",
@@ -648,7 +904,11 @@
       "previewUrl": "/beats/beat-65-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-66",
@@ -658,7 +918,11 @@
       "previewUrl": "/beats/beat-66-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-67",
@@ -668,7 +932,11 @@
       "previewUrl": "/beats/beat-67-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-68",
@@ -678,7 +946,11 @@
       "previewUrl": "/beats/beat-68-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-69",
@@ -688,7 +960,11 @@
       "previewUrl": "/beats/beat-69-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-70",
@@ -698,7 +974,11 @@
       "previewUrl": "/beats/beat-70-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-71",
@@ -708,7 +988,11 @@
       "previewUrl": "/beats/beat-71-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-72",
@@ -718,7 +1002,11 @@
       "previewUrl": "/beats/beat-72-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-73",
@@ -728,7 +1016,11 @@
       "previewUrl": "/beats/beat-73-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-74",
@@ -738,7 +1030,11 @@
       "previewUrl": "/beats/beat-74-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-75",
@@ -748,7 +1044,11 @@
       "previewUrl": "/beats/beat-75-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-76",
@@ -758,7 +1058,11 @@
       "previewUrl": "/beats/beat-76-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-77",
@@ -768,7 +1072,11 @@
       "previewUrl": "/beats/beat-77-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-78",
@@ -778,7 +1086,11 @@
       "previewUrl": "/beats/beat-78-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-79",
@@ -788,7 +1100,11 @@
       "previewUrl": "/beats/beat-79-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-80",
@@ -798,7 +1114,11 @@
       "previewUrl": "/beats/beat-80-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-81",
@@ -808,7 +1128,11 @@
       "previewUrl": "/beats/beat-81-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-82",
@@ -818,7 +1142,11 @@
       "previewUrl": "/beats/beat-82-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-83",
@@ -828,7 +1156,11 @@
       "previewUrl": "/beats/beat-83-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-84",
@@ -838,7 +1170,11 @@
       "previewUrl": "/beats/beat-84-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-85",
@@ -848,7 +1184,11 @@
       "previewUrl": "/beats/beat-85-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-86",
@@ -858,7 +1198,11 @@
       "previewUrl": "/beats/beat-86-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-87",
@@ -868,7 +1212,11 @@
       "previewUrl": "/beats/beat-87-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-88",
@@ -878,7 +1226,11 @@
       "previewUrl": "/beats/beat-88-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-89",
@@ -888,7 +1240,11 @@
       "previewUrl": "/beats/beat-89-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-90",
@@ -898,7 +1254,11 @@
       "previewUrl": "/beats/beat-90-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-91",
@@ -908,7 +1268,11 @@
       "previewUrl": "/beats/beat-91-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-92",
@@ -918,7 +1282,11 @@
       "previewUrl": "/beats/beat-92-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-93",
@@ -928,7 +1296,11 @@
       "previewUrl": "/beats/beat-93-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-94",
@@ -938,7 +1310,11 @@
       "previewUrl": "/beats/beat-94-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-95",
@@ -948,7 +1324,11 @@
       "previewUrl": "/beats/beat-95-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-96",
@@ -958,7 +1338,11 @@
       "previewUrl": "/beats/beat-96-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-97",
@@ -968,7 +1352,11 @@
       "previewUrl": "/beats/beat-97-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-98",
@@ -978,7 +1366,11 @@
       "previewUrl": "/beats/beat-98-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-99",
@@ -988,7 +1380,11 @@
       "previewUrl": "/beats/beat-99-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-100",
@@ -998,7 +1394,11 @@
       "previewUrl": "/beats/beat-100-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-101",
@@ -1008,7 +1408,11 @@
       "previewUrl": "/beats/beat-101-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-102",
@@ -1018,7 +1422,11 @@
       "previewUrl": "/beats/beat-102-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-103",
@@ -1028,7 +1436,11 @@
       "previewUrl": "/beats/beat-103-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Electronic"
+      ]
     },
     {
       "id": "beat-104",
@@ -1038,7 +1450,11 @@
       "previewUrl": "/beats/beat-104-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-105",
@@ -1048,7 +1464,11 @@
       "previewUrl": "/beats/beat-105-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-106",
@@ -1058,7 +1478,11 @@
       "previewUrl": "/beats/beat-106-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-107",
@@ -1068,7 +1492,11 @@
       "previewUrl": "/beats/beat-107-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV"
+      "fileFormat": "MP3 + WAV",
+      "featured": false,
+      "genre": [
+        "Hip-Hop"
+      ]
     }
   ],
   "loops": [
@@ -1080,7 +1508,11 @@
       "previewUrl": "/beats/loop-1-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-2",
@@ -1090,7 +1522,11 @@
       "previewUrl": "/beats/loop-2-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-3",
@@ -1100,7 +1536,11 @@
       "previewUrl": "/beats/loop-3-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-4",
@@ -1110,7 +1550,11 @@
       "previewUrl": "/beats/loop-4-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-5",
@@ -1120,7 +1564,11 @@
       "previewUrl": "/beats/loop-5-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-6",
@@ -1130,7 +1578,11 @@
       "previewUrl": "/beats/loop-6-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-7",
@@ -1140,7 +1592,11 @@
       "previewUrl": "/beats/loop-7-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-8",
@@ -1150,7 +1606,11 @@
       "previewUrl": "/beats/loop-8-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-9",
@@ -1160,7 +1620,11 @@
       "previewUrl": "/beats/loop-9-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-10",
@@ -1170,7 +1634,11 @@
       "previewUrl": "/beats/loop-10-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-11",
@@ -1180,7 +1648,11 @@
       "previewUrl": "/beats/loop-11-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
-      "fileFormat": "MP3"
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Loop"
+      ]
     }
   ],
   "totalBeats": 107,

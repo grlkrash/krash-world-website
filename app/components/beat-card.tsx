@@ -17,6 +17,8 @@ interface Beat {
   coverImage: string
   includesWav?: boolean
   fileFormat?: string
+  featured?: boolean
+  genre?: string[]
 }
 
 interface BeatCardProps {
@@ -46,7 +48,11 @@ export default function BeatCard({ beat }: BeatCardProps) {
   }
 
   return (
-    <Card className="bg-black/80 border border-[#ffda0f]/20 hover:border-[#ffda0f]/40 transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,218,15,0.3)]">
+    <Card className={`bg-black/80 border transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,218,15,0.3)] ${
+      beat.featured 
+        ? "border-[#ffda0f] hover:border-[#ffda0f] shadow-[0_0_30px_rgba(255,218,15,0.4)]" 
+        : "border-[#ffda0f]/20 hover:border-[#ffda0f]/40"
+    }`}>
       <CardHeader className="p-0">
         <div className="relative w-full aspect-square overflow-hidden rounded-t-lg">
           <Image
@@ -57,8 +63,25 @@ export default function BeatCard({ beat }: BeatCardProps) {
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          {beat.featured && (
+            <div className="absolute top-4 right-4 bg-[#ffda0f] text-black px-3 py-1 rounded-full text-xs font-black">
+              FEATURED
+            </div>
+          )}
           <div className="absolute bottom-4 left-4 right-4">
             <CardTitle className="text-white text-xl font-black mb-1">{beat.title}</CardTitle>
+            {beat.genre && beat.genre.length > 0 && (
+              <div className="flex flex-wrap gap-1 mt-2">
+                {beat.genre.slice(0, 2).map((g, i) => (
+                  <span
+                    key={i}
+                    className="text-xs bg-[#ffda0f]/20 text-[#ffda0f] px-2 py-0.5 rounded border border-[#ffda0f]/30"
+                  >
+                    {g}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </CardHeader>
