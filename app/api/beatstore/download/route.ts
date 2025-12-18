@@ -1,7 +1,19 @@
 import { NextRequest, NextResponse } from "next/server"
 import { verifyTransaction, markAsDownloaded, getTransaction } from "@/app/services/beatstore/transaction-store"
-import { readFile } from "fs/promises"
-import { join } from "path"
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3"
+
+const s3Client = new S3Client({
+  region: process.env.AWS_REGION || "us-east-2",
+  credentials: process.env.AWS_ACCESS_KEY_ID && process.env.AWS_SECRET_ACCESS_KEY
+    ? {
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+      }
+    : undefined,
+})
+
+const S3_BUCKET_NAME = process.env.S3_BUCKET_NAME || "krash-beatstore-aws"
+const S3_REGION = process.env.AWS_REGION || "us-east-2"
 
 export async function GET(request: NextRequest) {
   try {
@@ -23,38 +35,66 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Transaction does not match beat" }, { status: 403 })
     }
 
-    // Check if already downloaded (optional - remove if you want multiple downloads)
-    // if (transaction.downloaded) {
-    //   return NextResponse.json({ error: "Download link has already been used" }, { status: 403 })
-    // }
-
-    // Get the file path
-    // For now, using public/downloads - you can change this to AWS S3 or other storage
+    // Get the S3 key for the ZIP file
+    // Try downloads/ prefix first, then root level
     const fileName = `${beatId}.zip`
-    const filePath = join(process.cwd(), "public", "downloads", fileName)
+    const s3Keys = [`downloads/${fileName}`, fileName]
 
-    try {
-      // Read the file
-      const fileBuffer = await readFile(filePath)
+    let fileBuffer: Buffer | null = null
+    let lastError: Error | null = null
 
-      // Mark as downloaded (optional)
-      markAsDownloaded(transactionId)
+    // Try each possible S3 key location
+    for (const s3Key of s3Keys) {
+      try {
+        const command = new GetObjectCommand({
+          Bucket: S3_BUCKET_NAME,
+          Key: s3Key,
+        })
 
-      // Return the file
-      return new NextResponse(fileBuffer, {
-        headers: {
-          "Content-Type": "application/zip",
-          "Content-Disposition": `attachment; filename="${transaction.beatTitle.replace(/[^a-z0-9]/gi, "_")}.zip"`,
-          "Content-Length": fileBuffer.length.toString(),
-        },
-      })
-    } catch (fileError) {
-      console.error("File read error:", fileError)
+        const response = await s3Client.send(command)
+        
+        if (!response.Body) {
+          throw new Error("No file body returned from S3")
+        }
+
+        // Convert stream to buffer
+        // AWS SDK v3 Body is a Readable stream in Node.js
+        const chunks: Buffer[] = []
+        const stream = response.Body as any
+        
+        // Read the stream as async iterable
+        for await (const chunk of stream) {
+          chunks.push(Buffer.from(chunk))
+        }
+
+        fileBuffer = Buffer.concat(chunks)
+        break // Success, exit loop
+      } catch (error) {
+        lastError = error as Error
+        console.log(`Tried S3 key ${s3Key}, not found. Trying next...`)
+        continue
+      }
+    }
+
+    if (!fileBuffer) {
+      console.error("S3 download error:", lastError)
       return NextResponse.json(
         { error: "File not found. Please contact support with your transaction ID." },
         { status: 404 },
       )
     }
+
+    // Mark as downloaded (optional)
+    markAsDownloaded(transactionId)
+
+    // Return the file
+    return new NextResponse(fileBuffer, {
+      headers: {
+        "Content-Type": "application/zip",
+        "Content-Disposition": `attachment; filename="${transaction.beatTitle.replace(/[^a-z0-9]/gi, "_")}.zip"`,
+        "Content-Length": fileBuffer.length.toString(),
+      },
+    })
   } catch (error) {
     console.error("Download error:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
