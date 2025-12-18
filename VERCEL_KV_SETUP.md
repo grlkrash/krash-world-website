@@ -1,4 +1,4 @@
-# Vercel KV Setup for Transaction Storage
+# Upstash Redis Setup for Transaction Storage (FREE)
 
 ## Problem
 
@@ -6,9 +6,19 @@ The transaction store was using **in-memory storage** which doesn't work on Verc
 
 **Result:** Download links show "Invalid or expired download link" even though the transaction was just created.
 
-## Solution: Vercel KV
+## Solution: Upstash Redis (FREE)
 
-Vercel KV is a Redis-compatible database that provides persistent storage across serverless function invocations.
+**✅ IT'S FREE - No Credit Card Required!**
+
+Upstash Redis provides persistent storage across serverless function invocations. The `@vercel/kv` package works with Upstash Redis.
+
+**Free Tier:**
+- 10,000 commands per day (plenty for downloads)
+- 256 MB storage (more than enough)
+- No credit card required
+- Free forever
+
+See `UPSTASH_REDIS_SETUP.md` for detailed step-by-step instructions.
 
 ## Setup Instructions
 
