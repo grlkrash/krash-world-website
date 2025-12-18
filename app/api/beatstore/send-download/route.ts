@@ -28,25 +28,30 @@ export async function POST(request: Request) {
     })
 
     // Add to newsletter if opted in
-    if (optInNewsletter) {
+    if (optInNewsletter && email) {
       try {
+        const normalizedEmail = email.toLowerCase().trim()
         // Call newsletter API using the same Google Sheets webhook
         const WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzgy2fJ1KQ3pjB7wOyWHwB-jcNfzCp_iJYftmB20Df65Jy_vbZwMqD6U4kyn_GgYZCP5g/exec'
         const newsletterResponse = await fetch(WEB_APP_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
-            email, 
-            name: email.split("@")[0] || "Customer" 
+            email: normalizedEmail, 
+            name: normalizedEmail.split("@")[0] || "Customer" 
           }),
         })
         if (newsletterResponse.ok) {
-          console.log("✅ Added to newsletter:", email)
+          console.log("✅ Added to newsletter:", normalizedEmail)
+        } else {
+          console.warn("⚠️ Newsletter signup may have failed or email may be duplicate:", normalizedEmail)
         }
       } catch (error) {
         console.error("Newsletter signup error:", error)
         // Don't fail the purchase if newsletter signup fails
       }
+    } else if (optInNewsletter && !email) {
+      console.warn("⚠️ Newsletter opt-in was checked but no email provided")
     }
 
     // Option 1: Use EmailJS (free service)

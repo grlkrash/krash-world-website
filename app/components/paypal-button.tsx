@@ -46,10 +46,30 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false)
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [optInNewsletter, setOptInNewsletter] = useState(false)
+  const [isAlreadySubscribed, setIsAlreadySubscribed] = useState(false)
   
   // Templates don't need lease terms acceptance
   const isTemplate = beat.genre?.includes("Template") || beat.id?.startsWith("template")
   const needsTerms = !isTemplate
+
+  // Check if email is already subscribed (client-side duplicate prevention)
+  useEffect(() => {
+    const checkSubscription = () => {
+      try {
+        const subscribedEmails = JSON.parse(localStorage.getItem('newsletter-subscribed-emails') || '[]')
+        // We can't check the actual email here, but we can check if user has subscribed in this session
+        // This will be updated when payment completes
+        const sessionSubscribed = sessionStorage.getItem('newsletter-subscribed-session') === 'true'
+        if (sessionSubscribed) {
+          setIsAlreadySubscribed(true)
+          setOptInNewsletter(false)
+        }
+      } catch (error) {
+        console.error('Error checking subscription status:', error)
+      }
+    }
+    checkSubscription()
+  }, [])
 
   useEffect(() => {
     // Load PayPal SDK
@@ -103,6 +123,27 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
               const details = await actions.order?.capture()
               if (!details) throw new Error("Payment capture failed")
 
+              const payerEmail = details.payer?.email_address
+
+              // Check for duplicate newsletter subscription before sending
+              let shouldSubscribe = optInNewsletter
+              if (optInNewsletter && payerEmail) {
+                try {
+                  const subscribedEmails = JSON.parse(localStorage.getItem('newsletter-subscribed-emails') || '[]')
+                  if (subscribedEmails.includes(payerEmail.toLowerCase())) {
+                    shouldSubscribe = false
+                    console.log('📧 Email already subscribed, skipping duplicate subscription')
+                  } else {
+                    // Mark as subscribed in localStorage
+                    subscribedEmails.push(payerEmail.toLowerCase())
+                    localStorage.setItem('newsletter-subscribed-emails', JSON.stringify(subscribedEmails))
+                    sessionStorage.setItem('newsletter-subscribed-session', 'true')
+                  }
+                } catch (error) {
+                  console.error('Error checking subscription:', error)
+                }
+              }
+
               // Send email with download link
               const response = await fetch("/api/beatstore/send-download", {
                 method: "POST",
@@ -110,11 +151,11 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                  email: details.payer?.email_address,
+                  email: payerEmail,
                   beatId: beat.id,
                   beatTitle: beat.title,
                   transactionId: data.orderID,
-                  optInNewsletter: optInNewsletter,
+                  optInNewsletter: shouldSubscribe,
                 }),
               })
 
@@ -193,14 +234,29 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
           <Checkbox
             id={`newsletter-${beat.id}`}
             checked={optInNewsletter}
-            onCheckedChange={(checked) => setOptInNewsletter(checked === true)}
-            className="mt-1 border-[#00ff88]/50 data-[state=checked]:bg-[#00ff88] data-[state=checked]:border-[#00ff88]"
+            onCheckedChange={(checked) => {
+              if (isAlreadySubscribed) {
+                setOptInNewsletter(false)
+                return
+              }
+              setOptInNewsletter(checked === true)
+            }}
+            disabled={isAlreadySubscribed}
+            className="mt-1 border-[#00ff88]/50 data-[state=checked]:bg-[#00ff88] data-[state=checked]:border-[#00ff88] disabled:opacity-50"
           />
           <Label
             htmlFor={`newsletter-${beat.id}`}
-            className="text-xs text-gray-300 leading-tight cursor-pointer"
+            className={`text-xs text-gray-300 leading-tight ${isAlreadySubscribed ? 'opacity-50' : 'cursor-pointer'}`}
           >
-            <span className="text-[#00ff88]">✓</span> Join newsletter for new beats, sales, and updates (optional)
+            {isAlreadySubscribed ? (
+              <>
+                <span className="text-[#00ff88]">✓</span> Already subscribed to newsletter
+              </>
+            ) : (
+              <>
+                <span className="text-[#00ff88]">✓</span> Join newsletter for new beats, sales, and updates (optional)
+              </>
+            )}
           </Label>
         </div>
       </div>
