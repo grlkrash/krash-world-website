@@ -30,3 +30,7 @@ next-env.d.ts
 # Exclude large download ZIPs from git (use S3/CDN instead)
 /public/downloads/
 # Keep preview files for the site (they're smaller)
+
+# macOS system files
+.DS_Store
+**/.DS_Store
