@@ -106,8 +106,8 @@ export default function BeatCard({ beat }: BeatCardProps) {
           <div className="text-xs font-semibold text-[#ffda0f] mb-1">STANDARD LEASE INCLUDES:</div>
           <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
             <li>50% Publishing Rights (50/50 split)</li>
-            <li>2,500 Unit Distribution Limit</li>
-            <li>Commercial Use Rights</li>
+            <li>2,500 Units • 50K Streams</li>
+            <li>1 Music Video • Unlimited Live</li>
             <li>Lifetime License Term</li>
           </ul>
           <Link

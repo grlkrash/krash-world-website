@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
@@ -167,8 +168,8 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
           htmlFor={`terms-${beat.id}`}
           className="text-xs text-gray-300 leading-tight cursor-pointer"
         >
-          I agree to the <span className="text-[#ffda0f] underline">Lease Terms</span> and understand 
-          this purchase includes 50% publishing rights and distribution up to 2,500 units.
+          I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">Lease Terms</Link> and understand 
+          this purchase includes 50% publishing rights, 2,500 units, 50K streams, and 1 music video.
         </Label>
       </div>
       <div 

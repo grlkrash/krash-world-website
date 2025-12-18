@@ -72,14 +72,19 @@ export default function LeaseTermsPage() {
                 <div>
                   <h3 className="text-white font-bold mb-2 text-lg">2. DISTRIBUTION RIGHTS</h3>
                   <p>
-                    Licensee may distribute up to <strong className="text-white">2,500 units</strong> 
-                    (including physical copies, digital downloads, and streams) of the Master Recording. 
-                    Distribution includes but is not limited to: streaming platforms (Spotify, Apple Music, 
-                    etc.), digital downloads, physical CDs, vinyl, and radio play.
+                    Licensee may distribute the Master Recording under the following limits:
                   </p>
+                  <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
+                    <li><strong className="text-white">2,500 units</strong> - Physical copies and digital downloads (CDs, vinyl, digital sales)</li>
+                    <li><strong className="text-white">50,000 audio streams</strong> - Across all streaming platforms (Spotify, Apple Music, YouTube Music, etc.)</li>
+                    <li><strong className="text-white">1 music video</strong> - For promotional use on YouTube and other video platforms</li>
+                    <li><strong className="text-white">Unlimited live performances</strong> - Licensee may perform the Master Recording live without restriction</li>
+                    <li><strong className="text-white">Radio play</strong> - Allowed within the unit and stream limits above</li>
+                  </ul>
                   <p className="mt-2">
-                    Once the 2,500 unit limit is reached, Licensee must either purchase an extended license 
-                    or cease distribution of the Master Recording.
+                    Once any limit is reached, Licensee must either purchase an extended license or cease 
+                    distribution of the Master Recording. Units and streams are cumulative across all 
+                    platforms and distribution methods.
                   </p>
                 </div>
 
