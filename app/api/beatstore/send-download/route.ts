@@ -1,6 +1,29 @@
 import { storeTransaction } from "@/app/services/beatstore/transaction-store"
 import emailjs from "@emailjs/nodejs"
 
+async function verifyPayPalPayment(orderId: string): Promise<boolean> {
+  const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
+  const secret = process.env.PAYPAL_CLIENT_SECRET
+  if (!clientId || !secret) return true // Skip verification if not configured
+  
+  const auth = Buffer.from(`${clientId}:${secret}`).toString("base64")
+  const tokenRes = await fetch("https://api-m.paypal.com/v1/oauth2/token", {
+    method: "POST",
+    headers: { Authorization: `Basic ${auth}`, "Content-Type": "application/x-www-form-urlencoded" },
+    body: "grant_type=client_credentials",
+  })
+  if (!tokenRes.ok) return false
+  
+  const { access_token } = await tokenRes.json()
+  const orderRes = await fetch(`https://api-m.paypal.com/v2/checkout/orders/${orderId}`, {
+    headers: { Authorization: `Bearer ${access_token}` },
+  })
+  if (!orderRes.ok) return false
+  
+  const order = await orderRes.json()
+  return order.status === "COMPLETED"
+}
+
 export async function POST(request: Request) {
   try {
     const { email, beatId, beatTitle, downloadUrl, transactionId, optInNewsletter } = await request.json()
@@ -8,6 +31,14 @@ export async function POST(request: Request) {
     if (!email || !beatId || !transactionId) {
       return Response.json({ error: "Missing required fields" }, { status: 400 })
     }
+
+    // Verify payment with PayPal before sending download
+    const isVerified = await verifyPayPalPayment(transactionId)
+    if (!isVerified) {
+      console.error("❌ PayPal verification failed for order:", transactionId)
+      return Response.json({ error: "Payment verification failed" }, { status: 403 })
+    }
+    console.log("✅ PayPal payment verified:", transactionId)
 
     // Store transaction for download verification - now returns unique downloadToken per beat
     const downloadToken = await storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48) // 48 hour expiry
