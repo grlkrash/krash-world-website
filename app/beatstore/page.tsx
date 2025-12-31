@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import BeatCard from "../components/beat-card"
 import NavigationMenu from "../components/navigation-menu"
+import { AudioProvider } from "../components/audio-context"
 import { Menu, X, ArrowLeft, Grid3x3, List } from "lucide-react"
 import beatData from "../../beat-data.json"
 
@@ -54,6 +55,7 @@ export default function BeatstorePage() {
   const regularItems = allItems.filter(item => !item.featured)
 
   return (
+    <AudioProvider>
     <div className="min-h-screen bg-black text-white relative">
       {/* Grid Background */}
       <div
@@ -293,5 +295,6 @@ export default function BeatstorePage() {
         <div>LA_BASED</div>
       </div>
     </div>
+    </AudioProvider>
   )
 }

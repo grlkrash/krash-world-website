@@ -7,12 +7,14 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from "@/components/ui/button"
 import { Play, Pause } from "lucide-react"
 import PayPalButton from "./paypal-button"
+import { useAudio } from "./audio-context"
 
 interface Beat {
   id: string
   title: string
   description: string
   price: number
+  tier?: number
   previewUrl: string
   coverImage: string
   includesWav?: boolean
@@ -27,64 +29,33 @@ interface BeatCardProps {
 }
 
 export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [audio, setAudio] = useState<HTMLAudioElement | null>(null)
+  const { playAudio, isPlaying } = useAudio()
   const [audioError, setAudioError] = useState(false)
+  const currentlyPlaying = isPlaying(beat.id)
 
   const handlePlayPause = async () => {
     try {
-      if (!audio) {
-        console.log("🎵 Loading audio:", beat.previewUrl)
-        const newAudio = new Audio(beat.previewUrl)
-        newAudio.preload = "auto"
-        
-        newAudio.addEventListener("ended", () => setIsPlaying(false))
-        newAudio.addEventListener("error", (e) => {
-          console.error("❌ Audio error:", e)
-          console.error("❌ Audio src:", newAudio.src)
-          console.error("❌ Audio networkState:", newAudio.networkState)
-          console.error("❌ Audio error code:", newAudio.error?.code, newAudio.error?.message)
-          setAudioError(true)
-          setIsPlaying(false)
-        })
-        newAudio.addEventListener("canplaythrough", () => {
-          console.log("✅ Audio can play through")
-          setAudioError(false)
-        })
-        newAudio.addEventListener("loadstart", () => {
-          console.log("🔄 Audio load started")
-        })
-        newAudio.addEventListener("loadeddata", () => {
-          console.log("✅ Audio data loaded")
-        })
-        newAudio.addEventListener("stalled", () => {
-          console.warn("⚠️ Audio loading stalled")
-        })
-        
-        setAudio(newAudio)
-        try {
-          await newAudio.play()
-          console.log("✅ Audio playback started")
-          setIsPlaying(true)
-        } catch (playError) {
-          console.error("❌ Play error:", playError)
-          setAudioError(true)
-          setIsPlaying(false)
-        }
-      } else {
-        if (isPlaying) {
-          audio.pause()
-          setIsPlaying(false)
-        } else {
-          await audio.play()
-          setIsPlaying(true)
-        }
-      }
+      setAudioError(false)
+      await playAudio(beat.id, beat.previewUrl)
     } catch (error) {
-      console.error("❌ Playback error:", error)
+      console.error("Playback error:", error)
       setAudioError(true)
-      setIsPlaying(false)
     }
+  }
+
+  // Get tier badge color
+  const getTierBadge = () => {
+    if (!beat.tier) return null
+    const tierColors = {
+      1: "bg-[#ffda0f] text-black",
+      2: "bg-[#00ff88] text-black",
+      3: "bg-[#ff6b6b] text-white"
+    }
+    return (
+      <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${tierColors[beat.tier as 1|2|3] || tierColors[1]}`}>
+        TIER {beat.tier}
+      </span>
+    )
   }
 
   // List view layout
@@ -115,11 +86,12 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
           {/* Content */}
           <div className="flex-1 flex flex-col md:flex-row md:items-center gap-4">
             <div className="flex-1">
-              <div className="flex items-center gap-2 mb-2">
+              <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <CardTitle className="text-white text-lg font-black">{beat.title}</CardTitle>
+                {getTierBadge()}
                 {beat.genre && beat.genre.length > 0 && (
                   <div className="flex flex-wrap gap-1">
-                    {beat.genre.slice(0, 2).map((g, i) => (
+                    {beat.genre.slice(0, 3).map((g, i) => (
                       <span
                         key={i}
                         className="text-xs bg-[#ffda0f]/20 text-[#ffda0f] px-2 py-0.5 rounded border border-[#ffda0f]/30"
@@ -141,13 +113,13 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                     onClick={handlePlayPause}
                     size="sm"
                     className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 flex-shrink-0 disabled:opacity-50"
-                    aria-label={isPlaying ? "Pause preview" : "Play preview"}
+                    aria-label={currentlyPlaying ? "Pause preview" : "Play preview"}
                     disabled={audioError}
                   >
-                    {isPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+                    {currentlyPlaying ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
                   </Button>
                   <div className="flex-1 text-xs text-gray-400">
-                    {audioError ? "Preview unavailable" : "PREVIEW"}
+                    {audioError ? "Preview unavailable" : currentlyPlaying ? "NOW PLAYING" : "PREVIEW"}
                   </div>
                 </div>
               )}
@@ -196,11 +168,16 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               FEATURED
             </div>
           )}
+          {beat.tier && (
+            <div className="absolute top-4 left-4">
+              {getTierBadge()}
+            </div>
+          )}
           <div className="absolute bottom-4 left-4 right-4">
             <CardTitle className="text-white text-xl font-black mb-1">{beat.title}</CardTitle>
             {beat.genre && beat.genre.length > 0 && (
               <div className="flex flex-wrap gap-1 mt-2">
-                {beat.genre.slice(0, 2).map((g, i) => (
+                {beat.genre.slice(0, 3).map((g, i) => (
                   <span
                     key={i}
                     className="text-xs bg-[#ffda0f]/20 text-[#ffda0f] px-2 py-0.5 rounded border border-[#ffda0f]/30"
@@ -225,15 +202,17 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               onClick={handlePlayPause}
               size="icon"
               className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 flex-shrink-0 disabled:opacity-50"
-              aria-label={isPlaying ? "Pause preview" : "Play preview"}
+              aria-label={currentlyPlaying ? "Pause preview" : "Play preview"}
               disabled={audioError}
             >
-              {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+              {currentlyPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
             </Button>
             <div className="flex-1">
               <div className="text-xs text-gray-400 mb-1">
                 {audioError ? (
-                  <span className="text-red-400">Preview unavailable - Check console for details</span>
+                  <span className="text-red-400">Preview unavailable</span>
+                ) : currentlyPlaying ? (
+                  <span className="text-[#00ff88]">NOW PLAYING</span>
                 ) : (
                   "PREVIEW"
                 )}
@@ -241,8 +220,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               {!audioError && (
                 <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-[#ffda0f] transition-all duration-100"
-                    style={{ width: audio && isPlaying ? "100%" : "0%" }}
+                    className={`h-full bg-[#ffda0f] transition-all duration-100 ${currentlyPlaying ? "animate-pulse" : ""}`}
+                    style={{ width: currentlyPlaying ? "100%" : "0%" }}
                   />
                 </div>
               )}

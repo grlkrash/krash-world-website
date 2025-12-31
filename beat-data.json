@@ -5,1260 +5,1001 @@
       "title": "10.27",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-1-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": true,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Alternative", "Rock", "Pop"]
     },
     {
       "id": "beat-2",
       "title": "10.29",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-2-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": true,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Pop", "Indie", "Guitar"]
     },
     {
       "id": "beat-3",
       "title": "10.7",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-3-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
-      "featured": true,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "featured": false,
+      "genre": ["Pop", "Rock"]
     },
     {
       "id": "beat-4",
       "title": "10.9",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-4-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Pop", "Rock", "MKGee"]
     },
     {
       "id": "beat-5",
       "title": "11.16",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-5-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Hip-Hop", "Lofi"]
     },
     {
       "id": "beat-6",
       "title": "11.19",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-6-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-7",
-      "title": "12.17",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-7-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["80s", "Rap", "Lofi"]
     },
     {
       "id": "beat-9",
       "title": "24",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-9-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Pop", "Rock", "Alternative", "80s"]
     },
     {
       "id": "beat-11",
       "title": "27",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-11-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Lofi"]
     },
     {
       "id": "beat-13",
       "title": "5.30",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-13-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Drum and Bass", "Rap", "Break Beat", "Garage"]
     },
     {
       "id": "beat-14",
       "title": "6.27",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-14-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Hip-Hop"]
     },
     {
       "id": "beat-15",
       "title": "6.29",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-15-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Hip-Hop"]
     },
     {
       "id": "beat-16",
       "title": "6INTHEMORNING",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-16-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rage", "Rap", "Yeat"]
     },
     {
       "id": "beat-17",
       "title": "7.30",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-17-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Pop", "Rock", "Indie", "Bass", "Guitar", "Steve Lacey"]
     },
     {
       "id": "beat-18",
       "title": "7.7",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-18-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Death Grips", "Alternative"]
     },
     {
       "id": "beat-19",
       "title": "8.13",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-19-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Alternative", "Rock", "Grunge", "Punk"]
     },
     {
       "id": "beat-20",
       "title": "8.14",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-20-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Pop", "Guitar"]
     },
     {
       "id": "beat-21",
       "title": "9.10",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-21-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "R&B"]
     },
     {
       "id": "beat-22",
       "title": "9.30",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-22-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Old School", "Funk", "R&B", "Rap", "Hip-Hop"]
     },
     {
       "id": "beat-23",
       "title": "BAMBOO",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-23-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Grunge", "Alternative", "Rock"]
     },
     {
       "id": "beat-24",
       "title": "BLAM!",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-24-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Punk", "Pop Punk", "Grunge", "Alternative", "Rock"]
     },
     {
       "id": "beat-25",
       "title": "CANES",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-25-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Hip-Hop", "Cypher"]
     },
     {
       "id": "beat-27",
       "title": "EYES ON U",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-27-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap"]
     },
     {
       "id": "beat-28",
       "title": "GO FAST",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-28-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Punk", "Rock", "Alternative", "Live Band", "Pop Punk"]
     },
     {
       "id": "beat-30",
       "title": "HOPE NO DRUMS",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-30-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Plugnb", "R&B"]
     },
     {
       "id": "beat-32",
       "title": "HOPE",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-32-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Plugnb", "RnB", "R&B", "Rap"]
     },
     {
       "id": "beat-33",
       "title": "KRASH111",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-33-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-34",
-      "title": "MANCHESTER! 2",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-34-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "featured": true,
+      "genre": ["Rage", "Trap", "Rap", "Underground"]
     },
     {
       "id": "beat-35",
       "title": "MANCHESTER!",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-35-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Grunge", "Rock", "Alternative", "UK", "Garage"]
     },
     {
       "id": "beat-37",
       "title": "PUSH",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-37-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Kanye", "Graduation", "Sample", "Rap", "Hip-Hop"]
     },
     {
       "id": "beat-38",
       "title": "SCREAM!",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-38-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-39",
-      "title": "UNDERWATER 1",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-39-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Alternative", "Metal", "808"]
     },
     {
       "id": "beat-40",
       "title": "ALIEN",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-40-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Hyperpop", "Rap"]
     },
     {
       "id": "beat-41",
       "title": "ASS IN THE FRONT",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-41-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-42",
-      "title": "CUTE PLUCKS",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-42-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "808", "Trap"]
     },
     {
       "id": "beat-43",
       "title": "GO CRAZY GO STUPID",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-43-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Lil Uzi Vert", "Rap", "808"]
     },
     {
       "id": "beat-44",
       "title": "GUITAR BEAT",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-44-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Flute", "Guitar", "Trap"]
     },
     {
       "id": "beat-45",
       "title": "HEART STRINGS 1V HOOK",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-45-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Frank Ocean", "Guitar", "Rap", "Indie"]
     },
     {
       "id": "beat-47",
       "title": "I CANT WAIT TO GO TO CALIFORNIA",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-47-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "ScHoolboy Q", "Cali", "Chill", "Sample"]
     },
     {
       "id": "beat-48",
       "title": "IMPEACH",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-48-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "NYC", "New York", "Wu Tang"]
     },
     {
       "id": "beat-49",
       "title": "IN MY DREAMS 152BPM",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-49-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Cloud Rap", "Trippie Redd"]
     },
     {
       "id": "beat-50",
       "title": "KAASH-NOMET",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-50-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Guitar", "Dreamy", "Instrumental", "Kaash Paige"]
     },
     {
       "id": "beat-51",
       "title": "LET IT GO",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-51-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Playboi Carti", "Pierre Bourne", "808", "Synth"]
     },
     {
       "id": "beat-53",
       "title": "OUTTER SPACE",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-53-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["R&B", "Chris Brown", "Pop", "Piano"]
     },
     {
       "id": "beat-54",
       "title": "POWRPUFF GRLS",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-54-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-55",
-      "title": "PRAISE MIXED",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-55-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Alternative", "Powerpuff Girls", "Rock"]
     },
     {
       "id": "beat-56",
       "title": "PRAISE",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-56-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Lil Uzi Vert"]
     },
     {
       "id": "beat-57",
       "title": "PRINCESS",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-57-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Frank Ocean", "Gospel", "Indie"]
     },
     {
       "id": "beat-58",
       "title": "SEPTEMBER 15",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-58-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-59",
-      "title": "SO LONG",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-59-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Hip-Hop", "Drake"]
     },
     {
       "id": "beat-61",
       "title": "THE END",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-61-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Band", "Ballad", "R&B", "Steve Lacey"]
     },
     {
       "id": "beat-62",
       "title": "UBER EATS MIX 2",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-62-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "2016"]
     },
     {
       "id": "beat-64",
       "title": "UR A JERK IK_SLOWED",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-64-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Jerk", "Rap", "Trap", "TwinUzi"]
     },
     {
       "id": "beat-65",
       "title": "WHERE U BEEN",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-65-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Kanye", "Rap", "808s"]
     },
     {
       "id": "beat-66",
       "title": "10.10",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-66-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-67",
-      "title": "11.19V2",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-67-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Pop", "Indie", "Instrumental"]
     },
     {
       "id": "beat-68",
       "title": "2.16",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-68-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Ugly God", "2016", "Rap"]
     },
     {
       "id": "beat-69",
       "title": "26",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-69-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rock", "Instrumental"]
     },
     {
       "id": "beat-70",
       "title": "5.1",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-70-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Hard", "808"]
     },
     {
       "id": "beat-71",
       "title": "ANOTHER TIME IN SPACE_",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-71-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Slow", "808", "R&B", "Smooth"]
     },
     {
       "id": "beat-73",
       "title": "BAD",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-73-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Lil Uzi Vert", "Philly", "Rock", "Club", "Jersey"]
     },
     {
       "id": "beat-74",
       "title": "F YOU _160BPM_AMIN",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-74-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Alternative", "Grunge", "Rock", "Punk", "Post Punk"]
     },
     {
       "id": "beat-75",
       "title": "BUBBLEGUMJERK",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-75-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Che", "Trap", "Soulja Boy", "Internet Rap", "Jerk", "Horn"]
     },
     {
       "id": "beat-77",
       "title": "3.27",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-77-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["UK", "Garage", "Bass", "D&B", "Drum and Bass"]
     },
     {
       "id": "beat-78",
       "title": "4.11",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-78-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["UK", "Garage", "Band", "Instrumental", "Rap", "Alt", "Indie"]
     },
     {
       "id": "beat-79",
       "title": "4.15",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-79-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Baile", "Phonk", "Brazil"]
     },
     {
       "id": "beat-80",
       "title": "4.19",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-80-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-82",
-      "title": "5.25",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-82-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Baile", "Brazil", "Phonk"]
     },
     {
       "id": "beat-83",
       "title": "6.6",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-83-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-84",
-      "title": "COPY OF 4.15",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-84-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-85",
-      "title": "COPY OF 4.19",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-85-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "2016", "Ugly God", "Lil Yachty"]
     },
     {
       "id": "beat-86",
       "title": "COPY OF CONFETTI",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-86-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Random"]
     },
     {
       "id": "beat-87",
       "title": "ANOTHER YEAR",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-87-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Celebration"]
     },
     {
       "id": "beat-88",
       "title": "ETHEREAL",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-88-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Pierre Bourne"]
     },
     {
       "id": "beat-89",
       "title": "GRLS",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-89-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Sample", "Pop", "Indie", "Vocals"]
     },
     {
       "id": "beat-90",
       "title": "INSIDE OUT",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-90-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Bouncy", "Happy"]
     },
     {
       "id": "beat-91",
       "title": "LOSER",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-91-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Indie", "Pop", "Synth", "Rock", "Alternative"]
     },
     {
       "id": "beat-92",
       "title": "NOTICE ME",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-92-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-94",
-      "title": "SKATE FAST 2",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-94-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["UK", "Garage", "Bass", "Instrumental"]
     },
     {
       "id": "beat-96",
       "title": "AT THE BEACH WITH A BAD B_TCHV1_INSTRUMENTAL",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-96-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-97",
-      "title": "BABY COME OVER UNFINISHED",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-97-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Jerk", "Chill", "Beach", "Big Sean"]
     },
     {
       "id": "beat-98",
       "title": "DREAMER",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-98-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Hip-Hop", "Cypher", "Sample", "Kendrick Lamar"]
     },
     {
       "id": "beat-99",
       "title": "DUNDUNDUN",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-99-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Bouncy", "Trap", "Jerk", "Nintendo"]
     },
     {
       "id": "beat-100",
       "title": "EXTASYGND",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-100-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap"]
     },
     {
       "id": "beat-101",
       "title": "EYES ON U V1.2",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-101-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rock", "Indie", "Instrumental", "Band"]
     },
     {
       "id": "beat-102",
       "title": "FUN BEAT",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-102-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Chill"]
     },
     {
       "id": "beat-103",
       "title": "I WANNA SEE YOU DANCE INSTRUMENTAL",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 15,
+      "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-103-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Electronic"
-      ]
+      "genre": ["Synth", "Pop", "Dance"]
     },
     {
       "id": "beat-105",
       "title": "JUST SOME RANDOM SHIT",
       "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 35,
+      "price": 25,
+      "tier": 2,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-105-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
-    },
-    {
-      "id": "beat-106",
-      "title": "PRINCESS MIX 2",
-      "description": "Premium beat for your next project. Includes full audio file.",
-      "price": 50,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-106-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "MP3 + WAV",
-      "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Rap", "Trap", "Lil Uzi Vert"]
     },
     {
       "id": "beat-107",
       "title": "UR A JERK IK",
       "description": "Premium beat for your next project. Includes full audio file.",
       "price": 50,
+      "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-107-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
       "fileFormat": "MP3 + WAV",
       "featured": false,
-      "genre": [
-        "Hip-Hop"
-      ]
+      "genre": ["Jerk", "Che", "Rap", "Underground"]
     }
   ],
   "loops": [
@@ -1272,9 +1013,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-2",
@@ -1286,9 +1025,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-3",
@@ -1300,9 +1037,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-4",
@@ -1314,9 +1049,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-5",
@@ -1328,9 +1061,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-6",
@@ -1342,9 +1073,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-7",
@@ -1356,9 +1085,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-8",
@@ -1370,9 +1097,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-9",
@@ -1384,9 +1109,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-10",
@@ -1398,9 +1121,7 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     },
     {
       "id": "loop-11",
@@ -1412,12 +1133,10 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": [
-        "Loop"
-      ]
+      "genre": ["Loop"]
     }
   ],
-  "totalBeats": 90,
+  "totalBeats": 77,
   "totalLoops": 11,
   "templates": [
     {
@@ -1430,10 +1149,7 @@
       "fileFormat": "Logic Pro .cst",
       "category": "Logic Pro Templates",
       "featured": false,
-      "genre": [
-        "Template",
-        "Logic Pro"
-      ]
+      "genre": ["Template", "Logic Pro"]
     }
   ],
   "totalTemplates": 1
