@@ -9,9 +9,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-1-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": true,
-      "genre": ["Alternative", "Rock", "Pop"]
+      "genre": [
+        "Alternative",
+        "Rock",
+        "Pop"
+      ]
     },
     {
       "id": "beat-2",
@@ -22,9 +26,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-2-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": true,
-      "genre": ["Pop", "Indie", "Guitar"]
+      "genre": [
+        "Pop",
+        "Indie",
+        "Guitar"
+      ]
     },
     {
       "id": "beat-3",
@@ -35,9 +43,12 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-3-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Pop", "Rock"]
+      "genre": [
+        "Pop",
+        "Rock"
+      ]
     },
     {
       "id": "beat-4",
@@ -48,9 +59,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-4-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Pop", "Rock", "MKGee"]
+      "genre": [
+        "Pop",
+        "Rock",
+        "MKGee"
+      ]
     },
     {
       "id": "beat-5",
@@ -61,9 +76,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-5-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Hip-Hop", "Lofi"]
+      "genre": [
+        "Rap",
+        "Hip-Hop",
+        "Lofi"
+      ]
     },
     {
       "id": "beat-6",
@@ -74,9 +93,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-6-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["80s", "Rap", "Lofi"]
+      "genre": [
+        "80s",
+        "Rap",
+        "Lofi"
+      ]
     },
     {
       "id": "beat-9",
@@ -87,9 +110,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-9-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Pop", "Rock", "Alternative", "80s"]
+      "genre": [
+        "Pop",
+        "Rock",
+        "Alternative",
+        "80s"
+      ]
     },
     {
       "id": "beat-11",
@@ -100,9 +128,12 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-11-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Lofi"]
+      "genre": [
+        "Rap",
+        "Lofi"
+      ]
     },
     {
       "id": "beat-13",
@@ -113,9 +144,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-13-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Drum and Bass", "Rap", "Break Beat", "Garage"]
+      "genre": [
+        "Drum and Bass",
+        "Rap",
+        "Break Beat",
+        "Garage"
+      ]
     },
     {
       "id": "beat-14",
@@ -126,9 +162,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-14-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Trap", "Hip-Hop"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-15",
@@ -139,9 +179,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-15-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Trap", "Hip-Hop"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-16",
@@ -154,7 +198,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rage", "Rap", "Yeat"]
+      "genre": [
+        "Rage",
+        "Rap",
+        "Yeat"
+      ]
     },
     {
       "id": "beat-17",
@@ -165,9 +213,16 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-17-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Pop", "Rock", "Indie", "Bass", "Guitar", "Steve Lacey"]
+      "genre": [
+        "Pop",
+        "Rock",
+        "Indie",
+        "Bass",
+        "Guitar",
+        "Steve Lacey"
+      ]
     },
     {
       "id": "beat-18",
@@ -178,9 +233,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-18-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Death Grips", "Alternative"]
+      "genre": [
+        "Rap",
+        "Death Grips",
+        "Alternative"
+      ]
     },
     {
       "id": "beat-19",
@@ -191,9 +250,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-19-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Alternative", "Rock", "Grunge", "Punk"]
+      "genre": [
+        "Alternative",
+        "Rock",
+        "Grunge",
+        "Punk"
+      ]
     },
     {
       "id": "beat-20",
@@ -204,9 +268,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-20-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Pop", "Guitar"]
+      "genre": [
+        "Rap",
+        "Pop",
+        "Guitar"
+      ]
     },
     {
       "id": "beat-21",
@@ -217,9 +285,12 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-21-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "R&B"]
+      "genre": [
+        "Rap",
+        "R&B"
+      ]
     },
     {
       "id": "beat-22",
@@ -230,9 +301,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-22-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Old School", "Funk", "R&B", "Rap", "Hip-Hop"]
+      "genre": [
+        "Old School",
+        "Funk",
+        "R&B",
+        "Rap",
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-23",
@@ -243,9 +320,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-23-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Grunge", "Alternative", "Rock"]
+      "genre": [
+        "Grunge",
+        "Alternative",
+        "Rock"
+      ]
     },
     {
       "id": "beat-24",
@@ -256,9 +337,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-24-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Punk", "Pop Punk", "Grunge", "Alternative", "Rock"]
+      "genre": [
+        "Punk",
+        "Pop Punk",
+        "Grunge",
+        "Alternative",
+        "Rock"
+      ]
     },
     {
       "id": "beat-25",
@@ -271,7 +358,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Hip-Hop", "Cypher"]
+      "genre": [
+        "Rap",
+        "Hip-Hop",
+        "Cypher"
+      ]
     },
     {
       "id": "beat-27",
@@ -282,9 +373,11 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-27-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap"]
+      "genre": [
+        "Rap"
+      ]
     },
     {
       "id": "beat-28",
@@ -295,9 +388,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-28-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Punk", "Rock", "Alternative", "Live Band", "Pop Punk"]
+      "genre": [
+        "Punk",
+        "Rock",
+        "Alternative",
+        "Live Band",
+        "Pop Punk"
+      ]
     },
     {
       "id": "beat-30",
@@ -308,9 +407,12 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-30-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Plugnb", "R&B"]
+      "genre": [
+        "Plugnb",
+        "R&B"
+      ]
     },
     {
       "id": "beat-32",
@@ -321,9 +423,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-32-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Plugnb", "RnB", "R&B", "Rap"]
+      "genre": [
+        "Plugnb",
+        "RnB",
+        "R&B",
+        "Rap"
+      ]
     },
     {
       "id": "beat-33",
@@ -334,9 +441,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-33-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": true,
-      "genre": ["Rage", "Trap", "Rap", "Underground"]
+      "genre": [
+        "Rage",
+        "Trap",
+        "Rap",
+        "Underground"
+      ]
     },
     {
       "id": "beat-35",
@@ -347,9 +459,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-35-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Grunge", "Rock", "Alternative", "UK", "Garage"]
+      "genre": [
+        "Grunge",
+        "Rock",
+        "Alternative",
+        "UK",
+        "Garage"
+      ]
     },
     {
       "id": "beat-37",
@@ -360,9 +478,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-37-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Kanye", "Graduation", "Sample", "Rap", "Hip-Hop"]
+      "genre": [
+        "Kanye",
+        "Graduation",
+        "Sample",
+        "Rap",
+        "Hip-Hop"
+      ]
     },
     {
       "id": "beat-38",
@@ -373,9 +497,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-38-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Alternative", "Metal", "808"]
+      "genre": [
+        "Rap",
+        "Alternative",
+        "Metal",
+        "808"
+      ]
     },
     {
       "id": "beat-40",
@@ -388,7 +517,10 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Hyperpop", "Rap"]
+      "genre": [
+        "Hyperpop",
+        "Rap"
+      ]
     },
     {
       "id": "beat-41",
@@ -399,9 +531,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-41-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "808", "Trap"]
+      "genre": [
+        "Rap",
+        "808",
+        "Trap"
+      ]
     },
     {
       "id": "beat-43",
@@ -414,7 +550,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Lil Uzi Vert", "Rap", "808"]
+      "genre": [
+        "Lil Uzi Vert",
+        "Rap",
+        "808"
+      ]
     },
     {
       "id": "beat-44",
@@ -425,9 +565,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-44-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Flute", "Guitar", "Trap"]
+      "genre": [
+        "Rap",
+        "Flute",
+        "Guitar",
+        "Trap"
+      ]
     },
     {
       "id": "beat-45",
@@ -438,9 +583,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-45-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Frank Ocean", "Guitar", "Rap", "Indie"]
+      "genre": [
+        "Frank Ocean",
+        "Guitar",
+        "Rap",
+        "Indie"
+      ]
     },
     {
       "id": "beat-47",
@@ -451,9 +601,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-47-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "ScHoolboy Q", "Cali", "Chill", "Sample"]
+      "genre": [
+        "Rap",
+        "ScHoolboy Q",
+        "Cali",
+        "Chill",
+        "Sample"
+      ]
     },
     {
       "id": "beat-48",
@@ -464,9 +620,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-48-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "NYC", "New York", "Wu Tang"]
+      "genre": [
+        "Rap",
+        "NYC",
+        "New York",
+        "Wu Tang"
+      ]
     },
     {
       "id": "beat-49",
@@ -477,9 +638,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-49-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Trap", "Cloud Rap", "Trippie Redd"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Cloud Rap",
+        "Trippie Redd"
+      ]
     },
     {
       "id": "beat-50",
@@ -492,7 +658,12 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Guitar", "Dreamy", "Instrumental", "Kaash Paige"]
+      "genre": [
+        "Guitar",
+        "Dreamy",
+        "Instrumental",
+        "Kaash Paige"
+      ]
     },
     {
       "id": "beat-51",
@@ -505,7 +676,12 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Playboi Carti", "Pierre Bourne", "808", "Synth"]
+      "genre": [
+        "Playboi Carti",
+        "Pierre Bourne",
+        "808",
+        "Synth"
+      ]
     },
     {
       "id": "beat-53",
@@ -516,9 +692,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-53-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["R&B", "Chris Brown", "Pop", "Piano"]
+      "genre": [
+        "R&B",
+        "Chris Brown",
+        "Pop",
+        "Piano"
+      ]
     },
     {
       "id": "beat-54",
@@ -529,9 +710,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-54-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Alternative", "Powerpuff Girls", "Rock"]
+      "genre": [
+        "Alternative",
+        "Powerpuff Girls",
+        "Rock"
+      ]
     },
     {
       "id": "beat-56",
@@ -544,7 +729,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Lil Uzi Vert"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Lil Uzi Vert"
+      ]
     },
     {
       "id": "beat-57",
@@ -557,7 +746,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Frank Ocean", "Gospel", "Indie"]
+      "genre": [
+        "Frank Ocean",
+        "Gospel",
+        "Indie"
+      ]
     },
     {
       "id": "beat-58",
@@ -570,7 +763,12 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Hip-Hop", "Drake"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Hip-Hop",
+        "Drake"
+      ]
     },
     {
       "id": "beat-61",
@@ -581,9 +779,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-61-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Band", "Ballad", "R&B", "Steve Lacey"]
+      "genre": [
+        "Band",
+        "Ballad",
+        "R&B",
+        "Steve Lacey"
+      ]
     },
     {
       "id": "beat-62",
@@ -596,7 +799,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "2016"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "2016"
+      ]
     },
     {
       "id": "beat-64",
@@ -607,9 +814,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-64-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Jerk", "Rap", "Trap", "TwinUzi"]
+      "genre": [
+        "Jerk",
+        "Rap",
+        "Trap",
+        "TwinUzi"
+      ]
     },
     {
       "id": "beat-65",
@@ -622,7 +834,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Kanye", "Rap", "808s"]
+      "genre": [
+        "Kanye",
+        "Rap",
+        "808s"
+      ]
     },
     {
       "id": "beat-66",
@@ -633,9 +849,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-66-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Pop", "Indie", "Instrumental"]
+      "genre": [
+        "Pop",
+        "Indie",
+        "Instrumental"
+      ]
     },
     {
       "id": "beat-68",
@@ -648,7 +868,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Ugly God", "2016", "Rap"]
+      "genre": [
+        "Ugly God",
+        "2016",
+        "Rap"
+      ]
     },
     {
       "id": "beat-69",
@@ -659,9 +883,12 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-69-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rock", "Instrumental"]
+      "genre": [
+        "Rock",
+        "Instrumental"
+      ]
     },
     {
       "id": "beat-70",
@@ -672,9 +899,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-70-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Trap", "Hard", "808"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Hard",
+        "808"
+      ]
     },
     {
       "id": "beat-71",
@@ -685,9 +917,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-71-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Slow", "808", "R&B", "Smooth"]
+      "genre": [
+        "Rap",
+        "Slow",
+        "808",
+        "R&B",
+        "Smooth"
+      ]
     },
     {
       "id": "beat-73",
@@ -698,9 +936,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-73-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Lil Uzi Vert", "Philly", "Rock", "Club", "Jersey"]
+      "genre": [
+        "Lil Uzi Vert",
+        "Philly",
+        "Rock",
+        "Club",
+        "Jersey"
+      ]
     },
     {
       "id": "beat-74",
@@ -711,9 +955,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-74-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Alternative", "Grunge", "Rock", "Punk", "Post Punk"]
+      "genre": [
+        "Alternative",
+        "Grunge",
+        "Rock",
+        "Punk",
+        "Post Punk"
+      ]
     },
     {
       "id": "beat-75",
@@ -724,9 +974,17 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-75-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Che", "Trap", "Soulja Boy", "Internet Rap", "Jerk", "Horn"]
+      "genre": [
+        "Rap",
+        "Che",
+        "Trap",
+        "Soulja Boy",
+        "Internet Rap",
+        "Jerk",
+        "Horn"
+      ]
     },
     {
       "id": "beat-77",
@@ -739,7 +997,13 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["UK", "Garage", "Bass", "D&B", "Drum and Bass"]
+      "genre": [
+        "UK",
+        "Garage",
+        "Bass",
+        "D&B",
+        "Drum and Bass"
+      ]
     },
     {
       "id": "beat-78",
@@ -750,9 +1014,17 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-78-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["UK", "Garage", "Band", "Instrumental", "Rap", "Alt", "Indie"]
+      "genre": [
+        "UK",
+        "Garage",
+        "Band",
+        "Instrumental",
+        "Rap",
+        "Alt",
+        "Indie"
+      ]
     },
     {
       "id": "beat-79",
@@ -765,7 +1037,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Baile", "Phonk", "Brazil"]
+      "genre": [
+        "Baile",
+        "Phonk",
+        "Brazil"
+      ]
     },
     {
       "id": "beat-80",
@@ -778,7 +1054,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Baile", "Brazil", "Phonk"]
+      "genre": [
+        "Baile",
+        "Brazil",
+        "Phonk"
+      ]
     },
     {
       "id": "beat-83",
@@ -791,7 +1071,13 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "2016", "Ugly God", "Lil Yachty"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "2016",
+        "Ugly God",
+        "Lil Yachty"
+      ]
     },
     {
       "id": "beat-86",
@@ -802,9 +1088,13 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-86-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Trap", "Random"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Random"
+      ]
     },
     {
       "id": "beat-87",
@@ -817,7 +1107,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Celebration"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Celebration"
+      ]
     },
     {
       "id": "beat-88",
@@ -830,7 +1124,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Pierre Bourne"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Pierre Bourne"
+      ]
     },
     {
       "id": "beat-89",
@@ -843,7 +1141,12 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Sample", "Pop", "Indie", "Vocals"]
+      "genre": [
+        "Sample",
+        "Pop",
+        "Indie",
+        "Vocals"
+      ]
     },
     {
       "id": "beat-90",
@@ -856,7 +1159,12 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Bouncy", "Happy"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Bouncy",
+        "Happy"
+      ]
     },
     {
       "id": "beat-91",
@@ -867,9 +1175,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-91-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Indie", "Pop", "Synth", "Rock", "Alternative"]
+      "genre": [
+        "Indie",
+        "Pop",
+        "Synth",
+        "Rock",
+        "Alternative"
+      ]
     },
     {
       "id": "beat-92",
@@ -880,9 +1194,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-92-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["UK", "Garage", "Bass", "Instrumental"]
+      "genre": [
+        "UK",
+        "Garage",
+        "Bass",
+        "Instrumental"
+      ]
     },
     {
       "id": "beat-96",
@@ -895,7 +1214,13 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Jerk", "Chill", "Beach", "Big Sean"]
+      "genre": [
+        "Rap",
+        "Jerk",
+        "Chill",
+        "Beach",
+        "Big Sean"
+      ]
     },
     {
       "id": "beat-98",
@@ -908,7 +1233,13 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Hip-Hop", "Cypher", "Sample", "Kendrick Lamar"]
+      "genre": [
+        "Rap",
+        "Hip-Hop",
+        "Cypher",
+        "Sample",
+        "Kendrick Lamar"
+      ]
     },
     {
       "id": "beat-99",
@@ -919,9 +1250,15 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-99-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Bouncy", "Trap", "Jerk", "Nintendo"]
+      "genre": [
+        "Rap",
+        "Bouncy",
+        "Trap",
+        "Jerk",
+        "Nintendo"
+      ]
     },
     {
       "id": "beat-100",
@@ -932,9 +1269,12 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-100-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Rap", "Trap"]
+      "genre": [
+        "Rap",
+        "Trap"
+      ]
     },
     {
       "id": "beat-101",
@@ -947,7 +1287,12 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rock", "Indie", "Instrumental", "Band"]
+      "genre": [
+        "Rock",
+        "Indie",
+        "Instrumental",
+        "Band"
+      ]
     },
     {
       "id": "beat-102",
@@ -960,7 +1305,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Chill"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Chill"
+      ]
     },
     {
       "id": "beat-103",
@@ -973,7 +1322,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Synth", "Pop", "Dance"]
+      "genre": [
+        "Synth",
+        "Pop",
+        "Dance"
+      ]
     },
     {
       "id": "beat-105",
@@ -986,7 +1339,11 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Rap", "Trap", "Lil Uzi Vert"]
+      "genre": [
+        "Rap",
+        "Trap",
+        "Lil Uzi Vert"
+      ]
     },
     {
       "id": "beat-107",
@@ -997,9 +1354,14 @@
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-107-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "MP3 + WAV",
+      "fileFormat": "WAV",
       "featured": false,
-      "genre": ["Jerk", "Che", "Rap", "Underground"]
+      "genre": [
+        "Jerk",
+        "Che",
+        "Rap",
+        "Underground"
+      ]
     }
   ],
   "loops": [
@@ -1013,7 +1375,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-2",
@@ -1025,7 +1389,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-3",
@@ -1037,7 +1403,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-4",
@@ -1049,7 +1417,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-5",
@@ -1061,7 +1431,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-6",
@@ -1073,7 +1445,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-7",
@@ -1085,7 +1459,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-8",
@@ -1097,7 +1473,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-9",
@@ -1109,7 +1487,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-10",
@@ -1121,7 +1501,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     },
     {
       "id": "loop-11",
@@ -1133,7 +1515,9 @@
       "includesWav": false,
       "fileFormat": "MP3",
       "featured": false,
-      "genre": ["Loop"]
+      "genre": [
+        "Loop"
+      ]
     }
   ],
   "totalBeats": 77,
@@ -1149,7 +1533,10 @@
       "fileFormat": "Logic Pro .cst",
       "category": "Logic Pro Templates",
       "featured": false,
-      "genre": ["Template", "Logic Pro"]
+      "genre": [
+        "Template",
+        "Logic Pro"
+      ]
     }
   ],
   "totalTemplates": 1
