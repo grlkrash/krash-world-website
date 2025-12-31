@@ -82,7 +82,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
     if (!beat.tier || !currentTier) return null
     return (
       <span className={`text-xs px-2.5 py-1 rounded-full font-black tracking-wide ${currentTier.badge}`}>
-        TIER {beat.tier} • {currentTier.label}
+        {currentTier.label}
       </span>
     )
   }
