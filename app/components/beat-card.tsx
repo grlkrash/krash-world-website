@@ -5,9 +5,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Play, Pause } from "lucide-react"
-import PayPalButton from "./paypal-button"
+import { Play, Pause, ShoppingCart, Check } from "lucide-react"
 import { useAudio } from "./audio-context"
+import { useCart } from "./cart-context"
 
 interface Beat {
   id: string
@@ -30,8 +30,25 @@ interface BeatCardProps {
 
 export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const { playAudio, isPlaying } = useAudio()
+  const { addItem, removeItem, isInCart, itemCount } = useCart()
   const [audioError, setAudioError] = useState(false)
   const currentlyPlaying = isPlaying(beat.id)
+  const inCart = isInCart(beat.id)
+
+  const handleAddToCart = () => {
+    if (inCart) {
+      removeItem(beat.id)
+    } else {
+      addItem({
+        id: beat.id,
+        title: beat.title,
+        price: beat.price,
+        coverImage: beat.coverImage,
+        fileFormat: beat.fileFormat,
+        tier: beat.tier,
+      })
+    }
+  }
 
   const handlePlayPause = async () => {
     try {
@@ -196,7 +213,33 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                 </div>
               )}
               <div className="w-full md:w-auto">
-                <PayPalButton beat={beat} />
+                <Button
+                  onClick={handleAddToCart}
+                  className={`w-full font-bold transition-all ${
+                    inCart
+                      ? "bg-[#00ff88] text-black hover:bg-[#00ff88]/80"
+                      : currentTier
+                        ? `${currentTier.border.replace('border-', 'bg-')} text-black hover:opacity-80`
+                        : "bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80"
+                  }`}
+                >
+                  {inCart ? (
+                    <>
+                      <Check className="mr-2 h-4 w-4" />
+                      IN CART
+                    </>
+                  ) : (
+                    <>
+                      <ShoppingCart className="mr-2 h-4 w-4" />
+                      ADD TO CART
+                    </>
+                  )}
+                </Button>
+                {itemCount >= 2 && !inCart && (
+                  <p className="text-xs text-[#00ff88] mt-1 text-center">
+                    Add {3 - itemCount} more for 50% off!
+                  </p>
+                )}
               </div>
             </div>
           </div>
@@ -389,7 +432,43 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
       </CardContent>
       
       <CardFooter className="p-6 pt-0 relative z-10">
-        <PayPalButton beat={beat} />
+        <div className="w-full space-y-2">
+          <Button
+            onClick={handleAddToCart}
+            className={`w-full font-bold text-lg py-6 transition-all ${
+              inCart
+                ? "bg-[#00ff88] text-black hover:bg-[#00ff88]/80"
+                : currentTier
+                  ? `${currentTier.border.replace('border-', 'bg-')} text-black hover:opacity-80`
+                  : "bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80"
+            }`}
+          >
+            {inCart ? (
+              <>
+                <Check className="mr-2 h-5 w-5" />
+                ADDED TO CART
+              </>
+            ) : (
+              <>
+                <ShoppingCart className="mr-2 h-5 w-5" />
+                ADD TO CART
+              </>
+            )}
+          </Button>
+          {itemCount >= 2 && !inCart && (
+            <p className="text-xs text-[#00ff88] text-center animate-pulse">
+              🔥 Add {3 - itemCount} more for 50% off cheapest beat!
+            </p>
+          )}
+          {inCart && (
+            <button
+              onClick={() => removeItem(beat.id)}
+              className="w-full text-gray-500 hover:text-red-400 text-xs transition-colors"
+            >
+              Remove from cart
+            </button>
+          )}
+        </div>
       </CardFooter>
     </Card>
   )

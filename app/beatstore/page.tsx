@@ -6,6 +6,9 @@ import Link from "next/link"
 import BeatCard from "../components/beat-card"
 import NavigationMenu from "../components/navigation-menu"
 import { AudioProvider } from "../components/audio-context"
+import { CartProvider } from "../components/cart-context"
+import CartIcon from "../components/cart-icon"
+import CartDrawer from "../components/cart-drawer"
 import { Menu, X, ArrowLeft, Grid3x3, List, Filter, ChevronDown, SlidersHorizontal } from "lucide-react"
 import beatData from "../../beat-data.json"
 
@@ -27,6 +30,7 @@ type SortOption = "default" | "price-asc" | "price-desc" | "alpha-asc" | "alpha-
 
 export default function BeatstorePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isCartOpen, setIsCartOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
   const [activeTab, setActiveTab] = useState<"beats" | "loops" | "templates">("beats")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
@@ -171,6 +175,7 @@ export default function BeatstorePage() {
     : filteredAndSortedItems
 
   return (
+    <CartProvider>
     <AudioProvider>
     <div className="min-h-screen bg-black text-white relative">
       {/* Grid Background */}
@@ -210,14 +215,17 @@ export default function BeatstorePage() {
             </div>
           </div>
 
-          {/* Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-[#ffda0f] hover:text-[#ffda0f]/80 transition-colors"
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Cart & Menu */}
+          <div className="flex items-center gap-2">
+            <CartIcon onClick={() => setIsCartOpen(true)} />
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="text-[#ffda0f] hover:text-[#ffda0f]/80 transition-colors"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </header>
 
@@ -576,7 +584,10 @@ export default function BeatstorePage() {
         <div>BEATSTORE</div>
         <div>LA_BASED</div>
       </div>
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />
     </div>
     </AudioProvider>
+    </CartProvider>
   )
 }

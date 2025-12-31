@@ -126,7 +126,7 @@ export default function KrashWorldWebsite() {
                   onClick={() => window.open("https://play.krash.world", "_blank")}
                 >
                   <Play className="mr-2 h-4 w-4" />
-                  ENTER WORLD
+                  PLAY GAME
                 </Button>
                 <Button
                   size="lg"
