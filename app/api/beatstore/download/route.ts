@@ -62,109 +62,70 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Transaction does not match beat" }, { status: 403 })
     }
 
-    // Verify S3 configuration
-    console.log(`🔍 S3 Configuration Check:`)
-    console.log(`   Bucket: ${S3_BUCKET_NAME}`)
-    console.log(`   Region: ${S3_REGION}`)
-    console.log(`   AWS_ACCESS_KEY_ID: ${process.env.AWS_ACCESS_KEY_ID ? "✅ Set" : "❌ Missing"}`)
-    console.log(`   AWS_SECRET_ACCESS_KEY: ${process.env.AWS_SECRET_ACCESS_KEY ? "✅ Set" : "❌ Missing"}`)
-
-    // Get the S3 key for the ZIP file
-    // Try multiple locations in S3
-    const fileName = `${beatId}.zip`
-    const s3Keys = [`downloads/${fileName}`, `beats/${fileName}`, fileName]
-    
-    console.log(`🔍 Looking for ZIP file: ${fileName}`)
-    console.log(`🔍 Will try S3 paths: ${s3Keys.join(", ")}`)
-
-    let fileBuffer: Buffer | null = null
-    let lastError: Error | null = null
-
-    // Try each possible S3 key location
-    for (const s3Key of s3Keys) {
+    // Helper to fetch file from S3
+    async function fetchFromS3(key: string): Promise<Buffer | null> {
       try {
-        console.log(`🔍 Attempting to fetch from S3: s3://${S3_BUCKET_NAME}/${s3Key}`)
-        const command = new GetObjectCommand({
-          Bucket: S3_BUCKET_NAME,
-          Key: s3Key,
-        })
-
-        const response = await s3Client.send(command)
-        
-        if (!response.Body) {
-          throw new Error("No file body returned from S3")
-        }
-
-        console.log(`✅ File found in S3 at: ${s3Key}`)
-        console.log(`   Content-Type: ${response.ContentType || "application/zip"}`)
-        console.log(`   Content-Length: ${response.ContentLength || "unknown"}`)
-
-        // Convert stream to buffer
-        // AWS SDK v3 Body is a Readable stream in Node.js
+        const response = await s3Client.send(new GetObjectCommand({ Bucket: S3_BUCKET_NAME, Key: key }))
+        if (!response.Body) return null
         const chunks: Buffer[] = []
-        const stream = response.Body as any
-        
-        // Read the stream as async iterable
-        for await (const chunk of stream) {
-          chunks.push(Buffer.from(chunk))
-        }
-
-        fileBuffer = Buffer.concat(chunks)
-        console.log(`✅ File downloaded from S3, size: ${fileBuffer.length} bytes`)
-        break // Success, exit loop
-      } catch (error) {
-        lastError = error as Error
-        const errorMessage = error instanceof Error ? error.message : String(error)
-        console.log(`❌ S3 key ${s3Key} failed: ${errorMessage}`)
-        if (errorMessage.includes("AccessDenied") || errorMessage.includes("403")) {
-          console.error(`   ⚠️ S3 Access Denied - check AWS credentials and bucket permissions`)
-        } else if (errorMessage.includes("NoSuchKey") || errorMessage.includes("404")) {
-          console.log(`   ℹ️ File not found at this location, trying next...`)
-        }
-        continue
-      }
+        for await (const chunk of response.Body as any) chunks.push(Buffer.from(chunk))
+        console.log(`✅ Found: ${key}`)
+        return Buffer.concat(chunks)
+      } catch { return null }
     }
 
-    // If S3 failed, try local public/downloads folder as fallback
+    // Try individual files first (better mobile UX), then ZIP
+    const wavKey = `downloads/${beatId}.wav`
+    const mp3Key = `downloads/${beatId}.mp3`
+    const zipKey = `downloads/${beatId}.zip`
+
+    const [wavBuffer, mp3Buffer] = await Promise.all([fetchFromS3(wavKey), fetchFromS3(mp3Key)])
+    
+    let fileBuffer: Buffer | null = null
+    let contentType = "application/zip"
+    let fileExt = "zip"
+
+    // If both exist → ZIP, if only one → direct file
+    if (wavBuffer && mp3Buffer) {
+      fileBuffer = await fetchFromS3(zipKey)
+      console.log(`📦 Both WAV+MP3 exist, serving ZIP`)
+    } else if (wavBuffer) {
+      fileBuffer = wavBuffer
+      contentType = "audio/wav"
+      fileExt = "wav"
+      console.log(`🎵 Only WAV exists, serving directly`)
+    } else if (mp3Buffer) {
+      fileBuffer = mp3Buffer
+      contentType = "audio/mpeg"
+      fileExt = "mp3"
+      console.log(`🎵 Only MP3 exists, serving directly`)
+    } else {
+      // Fallback to ZIP
+      fileBuffer = await fetchFromS3(zipKey) || await fetchFromS3(`beats/${beatId}.zip`)
+    }
+
+    // Local fallback
     if (!fileBuffer) {
-      console.log(`⚠️ S3 download failed, trying local filesystem fallback...`)
-      
-      // Try local folders as fallback
-      const localPaths = [
-        join(process.cwd(), "public", "downloads", `${beatId}.zip`),
-        join(process.cwd(), "public", "beats", `${beatId}.zip`),
-      ]
-      
-      for (const localPath of localPaths) {
+      for (const ext of ["wav", "mp3", "zip"]) {
         try {
-          console.log(`📁 Attempting local file: ${localPath}`)
-          fileBuffer = await readFile(localPath)
-          console.log(`✅ File found locally, size: ${fileBuffer.length} bytes`)
+          fileBuffer = await readFile(join(process.cwd(), "public", "downloads", `${beatId}.${ext}`))
+          contentType = ext === "wav" ? "audio/wav" : ext === "mp3" ? "audio/mpeg" : "application/zip"
+          fileExt = ext
           break
-        } catch {
-          continue
-        }
-      }
-      
-      if (!fileBuffer) {
-        console.error(`❌ Download failed - Beat ID: ${beatId}`)
-        console.error(`   Tried S3: ${s3Keys.join(", ")}`)
-        console.error(`   Tried local: ${localPaths.join(", ")}`)
-        return NextResponse.json(
-          { error: "File not found. Please contact support." },
-          { status: 404 },
-        )
+        } catch { continue }
       }
     }
 
-    // Mark as downloaded (optional)
+    if (!fileBuffer) {
+      return NextResponse.json({ error: "File not found. Please contact support." }, { status: 404 })
+    }
+
     await markAsDownloaded(downloadToken)
 
-    // Return the file
     return new NextResponse(fileBuffer, {
       headers: {
-        "Content-Type": "application/zip",
-        "Content-Disposition": `attachment; filename="${transaction.beatTitle.replace(/[^a-z0-9]/gi, "_")}.zip"`,
+        "Content-Type": contentType,
+        "Content-Disposition": `attachment; filename="${transaction.beatTitle.replace(/[^a-z0-9]/gi, "_")}.${fileExt}"`,
         "Content-Length": fileBuffer.length.toString(),
       },
     })

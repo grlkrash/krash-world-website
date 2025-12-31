@@ -145,14 +145,22 @@ export default function DownloadPage() {
       const blob = await response.blob()
       console.log("✅ Blob created, size:", blob.size, "bytes")
       
+      // Extract filename from Content-Disposition header (includes correct extension)
+      const disposition = response.headers.get("content-disposition")
+      const filenameMatch = disposition?.match(/filename="([^"]+)"/)
+      const filename = filenameMatch?.[1] || `${beatTitle.replace(/[^a-z0-9]/gi, "_")}.wav`
+
       const url = window.URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
-      a.download = `${beatTitle.replace(/[^a-z0-9]/gi, "_")}.zip`
+      a.download = filename
       document.body.appendChild(a)
       a.click()
-      window.URL.revokeObjectURL(url)
-      document.body.removeChild(a)
+      // Delay cleanup for iOS Safari which processes downloads asynchronously
+      setTimeout(() => {
+        window.URL.revokeObjectURL(url)
+        document.body.removeChild(a)
+      }, 1000)
 
       console.log("✅ Download completed successfully")
       setStatus("success")
@@ -249,7 +257,7 @@ export default function DownloadPage() {
                 <div className="text-2xl font-bold text-white mb-2">Download Ready</div>
                 <div className="text-gray-300 mb-2">Your beat: <span className="text-[#ffda0f] font-bold">{beatTitle}</span></div>
                 <div className="text-sm text-gray-400 mb-8">
-                  Click the button below to download your WAV files and stems.
+                  Click the button below to download your beat.
                 </div>
                 <button
                   onClick={handleDownload}
