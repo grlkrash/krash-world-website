@@ -268,7 +268,7 @@ export default function KrashWorldWebsite() {
         aria-label="Shop beats"
       >
         <ShoppingBag size={18} />
-        SHOP BEATS
+        SHOP
       </a>
     </div>
   )

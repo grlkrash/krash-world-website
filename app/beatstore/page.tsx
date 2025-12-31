@@ -252,10 +252,10 @@ export default function BeatstorePage() {
           <div className="text-center mb-8">
             <div className="text-[#ffda0f] text-sm font-mono mb-2">GRLKRASH BEATSTORE</div>
             <h1 className="text-4xl md:text-6xl font-black mb-4">
-              <span className="text-white">EXCLUSIVE</span>
+              <span className="text-white">PREMIUM</span>
               <br />
               <span className="text-[#ffda0f]">
-                {activeTab === "templates" ? "TEMPLATES" : activeTab === "loops" ? "BEATS & LOOPS" : "BEATS & LOOPS"}
+                {activeTab === "templates" ? "TEMPLATES" : activeTab === "loops" ? "LOOPS" : "BEATS"}
               </span>
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
@@ -485,11 +485,11 @@ export default function BeatstorePage() {
           {featuredItems.length > 0 && sortBy === "default" && (activeTab === "beats" || activeTab === "templates") && (
             <div className="mb-16 scroll-mt-24">
               <div className="text-center mb-8">
-                <div className="text-[#ffda0f] text-sm font-mono mb-2">PREMIUM SELECTION</div>
+                <div className="text-[#ffda0f] text-sm font-mono mb-2">TRENDING NOW</div>
                 <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
-                  FEATURED <span className="text-[#ffda0f]">{activeTab.toUpperCase()}</span>
+                  MOST POPULAR <span className="text-[#ffda0f]">{activeTab.toUpperCase()}</span>
                 </h2>
-                <p className="text-gray-400 text-sm">Handpicked premium tracks</p>
+                <p className="text-gray-400 text-sm">Top picks from the catalog</p>
               </div>
               <div className={viewMode === "list" 
                 ? "space-y-4 mb-12" 
