@@ -260,6 +260,16 @@ export default function KrashWorldWebsite() {
         <div>MULTIMEDIA_ART_PROJECT</div>
         <div>LA_BASED</div>
       </div>
+
+      {/* Floating Shop Button */}
+      <a
+        href="/beatstore"
+        className="fixed bottom-6 right-24 z-50 px-4 py-3 rounded-full bg-[#00ff88] text-black font-bold text-sm hover:scale-110 transition-all shadow-lg shadow-[#00ff88]/30 flex items-center gap-2"
+        aria-label="Shop beats"
+      >
+        <ShoppingBag size={18} />
+        <span className="hidden sm:inline">SHOP</span>
+      </a>
     </div>
   )
 }

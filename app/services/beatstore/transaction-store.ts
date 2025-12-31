@@ -1,16 +1,23 @@
 // Transaction store with Upstash Redis support and in-memory fallback
 // Upstash Redis provides persistent storage across serverless function invocations
+// Updated: Now uses downloadToken (transactionId-beatId) as unique key for bundles
 
 import { Redis } from "@upstash/redis"
 
 interface Transaction {
   transactionId: string
   beatId: string
+  downloadToken: string // Unique token: transactionId-beatId
   email: string
   beatTitle: string
   createdAt: number
   expiresAt: number
   downloaded: boolean
+}
+
+// Generate unique download token for each beat in a bundle
+export function generateDownloadToken(transactionId: string, beatId: string): string {
+  return `${transactionId}-${beatId}`
 }
 
 // Lazy-initialized Redis client to ensure environment variables are available
