@@ -77,11 +77,15 @@ export async function storeTransaction(
   email: string,
   beatTitle: string,
   expiresInHours: number = 48,
-): Promise<void> {
+): Promise<string> {
   const now = Date.now()
+  // Generate unique download token for this beat (supports bundles)
+  const downloadToken = generateDownloadToken(transactionId, beatId)
+  
   const transaction: Transaction = {
     transactionId,
     beatId,
+    downloadToken,
     email,
     beatTitle,
     createdAt: now,
@@ -91,14 +95,15 @@ export async function storeTransaction(
 
   const client = getRedisClient()
   
-  // Try Upstash Redis first
+  // Try Upstash Redis first - use downloadToken as key (unique per beat)
   if (client) {
     try {
       const ttl = expiresInHours * 60 * 60 // Convert to seconds
-      const key = getKVKey(transactionId)
+      const key = getKVKey(downloadToken) // Use downloadToken as unique key!
       
       console.log(`📝 Storing transaction in Redis:`)
       console.log(`   Key: ${key}`)
+      console.log(`   Download Token: ${downloadToken}`)
       console.log(`   TTL: ${ttl} seconds`)
       console.log(`   Data:`, { transactionId, beatId, email, beatTitle })
       
@@ -107,11 +112,11 @@ export async function storeTransaction(
       // Verify it was stored
       const verification = await client.get(key)
       if (verification) {
-        console.log(`✅ Transaction ${transactionId} stored and verified in Upstash Redis`)
+        console.log(`✅ Transaction ${downloadToken} stored and verified in Upstash Redis`)
       } else {
-        console.error(`⚠️ Transaction ${transactionId} stored but verification failed`)
+        console.error(`⚠️ Transaction ${downloadToken} stored but verification failed`)
       }
-      return
+      return downloadToken
     } catch (error) {
       console.error(`❌ Failed to store transaction in Redis:`, error)
       console.error(`❌ Error details:`, {
@@ -122,27 +127,28 @@ export async function storeTransaction(
   }
 
   // Fallback to in-memory (not reliable on serverless)
-  transactions.set(transactionId, transaction)
-  console.log(`⚠️ Transaction ${transactionId} stored in MEMORY ONLY`)
+  transactions.set(downloadToken, transaction)
+  console.log(`⚠️ Transaction ${downloadToken} stored in MEMORY ONLY`)
   console.log(`⚠️ WARNING: This will NOT persist across serverless invocations!`)
   console.log(`⚠️ Redis error: ${redisError || "Not configured"}`)
+  return downloadToken
 }
 
-export async function getTransaction(transactionId: string): Promise<Transaction | undefined> {
-  console.log(`🔍 Looking up transaction: ${transactionId}`)
+export async function getTransaction(downloadToken: string): Promise<Transaction | undefined> {
+  console.log(`🔍 Looking up transaction by download token: ${downloadToken}`)
   
   const client = getRedisClient()
   
   // Try Upstash Redis first
   if (client) {
     try {
-      const key = getKVKey(transactionId)
+      const key = getKVKey(downloadToken)
       console.log(`🔍 Redis lookup key: ${key}`)
       
       const transaction = await client.get<Transaction>(key)
       
       if (!transaction) {
-        console.log(`❌ Transaction ${transactionId} NOT found in Redis`)
+        console.log(`❌ Transaction ${downloadToken} NOT found in Redis`)
         
         // Debug: List all keys to see what's stored
         try {
@@ -159,11 +165,11 @@ export async function getTransaction(transactionId: string): Promise<Transaction
       // Check if expired (Redis TTL should handle this, but double-check)
       if (transaction.expiresAt < Date.now()) {
         await client.del(key)
-        console.log(`⏰ Transaction ${transactionId} expired (was stored but past expiry)`)
+        console.log(`⏰ Transaction ${downloadToken} expired (was stored but past expiry)`)
         return undefined
       }
 
-      console.log(`✅ Transaction ${transactionId} FOUND in Redis:`, {
+      console.log(`✅ Transaction ${downloadToken} FOUND in Redis:`, {
         beatId: transaction.beatId,
         email: transaction.email,
         beatTitle: transaction.beatTitle,
@@ -185,25 +191,25 @@ export async function getTransaction(transactionId: string): Promise<Transaction
   console.log(`🔍 Checking in-memory store...`)
   console.log(`📋 In-memory transactions (${transactions.size} total):`, Array.from(transactions.keys()))
   
-  const transaction = transactions.get(transactionId)
+  const transaction = transactions.get(downloadToken)
   if (!transaction) {
-    console.log(`❌ Transaction ${transactionId} NOT found in memory either`)
+    console.log(`❌ Transaction ${downloadToken} NOT found in memory either`)
     return undefined
   }
 
   // Check if expired
   if (transaction.expiresAt < Date.now()) {
-    transactions.delete(transactionId)
-    console.log(`⏰ Transaction ${transactionId} expired in memory`)
+    transactions.delete(downloadToken)
+    console.log(`⏰ Transaction ${downloadToken} expired in memory`)
     return undefined
   }
 
-  console.log(`⚠️ Transaction ${transactionId} found in MEMORY (may be unreliable)`)
+  console.log(`⚠️ Transaction ${downloadToken} found in MEMORY (may be unreliable)`)
   return transaction
 }
 
-export async function markAsDownloaded(transactionId: string): Promise<boolean> {
-  const transaction = await getTransaction(transactionId)
+export async function markAsDownloaded(downloadToken: string): Promise<boolean> {
+  const transaction = await getTransaction(downloadToken)
   if (!transaction) return false
 
   transaction.downloaded = true
@@ -215,8 +221,8 @@ export async function markAsDownloaded(transactionId: string): Promise<boolean> 
     try {
       const remainingTtl = Math.max(0, Math.floor((transaction.expiresAt - Date.now()) / 1000))
       if (remainingTtl > 0) {
-        await client.set(getKVKey(transactionId), transaction, { ex: remainingTtl })
-        console.log(`✅ Transaction ${transactionId} marked as downloaded in Redis`)
+        await client.set(getKVKey(downloadToken), transaction, { ex: remainingTtl })
+        console.log(`✅ Transaction ${downloadToken} marked as downloaded in Redis`)
       }
       return true
     } catch (error) {
@@ -225,22 +231,22 @@ export async function markAsDownloaded(transactionId: string): Promise<boolean> 
   }
 
   // Update in memory
-  transactions.set(transactionId, transaction)
-  console.log(`⚠️ Transaction ${transactionId} marked as downloaded in memory only`)
+  transactions.set(downloadToken, transaction)
+  console.log(`⚠️ Transaction ${downloadToken} marked as downloaded in memory only`)
   return true
 }
 
-export async function verifyTransaction(transactionId: string, beatId: string): Promise<boolean> {
-  const transaction = await getTransaction(transactionId)
+export async function verifyTransaction(downloadToken: string, beatId: string): Promise<boolean> {
+  const transaction = await getTransaction(downloadToken)
   if (!transaction) {
-    console.log(`❌ Transaction verification failed: ${transactionId} not found`)
+    console.log(`❌ Transaction verification failed: ${downloadToken} not found`)
     return false
   }
   if (transaction.beatId !== beatId) {
     console.log(`❌ Transaction verification failed: beatId mismatch. Expected ${beatId}, got ${transaction.beatId}`)
     return false
   }
-  console.log(`✅ Transaction verification passed: ${transactionId}`)
+  console.log(`✅ Transaction verification passed: ${downloadToken}`)
   return true
 }
 

@@ -8,9 +8,9 @@ export async function GET(request: NextRequest) {
   
   try {
     const searchParams = request.nextUrl.searchParams
-    const token = searchParams.get("token")
+    const token = searchParams.get("token") // This is now downloadToken (transactionId-beatId)
     
-    console.log(`📥 Verify request - token: ${token}`)
+    console.log(`📥 Verify request - downloadToken: ${token}`)
     console.log(`📥 Token length: ${token?.length || 0}`)
     console.log(`📥 All search params:`, Object.fromEntries(searchParams.entries()))
 
@@ -19,11 +19,11 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Missing token" }, { status: 400 })
     }
 
-    console.log(`🔍 Looking up transaction: ${token}`)
+    console.log(`🔍 Looking up transaction by downloadToken: ${token}`)
     const transaction = await getTransaction(token)
 
     if (!transaction) {
-      console.error(`❌ Transaction verification failed for token: ${token}`)
+      console.error(`❌ Transaction verification failed for downloadToken: ${token}`)
       console.log(`💡 This might be because:`)
       console.log(`   1. Transaction was stored in a different serverless function instance (in-memory store issue)`)
       console.log(`   2. Transaction expired (48 hour limit)`)
@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
 
     console.log(`✅ Transaction found:`, {
       transactionId: transaction.transactionId,
+      downloadToken: transaction.downloadToken,
       beatId: transaction.beatId,
       beatTitle: transaction.beatTitle,
       email: transaction.email,
@@ -46,6 +47,7 @@ export async function GET(request: NextRequest) {
       beatTitle: transaction.beatTitle,
       email: transaction.email,
       expiresAt: transaction.expiresAt,
+      downloadToken: transaction.downloadToken,
     })
   } catch (error) {
     console.error("❌ Verify route error:", error)

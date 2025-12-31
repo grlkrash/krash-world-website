@@ -9,10 +9,10 @@ export async function POST(request: Request) {
       return Response.json({ error: "Missing required fields" }, { status: 400 })
     }
 
-    // Store transaction for download verification
-    await storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48) // 48 hour expiry
+    // Store transaction for download verification - now returns unique downloadToken per beat
+    const downloadToken = await storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48) // 48 hour expiry
 
-    // Generate secure download link
+    // Generate secure download link using unique downloadToken (supports bundles!)
     // Priority: NEXT_PUBLIC_BASE_URL > production domain > VERCEL_URL (preview) > localhost
     let baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 
       (process.env.NODE_ENV === "production" 
@@ -27,7 +27,8 @@ export async function POST(request: Request) {
     // Remove trailing slash if present
     baseUrl = baseUrl.replace(/\/$/, "")
     
-    const secureDownloadUrl = `${baseUrl}/download/${transactionId}`
+    // Use downloadToken (transactionId-beatId) for unique URLs per beat in bundle
+    const secureDownloadUrl = `${baseUrl}/download/${downloadToken}`
 
     // Log the purchase for easy access (backup method)
     console.log("🎵 Beat Purchase:", {
@@ -35,6 +36,7 @@ export async function POST(request: Request) {
       beatId,
       beatTitle,
       transactionId,
+      downloadToken,
       timestamp: new Date().toISOString(),
       downloadUrl: secureDownloadUrl,
       optInNewsletter,

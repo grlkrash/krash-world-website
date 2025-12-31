@@ -10,7 +10,8 @@ import NavigationMenu from "@/app/components/navigation-menu"
 export default function DownloadPage() {
   const params = useParams()
   const router = useRouter()
-  const token = params.token as string | undefined
+  // Token is now downloadToken format: transactionId-beatId
+  const downloadToken = params.token as string | undefined
   const [status, setStatus] = useState<"loading" | "success" | "error" | "downloading">("loading")
   const [errorMessage, setErrorMessage] = useState("")
   const [beatTitle, setBeatTitle] = useState("")
@@ -20,25 +21,25 @@ export default function DownloadPage() {
     // Log token extraction
     console.log("📄 Download page mounted")
     console.log("📄 URL params:", params)
-    console.log("📄 Extracted token:", token)
-    console.log("📄 Token type:", typeof token)
-    console.log("📄 Token length:", token?.length)
+    console.log("📄 Extracted downloadToken:", downloadToken)
+    console.log("📄 Token type:", typeof downloadToken)
+    console.log("📄 Token length:", downloadToken?.length)
 
     // Verify token and get beat info
     async function verifyToken() {
-      if (!token) {
-        console.error("❌ No token provided")
+      if (!downloadToken) {
+        console.error("❌ No download token provided")
         setStatus("error")
         setErrorMessage("Missing download token")
         return
       }
 
-      console.log("🔍 Verifying token:", token)
-      console.log("🔍 Token length:", token.length)
-      console.log("🔍 Token type:", typeof token)
+      console.log("🔍 Verifying downloadToken:", downloadToken)
+      console.log("🔍 Token length:", downloadToken.length)
+      console.log("🔍 Token type:", typeof downloadToken)
       
       try {
-        const verifyUrl = `/api/beatstore/verify?token=${encodeURIComponent(token)}`
+        const verifyUrl = `/api/beatstore/verify?token=${encodeURIComponent(downloadToken)}`
         console.log("🔍 Verify URL:", verifyUrl)
         
         const response = await fetch(verifyUrl)
@@ -59,6 +60,7 @@ export default function DownloadPage() {
           beatId: data.beatId,
           beatTitle: data.beatTitle,
           email: data.email,
+          downloadToken: data.downloadToken,
         })
 
         if (!data.beatId) {
@@ -82,14 +84,14 @@ export default function DownloadPage() {
       }
     }
 
-    if (token) {
+    if (downloadToken) {
       verifyToken()
     } else {
-      console.error("❌ No token in URL params")
+      console.error("❌ No downloadToken in URL params")
       setStatus("error")
       setErrorMessage("Missing download token in URL")
     }
-  }, [token, params])
+  }, [downloadToken, params])
 
   async function handleDownload() {
     if (!beatId) {
@@ -99,18 +101,18 @@ export default function DownloadPage() {
       return
     }
 
-    if (!token) {
-      console.error("❌ Cannot download: token is missing")
+    if (!downloadToken) {
+      console.error("❌ Cannot download: downloadToken is missing")
       setStatus("error")
       setErrorMessage("Download token is missing. Please use the link from your email.")
       return
     }
 
-    console.log("📥 Starting download:", { token, beatId, beatTitle })
+    console.log("📥 Starting download:", { downloadToken, beatId, beatTitle })
     setStatus("downloading")
 
     try {
-      const downloadUrl = `/api/beatstore/download?token=${encodeURIComponent(token)}&beatId=${encodeURIComponent(beatId)}`
+      const downloadUrl = `/api/beatstore/download?token=${encodeURIComponent(downloadToken)}&beatId=${encodeURIComponent(beatId)}`
       console.log("📥 Download URL:", downloadUrl)
       
       const response = await fetch(downloadUrl)
@@ -216,9 +218,9 @@ export default function DownloadPage() {
                 <XCircle className="h-16 w-16 text-red-500 mx-auto" />
                 <div className="text-2xl font-bold text-white mb-2">Download Link Invalid</div>
                 <div className="text-gray-300 mb-2">{errorMessage}</div>
-                {token && (
+                {downloadToken && (
                   <div className="text-xs text-gray-500 mb-4 font-mono break-all">
-                    Transaction ID: {token}
+                    Download Token: {downloadToken}
                   </div>
                 )}
                 <div className="text-sm text-gray-400 mb-6">

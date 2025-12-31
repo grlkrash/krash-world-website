@@ -25,32 +25,33 @@ export async function GET(request: NextRequest) {
   
   try {
     const searchParams = request.nextUrl.searchParams
-    const transactionId = searchParams.get("token")
+    const downloadToken = searchParams.get("token") // Now downloadToken (transactionId-beatId)
     const beatId = searchParams.get("beatId")
     
-    console.log(`📥 Download request - token: ${transactionId}, beatId: ${beatId}`)
+    console.log(`📥 Download request - downloadToken: ${downloadToken}, beatId: ${beatId}`)
     console.log(`📥 All search params:`, Object.fromEntries(searchParams.entries()))
 
-    if (!transactionId || !beatId) {
-      console.error(`❌ Missing required parameters - token: ${transactionId}, beatId: ${beatId}`)
+    if (!downloadToken || !beatId) {
+      console.error(`❌ Missing required parameters - downloadToken: ${downloadToken}, beatId: ${beatId}`)
       return NextResponse.json({ error: "Missing token or beatId" }, { status: 400 })
     }
 
-    // Verify transaction
-    console.log(`🔍 Verifying transaction: ${transactionId} for beat: ${beatId}`)
-    const transaction = await getTransaction(transactionId)
+    // Verify transaction using downloadToken
+    console.log(`🔍 Verifying transaction by downloadToken: ${downloadToken} for beat: ${beatId}`)
+    const transaction = await getTransaction(downloadToken)
     if (!transaction) {
-      console.error(`❌ Transaction not found: ${transactionId}`)
+      console.error(`❌ Transaction not found for downloadToken: ${downloadToken}`)
       console.log(`💡 Possible reasons:`)
       console.log(`   1. Transaction stored in different serverless instance (in-memory issue)`)
       console.log(`   2. Transaction expired (48 hour limit)`)
       console.log(`   3. Vercel KV not configured`)
-      console.log(`   4. Transaction ID mismatch`)
+      console.log(`   4. Download token mismatch`)
       return NextResponse.json({ error: "Invalid or expired download link" }, { status: 404 })
     }
 
     console.log(`✅ Transaction found:`, {
       transactionId: transaction.transactionId,
+      downloadToken: transaction.downloadToken,
       beatId: transaction.beatId,
       email: transaction.email,
       beatTitle: transaction.beatTitle,
@@ -157,7 +158,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Mark as downloaded (optional)
-    await markAsDownloaded(transactionId)
+    await markAsDownloaded(downloadToken)
 
     // Return the file
     return new NextResponse(fileBuffer, {

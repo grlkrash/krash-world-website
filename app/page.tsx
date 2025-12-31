@@ -122,7 +122,7 @@ export default function KrashWorldWebsite() {
               <div className="flex flex-wrap gap-4">
                 <Button
                   size="lg"
-                  className="bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black hover:from-[#00ff88]/90 hover:to-[#00cc6a]/90 font-bold shadow-lg shadow-[#00ff88]/25 animate-pulse hover:animate-none"
+                  className="bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black hover:from-[#00ff88]/90 hover:to-[#00cc6a]/90 font-bold shadow-lg shadow-[#00ff88]/25 hover:scale-105 transition-transform"
                   onClick={() => window.location.href = "/beatstore"}
                   aria-label="Browse beats and purchase"
                 >
@@ -261,14 +261,14 @@ export default function KrashWorldWebsite() {
         <div>LA_BASED</div>
       </div>
 
-      {/* Floating Shop Button */}
+      {/* Floating Shop Button - persistent CTA */}
       <a
         href="/beatstore"
-        className="fixed bottom-6 right-24 z-50 px-4 py-3 rounded-full bg-[#00ff88] text-black font-bold text-sm hover:scale-110 transition-all shadow-lg shadow-[#00ff88]/30 flex items-center gap-2"
+        className="fixed bottom-6 right-24 z-50 px-4 py-3 rounded-full bg-[#00ff88] text-black font-bold text-sm hover:scale-110 transition-all shadow-lg shadow-[#00ff88]/40 flex items-center gap-2 animate-[pulse_2s_ease-in-out_infinite]"
         aria-label="Shop beats"
       >
         <ShoppingBag size={18} />
-        <span className="hidden sm:inline">SHOP</span>
+        SHOP BEATS
       </a>
     </div>
   )
