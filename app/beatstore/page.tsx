@@ -1,12 +1,12 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import BeatCard from "../components/beat-card"
 import NavigationMenu from "../components/navigation-menu"
 import { AudioProvider } from "../components/audio-context"
-import { Menu, X, ArrowLeft, Grid3x3, List } from "lucide-react"
+import { Menu, X, ArrowLeft, Grid3x3, List, Filter, ChevronDown, SlidersHorizontal } from "lucide-react"
 import beatData from "../../beat-data.json"
 
 interface Beat {
@@ -14,6 +14,7 @@ interface Beat {
   title: string
   description: string
   price: number
+  tier?: number
   previewUrl: string
   coverImage: string
   includesWav?: boolean
@@ -22,11 +23,63 @@ interface Beat {
   genre?: string[]
 }
 
+type SortOption = "default" | "price-asc" | "price-desc" | "alpha-asc" | "alpha-desc"
+
 export default function BeatstorePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
   const [activeTab, setActiveTab] = useState<"beats" | "loops" | "templates">("beats")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
+  
+  // Filter states
+  const [selectedTiers, setSelectedTiers] = useState<number[]>([])
+  const [selectedGenres, setSelectedGenres] = useState<string[]>([])
+  const [sortBy, setSortBy] = useState<SortOption>("default")
+  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [isGenreDropdownOpen, setIsGenreDropdownOpen] = useState(false)
+
+  // Extract all unique genres from beats
+  const allGenres = useMemo(() => {
+    const genres = new Set<string>()
+    beatData.beats.forEach((beat) => {
+      beat.genre?.forEach((g) => {
+        if (g !== "Template" && g !== "Logic Pro" && g !== "Loop") {
+          genres.add(g)
+        }
+      })
+    })
+    return Array.from(genres).sort()
+  }, [])
+
+  // Tier configuration
+  const tiers = [
+    { tier: 1, label: "TIER 1", price: "$50", color: "bg-[#ffda0f] text-black" },
+    { tier: 2, label: "TIER 2", price: "$25", color: "bg-[#00ff88] text-black" },
+    { tier: 3, label: "TIER 3", price: "$15", color: "bg-[#ff6b6b] text-white" },
+  ]
+
+  // Toggle tier filter
+  const handleTierToggle = (tier: number) => {
+    setSelectedTiers((prev) =>
+      prev.includes(tier) ? prev.filter((t) => t !== tier) : [...prev, tier]
+    )
+  }
+
+  // Toggle genre filter
+  const handleGenreToggle = (genre: string) => {
+    setSelectedGenres((prev) =>
+      prev.includes(genre) ? prev.filter((g) => g !== genre) : [...prev, genre]
+    )
+  }
+
+  // Clear all filters
+  const handleClearFilters = () => {
+    setSelectedTiers([])
+    setSelectedGenres([])
+    setSortBy("default")
+  }
+
+  const hasActiveFilters = selectedTiers.length > 0 || selectedGenres.length > 0 || sortBy !== "default"
 
   // Update time
   useEffect(() => {
@@ -45,14 +98,77 @@ export default function BeatstorePage() {
     return () => clearInterval(interval)
   }, [])
 
-  // Separate featured and regular items
-  const allItems: Beat[] = activeTab === "beats" 
+  // Close genre dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest("[data-genre-dropdown]")) {
+        setIsGenreDropdownOpen(false)
+      }
+    }
+    if (isGenreDropdownOpen) {
+      document.addEventListener("click", handleClickOutside)
+    }
+    return () => document.removeEventListener("click", handleClickOutside)
+  }, [isGenreDropdownOpen])
+
+  // Reset filters when switching tabs
+  useEffect(() => {
+    handleClearFilters()
+  }, [activeTab])
+
+  // Get base items for current tab
+  const baseItems: Beat[] = activeTab === "beats" 
     ? beatData.beats 
     : activeTab === "loops" 
     ? beatData.loops 
     : (beatData.templates || [])
-  const featuredItems = allItems.filter(item => item.featured)
-  const regularItems = allItems.filter(item => !item.featured)
+
+  // Apply filters and sorting
+  const filteredAndSortedItems = useMemo(() => {
+    let items = [...baseItems]
+
+    // Filter by tier (only for beats)
+    if (selectedTiers.length > 0 && activeTab === "beats") {
+      items = items.filter((item) => item.tier && selectedTiers.includes(item.tier))
+    }
+
+    // Filter by genre
+    if (selectedGenres.length > 0) {
+      items = items.filter((item) =>
+        item.genre?.some((g) => selectedGenres.includes(g))
+      )
+    }
+
+    // Apply sorting
+    switch (sortBy) {
+      case "price-asc":
+        items.sort((a, b) => a.price - b.price)
+        break
+      case "price-desc":
+        items.sort((a, b) => b.price - a.price)
+        break
+      case "alpha-asc":
+        items.sort((a, b) => a.title.localeCompare(b.title))
+        break
+      case "alpha-desc":
+        items.sort((a, b) => b.title.localeCompare(a.title))
+        break
+      default:
+        // Keep featured first for default
+        break
+    }
+
+    return items
+  }, [baseItems, selectedTiers, selectedGenres, sortBy, activeTab])
+
+  // Separate featured and regular items from filtered results
+  const featuredItems = sortBy === "default" 
+    ? filteredAndSortedItems.filter(item => item.featured) 
+    : []
+  const regularItems = sortBy === "default" 
+    ? filteredAndSortedItems.filter(item => !item.featured)
+    : filteredAndSortedItems
 
   return (
     <AudioProvider>
@@ -175,40 +291,195 @@ export default function BeatstorePage() {
                 </button>
               )}
             </div>
-            {/* View Mode Toggle */}
-            <div className="flex items-center justify-center gap-2 mb-6">
+            {/* View Mode Toggle & Filter Toggle */}
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  className={`p-2 rounded-lg transition-all ${
+                    viewMode === "grid"
+                      ? "bg-[#ffda0f] text-black"
+                      : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                  }`}
+                  aria-label="Grid view"
+                >
+                  <Grid3x3 size={20} />
+                </button>
+                <button
+                  onClick={() => setViewMode("list")}
+                  className={`p-2 rounded-lg transition-all ${
+                    viewMode === "list"
+                      ? "bg-[#ffda0f] text-black"
+                      : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                  }`}
+                  aria-label="List view"
+                >
+                  <List size={20} />
+                </button>
+              </div>
+              
               <button
-                onClick={() => setViewMode("grid")}
-                className={`p-2 rounded-lg transition-all ${
-                  viewMode === "grid"
+                onClick={() => setIsFilterOpen(!isFilterOpen)}
+                className={`flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-all ${
+                  isFilterOpen || hasActiveFilters
                     ? "bg-[#ffda0f] text-black"
                     : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
                 }`}
-                aria-label="Grid view"
+                aria-label="Toggle filters"
               >
-                <Grid3x3 size={20} />
-              </button>
-              <button
-                onClick={() => setViewMode("list")}
-                className={`p-2 rounded-lg transition-all ${
-                  viewMode === "list"
-                    ? "bg-[#ffda0f] text-black"
-                    : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
-                }`}
-                aria-label="List view"
-              >
-                <List size={20} />
+                <SlidersHorizontal size={18} />
+                FILTERS
+                {hasActiveFilters && (
+                  <span className="bg-black text-[#ffda0f] text-xs px-1.5 py-0.5 rounded-full">
+                    {selectedTiers.length + selectedGenres.length + (sortBy !== "default" ? 1 : 0)}
+                  </span>
+                )}
               </button>
             </div>
+
+            {/* Filter Panel */}
+            {isFilterOpen && (
+              <div className="bg-black/80 border border-[#ffda0f]/30 rounded-xl p-6 mb-8 backdrop-blur-sm">
+                <div className="flex flex-col lg:flex-row gap-6">
+                  {/* Tier Filter - Only show for beats */}
+                  {activeTab === "beats" && (
+                    <div className="flex-1">
+                      <div className="text-[#ffda0f] text-xs font-mono mb-3 flex items-center gap-2">
+                        <Filter size={14} />
+                        FILTER BY TIER
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {tiers.map(({ tier, label, price, color }) => (
+                          <button
+                            key={tier}
+                            onClick={() => handleTierToggle(tier)}
+                            className={`px-4 py-2 rounded-lg font-bold text-sm transition-all ${
+                              selectedTiers.includes(tier)
+                                ? color
+                                : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                            }`}
+                            aria-label={`Filter by ${label}`}
+                            aria-pressed={selectedTiers.includes(tier)}
+                          >
+                            {label} ({price})
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Genre Filter */}
+                  <div className="flex-1">
+                    <div className="text-[#ffda0f] text-xs font-mono mb-3 flex items-center gap-2">
+                      <Filter size={14} />
+                      FILTER BY GENRE
+                    </div>
+                    <div className="relative" data-genre-dropdown>
+                      <button
+                        onClick={() => setIsGenreDropdownOpen(!isGenreDropdownOpen)}
+                        className="w-full flex items-center justify-between px-4 py-2 rounded-lg bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20 transition-all"
+                      >
+                        <span>
+                          {selectedGenres.length > 0
+                            ? `${selectedGenres.length} genre${selectedGenres.length > 1 ? "s" : ""} selected`
+                            : "Select genres..."}
+                        </span>
+                        <ChevronDown
+                          size={18}
+                          className={`transition-transform ${isGenreDropdownOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      
+                      {isGenreDropdownOpen && (
+                        <div className="absolute z-50 mt-2 w-full max-h-64 overflow-y-auto bg-black/95 border border-[#ffda0f]/30 rounded-lg shadow-xl backdrop-blur-sm">
+                          <div className="p-2 flex flex-wrap gap-1">
+                            {allGenres.map((genre) => (
+                              <button
+                                key={genre}
+                                onClick={() => handleGenreToggle(genre)}
+                                className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                                  selectedGenres.includes(genre)
+                                    ? "bg-[#ffda0f] text-black"
+                                    : "bg-[#ffda0f]/10 text-[#ffda0f] hover:bg-[#ffda0f]/20 border border-[#ffda0f]/30"
+                                }`}
+                              >
+                                {genre}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                    
+                    {/* Selected genres display */}
+                    {selectedGenres.length > 0 && (
+                      <div className="flex flex-wrap gap-1 mt-2">
+                        {selectedGenres.map((genre) => (
+                          <span
+                            key={genre}
+                            className="inline-flex items-center gap-1 px-2 py-1 bg-[#ffda0f] text-black rounded-full text-xs font-bold"
+                          >
+                            {genre}
+                            <button
+                              onClick={() => handleGenreToggle(genre)}
+                              className="hover:bg-black/20 rounded-full p-0.5"
+                              aria-label={`Remove ${genre} filter`}
+                            >
+                              <X size={12} />
+                            </button>
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Sort Options */}
+                  <div className="flex-1">
+                    <div className="text-[#ffda0f] text-xs font-mono mb-3 flex items-center gap-2">
+                      <SlidersHorizontal size={14} />
+                      SORT BY
+                    </div>
+                    <select
+                      value={sortBy}
+                      onChange={(e) => setSortBy(e.target.value as SortOption)}
+                      className="w-full px-4 py-2 rounded-lg bg-black/50 text-white border border-[#ffda0f]/20 focus:border-[#ffda0f] focus:outline-none transition-all cursor-pointer"
+                    >
+                      <option value="default">Featured First</option>
+                      <option value="price-asc">Price: Low to High</option>
+                      <option value="price-desc">Price: High to Low</option>
+                      <option value="alpha-asc">Name: A to Z</option>
+                      <option value="alpha-desc">Name: Z to A</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Clear Filters & Results Count */}
+                <div className="flex items-center justify-between mt-6 pt-4 border-t border-[#ffda0f]/10">
+                  <div className="text-gray-400 text-sm">
+                    Showing <span className="text-[#ffda0f] font-bold">{filteredAndSortedItems.length}</span> of{" "}
+                    <span className="text-white">{baseItems.length}</span> {activeTab}
+                  </div>
+                  {hasActiveFilters && (
+                    <button
+                      onClick={handleClearFilters}
+                      className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-bold text-[#ff6b6b] hover:bg-[#ff6b6b]/10 transition-all"
+                    >
+                      <X size={16} />
+                      CLEAR ALL FILTERS
+                    </button>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
-          {/* Featured Section */}
-          {featuredItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
+          {/* Featured Section - Only show when not sorting */}
+          {featuredItems.length > 0 && sortBy === "default" && (activeTab === "beats" || activeTab === "templates") && (
             <div className="mb-16 scroll-mt-24">
               <div className="text-center mb-8">
                 <div className="text-[#ffda0f] text-sm font-mono mb-2">PREMIUM SELECTION</div>
                 <h2 className="text-3xl md:text-4xl font-black text-white mb-2">
-                  FEATURED <span className="text-[#ffda0f]">BEATS</span>
+                  FEATURED <span className="text-[#ffda0f]">{activeTab.toUpperCase()}</span>
                 </h2>
                 <p className="text-gray-400 text-sm">Handpicked premium tracks</p>
               </div>
@@ -224,13 +495,13 @@ export default function BeatstorePage() {
           )}
 
           {/* All Items Grid */}
-          {allItems.length > 0 ? (
+          {filteredAndSortedItems.length > 0 ? (
             <div className="scroll-mt-24">
-              {featuredItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
+              {featuredItems.length > 0 && sortBy === "default" && regularItems.length > 0 && (activeTab === "beats" || activeTab === "templates") && (
                 <div className="text-center mb-8">
                   <div className="text-[#ffda0f] text-sm font-mono mb-2">FULL CATALOG</div>
                   <h2 className="text-2xl md:text-3xl font-black text-white">
-                    ALL <span className="text-[#ffda0f]">BEATS</span>
+                    ALL <span className="text-[#ffda0f]">{activeTab.toUpperCase()}</span>
                   </h2>
                 </div>
               )}
@@ -244,8 +515,19 @@ export default function BeatstorePage() {
               </div>
             </div>
           ) : (
-            <div className="text-center py-16 text-gray-400">
-              No {activeTab} available yet.
+            <div className="text-center py-16">
+              <div className="text-gray-400 text-lg mb-4">
+                No {activeTab} match your filters.
+              </div>
+              {hasActiveFilters && (
+                <button
+                  onClick={handleClearFilters}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[#ffda0f] text-black font-bold hover:bg-[#ffda0f]/80 transition-all"
+                >
+                  <X size={18} />
+                  CLEAR FILTERS
+                </button>
+              )}
             </div>
           )}
 

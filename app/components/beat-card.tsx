@@ -43,30 +43,75 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
     }
   }
 
-  // Get tier badge color
-  const getTierBadge = () => {
-    if (!beat.tier) return null
-    const tierColors = {
-      1: "bg-[#ffda0f] text-black",
-      2: "bg-[#00ff88] text-black",
-      3: "bg-[#ff6b6b] text-white"
+  // Tier styling configuration
+  const tierConfig = {
+    1: {
+      badge: "bg-gradient-to-r from-[#ffda0f] via-[#fff176] to-[#ffda0f] text-black shadow-[0_0_10px_rgba(255,218,15,0.5)]",
+      border: "border-[#ffda0f]",
+      glow: "shadow-[0_0_25px_rgba(255,218,15,0.4),0_0_50px_rgba(255,218,15,0.2),inset_0_0_20px_rgba(255,218,15,0.05)]",
+      hoverGlow: "hover:shadow-[0_0_35px_rgba(255,218,15,0.6),0_0_60px_rgba(255,218,15,0.3)]",
+      accent: "bg-gradient-to-br from-[#ffda0f]/10 via-transparent to-[#ffda0f]/5",
+      priceColor: "text-[#ffda0f]",
+      label: "PREMIUM"
+    },
+    2: {
+      badge: "bg-gradient-to-r from-[#00ff88] via-[#50ffab] to-[#00ff88] text-black shadow-[0_0_10px_rgba(0,255,136,0.5)]",
+      border: "border-[#00ff88]",
+      glow: "shadow-[0_0_25px_rgba(0,255,136,0.3),0_0_50px_rgba(0,255,136,0.15),inset_0_0_20px_rgba(0,255,136,0.05)]",
+      hoverGlow: "hover:shadow-[0_0_35px_rgba(0,255,136,0.5),0_0_60px_rgba(0,255,136,0.25)]",
+      accent: "bg-gradient-to-br from-[#00ff88]/10 via-transparent to-[#00ff88]/5",
+      priceColor: "text-[#00ff88]",
+      label: "STANDARD"
+    },
+    3: {
+      badge: "bg-gradient-to-r from-[#ff6b6b] via-[#ff8a8a] to-[#ff6b6b] text-white shadow-[0_0_10px_rgba(255,107,107,0.5)]",
+      border: "border-[#ff6b6b]",
+      glow: "shadow-[0_0_25px_rgba(255,107,107,0.3),0_0_50px_rgba(255,107,107,0.15),inset_0_0_20px_rgba(255,107,107,0.05)]",
+      hoverGlow: "hover:shadow-[0_0_35px_rgba(255,107,107,0.5),0_0_60px_rgba(255,107,107,0.25)]",
+      accent: "bg-gradient-to-br from-[#ff6b6b]/10 via-transparent to-[#ff6b6b]/5",
+      priceColor: "text-[#ff6b6b]",
+      label: "VALUE"
     }
+  }
+
+  // Get current tier config or default
+  const currentTier = beat.tier ? tierConfig[beat.tier as 1 | 2 | 3] : null
+
+  // Get tier badge
+  const getTierBadge = () => {
+    if (!beat.tier || !currentTier) return null
     return (
-      <span className={`text-xs px-2 py-0.5 rounded-full font-bold ${tierColors[beat.tier as 1|2|3] || tierColors[1]}`}>
-        TIER {beat.tier}
+      <span className={`text-xs px-2.5 py-1 rounded-full font-black tracking-wide ${currentTier.badge}`}>
+        TIER {beat.tier} • {currentTier.label}
       </span>
     )
+  }
+
+  // Get card classes based on tier
+  const getCardClasses = () => {
+    const baseClasses = "transition-all duration-300"
+    
+    if (beat.featured) {
+      return `${baseClasses} border-2 border-[#ffda0f] shadow-[0_0_40px_rgba(255,218,15,0.5)] hover:shadow-[0_0_50px_rgba(255,218,15,0.7)]`
+    }
+    
+    if (currentTier) {
+      return `${baseClasses} border-2 ${currentTier.border} ${currentTier.glow} ${currentTier.hoverGlow}`
+    }
+    
+    return `${baseClasses} border border-[#ffda0f]/20 hover:border-[#ffda0f]/40 hover:shadow-[0_0_20px_rgba(255,218,15,0.3)]`
   }
 
   // List view layout
   if (viewMode === "list") {
     return (
-      <Card className={`bg-black/80 border transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,218,15,0.3)] ${
-        beat.featured 
-          ? "border-[#ffda0f] hover:border-[#ffda0f] shadow-[0_0_30px_rgba(255,218,15,0.4)]" 
-          : "border-[#ffda0f]/20 hover:border-[#ffda0f]/40"
-      }`}>
-        <div className="flex flex-col md:flex-row gap-4 p-4">
+      <Card className={`relative overflow-hidden bg-black/80 ${getCardClasses()}`}>
+        {/* Tier accent gradient overlay */}
+        {currentTier && (
+          <div className={`absolute inset-0 ${currentTier.accent} pointer-events-none`} />
+        )}
+        
+        <div className="relative flex flex-col md:flex-row gap-4 p-4">
           {/* Thumbnail */}
           <div className="relative w-full md:w-32 h-32 flex-shrink-0 rounded-lg overflow-hidden">
             <Image
@@ -77,9 +122,13 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               sizes="128px"
             />
             {beat.featured && (
-              <div className="absolute top-2 right-2 bg-[#ffda0f] text-black px-2 py-0.5 rounded-full text-xs font-black">
-                FEATURED
+              <div className="absolute top-2 right-2 bg-[#ffda0f] text-black px-2 py-0.5 rounded-full text-xs font-black animate-pulse">
+                ★ FEATURED
               </div>
+            )}
+            {/* Tier indicator strip at bottom of image */}
+            {currentTier && (
+              <div className={`absolute bottom-0 left-0 right-0 h-1 ${currentTier.border.replace('border-', 'bg-')}`} />
             )}
           </div>
           
@@ -89,19 +138,23 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               <div className="flex items-center gap-2 mb-2 flex-wrap">
                 <CardTitle className="text-white text-lg font-black">{beat.title}</CardTitle>
                 {getTierBadge()}
-                {beat.genre && beat.genre.length > 0 && (
-                  <div className="flex flex-wrap gap-1">
-                    {beat.genre.slice(0, 3).map((g, i) => (
-                      <span
-                        key={i}
-                        className="text-xs bg-[#ffda0f]/20 text-[#ffda0f] px-2 py-0.5 rounded border border-[#ffda0f]/30"
-                      >
-                        {g}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
+              {beat.genre && beat.genre.length > 0 && (
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {beat.genre.slice(0, 3).map((g, i) => (
+                    <span
+                      key={i}
+                      className={`text-xs px-2 py-0.5 rounded border ${
+                        currentTier 
+                          ? `${currentTier.border.replace('border-', 'bg-')}/20 ${currentTier.priceColor} ${currentTier.border}/30`
+                          : "bg-[#ffda0f]/20 text-[#ffda0f] border-[#ffda0f]/30"
+                      }`}
+                    >
+                      {g}
+                    </span>
+                  ))}
+                </div>
+              )}
               <CardDescription className="text-gray-300 text-sm line-clamp-2 mb-2">
                 {beat.description}
               </CardDescription>
@@ -112,7 +165,11 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                   <Button
                     onClick={handlePlayPause}
                     size="sm"
-                    className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 flex-shrink-0 disabled:opacity-50"
+                    className={`flex-shrink-0 disabled:opacity-50 ${
+                      currentTier 
+                        ? `${currentTier.border.replace('border-', 'bg-')} text-black hover:opacity-80`
+                        : "bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80"
+                    }`}
                     aria-label={currentlyPlaying ? "Pause preview" : "Play preview"}
                     disabled={audioError}
                   >
@@ -128,7 +185,9 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
             {/* Price and Purchase */}
             <div className="flex flex-col md:items-end gap-3">
               <div className="flex items-baseline gap-2">
-                <span className="text-2xl font-black text-[#ffda0f]">${beat.price}</span>
+                <span className={`text-2xl font-black ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
+                  ${beat.price}
+                </span>
                 <span className="text-gray-400 text-sm">USD</span>
               </div>
               {beat.fileFormat && (
@@ -148,12 +207,31 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
 
   // Grid view layout (default)
   return (
-    <Card className={`bg-black/80 border transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,218,15,0.3)] ${
-      beat.featured 
-        ? "border-[#ffda0f] hover:border-[#ffda0f] shadow-[0_0_30px_rgba(255,218,15,0.4)]" 
-        : "border-[#ffda0f]/20 hover:border-[#ffda0f]/40"
-    }`}>
-      <CardHeader className="p-0">
+    <Card className={`relative overflow-hidden bg-black/80 ${getCardClasses()}`}>
+      {/* Tier accent gradient overlay */}
+      {currentTier && (
+        <div className={`absolute inset-0 ${currentTier.accent} pointer-events-none z-0`} />
+      )}
+      
+      {/* Glowing edge effect for tier cards */}
+      {currentTier && (
+        <div 
+          className={`absolute inset-0 rounded-lg pointer-events-none`}
+          style={{
+            background: `linear-gradient(135deg, ${
+              beat.tier === 1 ? 'rgba(255,218,15,0.15)' : 
+              beat.tier === 2 ? 'rgba(0,255,136,0.15)' : 
+              'rgba(255,107,107,0.15)'
+            } 0%, transparent 50%, ${
+              beat.tier === 1 ? 'rgba(255,218,15,0.1)' : 
+              beat.tier === 2 ? 'rgba(0,255,136,0.1)' : 
+              'rgba(255,107,107,0.1)'
+            } 100%)`
+          }}
+        />
+      )}
+
+      <CardHeader className="p-0 relative z-10">
         <div className="relative w-full aspect-square overflow-hidden rounded-t-lg">
           <Image
             src={beat.coverImage}
@@ -162,10 +240,22 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
             className="object-cover"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+          {/* Tier-colored gradient overlay at bottom */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              background: currentTier 
+                ? `linear-gradient(to top, ${
+                    beat.tier === 1 ? 'rgba(0,0,0,0.9), rgba(255,218,15,0.1)' : 
+                    beat.tier === 2 ? 'rgba(0,0,0,0.9), rgba(0,255,136,0.1)' : 
+                    'rgba(0,0,0,0.9), rgba(255,107,107,0.1)'
+                  } 40%, transparent 100%)`
+                : 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 50%)'
+            }}
+          />
           {beat.featured && (
-            <div className="absolute top-4 right-4 bg-[#ffda0f] text-black px-3 py-1 rounded-full text-xs font-black">
-              FEATURED
+            <div className="absolute top-4 right-4 bg-[#ffda0f] text-black px-3 py-1 rounded-full text-xs font-black animate-pulse shadow-[0_0_15px_rgba(255,218,15,0.6)]">
+              ★ FEATURED
             </div>
           )}
           {beat.tier && (
@@ -174,13 +264,17 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
             </div>
           )}
           <div className="absolute bottom-4 left-4 right-4">
-            <CardTitle className="text-white text-xl font-black mb-1">{beat.title}</CardTitle>
+            <CardTitle className="text-white text-xl font-black mb-1 drop-shadow-lg">{beat.title}</CardTitle>
             {beat.genre && beat.genre.length > 0 && (
               <div className="flex flex-wrap gap-1 mt-2">
                 {beat.genre.slice(0, 3).map((g, i) => (
                   <span
                     key={i}
-                    className="text-xs bg-[#ffda0f]/20 text-[#ffda0f] px-2 py-0.5 rounded border border-[#ffda0f]/30"
+                    className={`text-xs px-2 py-0.5 rounded border backdrop-blur-sm ${
+                      currentTier 
+                        ? `bg-black/50 ${currentTier.priceColor} ${currentTier.border}/50`
+                        : "bg-[#ffda0f]/20 text-[#ffda0f] border-[#ffda0f]/30"
+                    }`}
                   >
                     {g}
                   </span>
@@ -190,18 +284,25 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
           </div>
         </div>
       </CardHeader>
-      <CardContent className="p-6 space-y-4">
+      
+      <CardContent className="p-6 space-y-4 relative z-10">
         <CardDescription className="text-gray-300 text-sm leading-relaxed">
           {beat.description}
         </CardDescription>
 
         {/* Audio Preview - Only for beats/loops */}
         {!beat.genre?.includes("Template") && (
-          <div className="flex items-center gap-3 bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10">
+          <div className={`flex items-center gap-3 bg-black/50 rounded-lg p-3 border ${
+            currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
+          }`}>
             <Button
               onClick={handlePlayPause}
               size="icon"
-              className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 flex-shrink-0 disabled:opacity-50"
+              className={`flex-shrink-0 disabled:opacity-50 ${
+                currentTier 
+                  ? `${currentTier.border.replace('border-', 'bg-')} text-black hover:opacity-80`
+                  : "bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80"
+              }`}
               aria-label={currentlyPlaying ? "Pause preview" : "Play preview"}
               disabled={audioError}
             >
@@ -212,7 +313,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                 {audioError ? (
                   <span className="text-red-400">Preview unavailable</span>
                 ) : currentlyPlaying ? (
-                  <span className="text-[#00ff88]">NOW PLAYING</span>
+                  <span className={currentTier?.priceColor || "text-[#00ff88]"}>NOW PLAYING</span>
                 ) : (
                   "PREVIEW"
                 )}
@@ -220,7 +321,9 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               {!audioError && (
                 <div className="w-full h-1 bg-gray-800 rounded-full overflow-hidden">
                   <div
-                    className={`h-full bg-[#ffda0f] transition-all duration-100 ${currentlyPlaying ? "animate-pulse" : ""}`}
+                    className={`h-full transition-all duration-100 ${currentlyPlaying ? "animate-pulse" : ""} ${
+                      currentTier ? currentTier.border.replace('border-', 'bg-') : "bg-[#ffda0f]"
+                    }`}
                     style={{ width: currentlyPlaying ? "100%" : "0%" }}
                   />
                 </div>
@@ -233,19 +336,25 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         <div className="space-y-2">
           {beat.fileFormat && (
             <div className="text-xs text-gray-400">
-              Format: <span className="text-[#ffda0f] font-semibold">{beat.fileFormat}</span>
+              Format: <span className={`font-semibold ${currentTier?.priceColor || "text-[#ffda0f]"}`}>{beat.fileFormat}</span>
             </div>
           )}
           <div className="flex items-baseline gap-2">
-            <span className="text-3xl font-black text-[#ffda0f]">${beat.price}</span>
+            <span className={`text-3xl font-black ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
+              ${beat.price}
+            </span>
             <span className="text-gray-400 text-sm">USD</span>
           </div>
         </div>
 
         {/* Lease Terms Summary - Only for beats/loops, not templates */}
         {!beat.genre?.includes("Template") && (
-          <div className="bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10 space-y-2">
-            <div className="text-xs font-semibold text-[#ffda0f] mb-1">STANDARD LEASE INCLUDES:</div>
+          <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
+            currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
+          }`}>
+            <div className={`text-xs font-semibold mb-1 ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
+              STANDARD LEASE INCLUDES:
+            </div>
             <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
               <li>50% Publishing Rights (50/50 split)</li>
               <li>2,500 Units • 50K Streams</li>
@@ -254,7 +363,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
             </ul>
             <Link
               href="/lease-terms"
-              className="text-xs text-[#ffda0f] hover:underline inline-block mt-2"
+              className={`text-xs hover:underline inline-block mt-2 ${currentTier?.priceColor || "text-[#ffda0f]"}`}
             >
               View Full Terms →
             </Link>
@@ -263,8 +372,12 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         
         {/* Template Info */}
         {beat.genre?.includes("Template") && (
-          <div className="bg-black/50 rounded-lg p-3 border border-[#ffda0f]/10 space-y-2">
-            <div className="text-xs font-semibold text-[#ffda0f] mb-1">TEMPLATE INCLUDES:</div>
+          <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
+            currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
+          }`}>
+            <div className={`text-xs font-semibold mb-1 ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
+              TEMPLATE INCLUDES:
+            </div>
             <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
               <li>Professional Channel Strip Settings</li>
               <li>Ready-to-use Logic Pro template</li>
@@ -274,7 +387,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
           </div>
         )}
       </CardContent>
-      <CardFooter className="p-6 pt-0">
+      
+      <CardFooter className="p-6 pt-0 relative z-10">
         <PayPalButton beat={beat} />
       </CardFooter>
     </Card>
