@@ -310,7 +310,7 @@ function CartPageContent() {
                       <div>
                         <p className="text-[#ffda0f] font-bold">BUNDLE DEAL!</p>
                         <p className="text-gray-400 text-sm mt-1">
-                          Add {3 - items.length} more beat{3 - items.length > 1 ? "s" : ""} to get 50% off the cheapest one!
+                          Add {3 - items.length} more beat{3 - items.length > 1 ? "s" : ""} to get 50% off!
                         </p>
                         <Link href="/beatstore" className="text-[#ffda0f] text-sm hover:underline mt-2 inline-block">
                           → Browse more beats

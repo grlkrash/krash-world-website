@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, Environment, Float } from "@react-three/drei"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Mail, Play } from "lucide-react"
+import { Menu, X, Mail, Play, ShoppingBag } from "lucide-react"
 import Image from "next/image"
 // import InteractiveGRLKRASH from "./components/interactive-grlkrash"
 import NewsletterPopup from "./components/newsletter-popup"
@@ -120,6 +120,15 @@ export default function KrashWorldWebsite() {
               </div>
 
               <div className="flex flex-wrap gap-4">
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black hover:from-[#00ff88]/90 hover:to-[#00cc6a]/90 font-bold shadow-lg shadow-[#00ff88]/25 animate-pulse hover:animate-none"
+                  onClick={() => window.location.href = "/beatstore"}
+                  aria-label="Browse beats and purchase"
+                >
+                  <ShoppingBag className="mr-2 h-4 w-4" />
+                  BEAT STORE
+                </Button>
                 <Button
                   size="lg"
                   className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 font-bold"
