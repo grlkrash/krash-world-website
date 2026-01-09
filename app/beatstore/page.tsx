@@ -9,7 +9,7 @@ import { AudioProvider } from "../components/audio-context"
 import { CartProvider } from "../components/cart-context"
 import CartIcon from "../components/cart-icon"
 import CartDrawer from "../components/cart-drawer"
-import { Menu, X, ArrowLeft, Grid3x3, List, Filter, ChevronDown, SlidersHorizontal } from "lucide-react"
+import { Menu, X, ArrowLeft, Grid3x3, List, Filter, ChevronDown, SlidersHorizontal, Search } from "lucide-react"
 import beatData from "../../beat-data.json"
 
 interface Beat {
@@ -41,6 +41,7 @@ export default function BeatstorePage() {
   const [sortBy, setSortBy] = useState<SortOption>("default")
   const [isFilterOpen, setIsFilterOpen] = useState(false)
   const [isGenreDropdownOpen, setIsGenreDropdownOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState("")
 
   // Extract all unique genres from beats
   const allGenres = useMemo(() => {
@@ -81,9 +82,10 @@ export default function BeatstorePage() {
     setSelectedTiers([])
     setSelectedGenres([])
     setSortBy("default")
+    setSearchQuery("")
   }
 
-  const hasActiveFilters = selectedTiers.length > 0 || selectedGenres.length > 0 || sortBy !== "default"
+  const hasActiveFilters = selectedTiers.length > 0 || selectedGenres.length > 0 || sortBy !== "default" || searchQuery.trim().length > 0
 
   // Update time
   useEffect(() => {
@@ -132,6 +134,14 @@ export default function BeatstorePage() {
   const filteredAndSortedItems = useMemo(() => {
     let items = [...baseItems]
 
+    // Filter by search query (case-insensitive title match)
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase().trim()
+      items = items.filter((item) => 
+        item.title.toLowerCase().includes(query)
+      )
+    }
+
     // Filter by tier (only for beats)
     if (selectedTiers.length > 0 && activeTab === "beats") {
       items = items.filter((item) => item.tier && selectedTiers.includes(item.tier))
@@ -164,7 +174,7 @@ export default function BeatstorePage() {
     }
 
     return items
-  }, [baseItems, selectedTiers, selectedGenres, sortBy, activeTab])
+  }, [baseItems, selectedTiers, selectedGenres, sortBy, activeTab, searchQuery])
 
   // Separate featured and regular items from filtered results
   const featuredItems = sortBy === "default" 
@@ -299,6 +309,33 @@ export default function BeatstorePage() {
                 </button>
               )}
             </div>
+            {/* Search Bar */}
+            <div className="max-w-xl mx-auto mb-6">
+              <div className="relative">
+                <Search 
+                  size={20} 
+                  className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" 
+                />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={`Search ${activeTab} by name...`}
+                  className="w-full pl-12 pr-12 py-3 rounded-xl bg-black/60 text-white placeholder-gray-500 border border-[#ffda0f]/20 focus:border-[#ffda0f] focus:outline-none focus:ring-1 focus:ring-[#ffda0f]/50 transition-all font-mono text-sm backdrop-blur-sm"
+                  aria-label={`Search ${activeTab}`}
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-[#ffda0f] transition-colors"
+                    aria-label="Clear search"
+                  >
+                    <X size={18} />
+                  </button>
+                )}
+              </div>
+            </div>
+
             {/* View Mode Toggle & Filter Toggle */}
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="flex items-center gap-2">
@@ -339,7 +376,7 @@ export default function BeatstorePage() {
                 FILTERS
                 {hasActiveFilters && (
                   <span className="bg-black text-[#ffda0f] text-xs px-1.5 py-0.5 rounded-full">
-                    {selectedTiers.length + selectedGenres.length + (sortBy !== "default" ? 1 : 0)}
+                    {selectedTiers.length + selectedGenres.length + (sortBy !== "default" ? 1 : 0) + (searchQuery.trim() ? 1 : 0)}
                   </span>
                 )}
               </button>
@@ -525,7 +562,11 @@ export default function BeatstorePage() {
           ) : (
             <div className="text-center py-16">
               <div className="text-gray-400 text-lg mb-4">
-                No {activeTab} match your filters.
+                {searchQuery.trim() ? (
+                  <>No {activeTab} found for "<span className="text-[#ffda0f]">{searchQuery}</span>"</>
+                ) : (
+                  <>No {activeTab} match your filters.</>
+                )}
               </div>
               {hasActiveFilters && (
                 <button
