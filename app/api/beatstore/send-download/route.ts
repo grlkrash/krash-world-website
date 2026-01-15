@@ -5,14 +5,22 @@ import emailjs from "@emailjs/nodejs"
 import { readFile } from "fs/promises"
 import { join } from "path"
 
-async function getBeatPrice(beatId: string): Promise<number | null> {
+async function getBeatPrices(): Promise<Record<string, number> | null> {
   try {
     const data = JSON.parse(await readFile(join(process.cwd(), "beat-data.json"), "utf8"))
-    const beat = data?.beats?.find((item: { id: string }) => item.id === beatId)
-    return typeof beat?.price === "number" ? beat.price : null
+    const beats = data?.beats || []
+    return beats.reduce((acc: Record<string, number>, beat: { id: string; price: number }) => {
+      if (typeof beat?.id === "string" && typeof beat?.price === "number") acc[beat.id] = beat.price
+      return acc
+    }, {})
   } catch {
     return null
   }
+}
+
+async function getBeatPrice(beatId: string): Promise<number | null> {
+  const prices = await getBeatPrices()
+  return prices?.[beatId] ?? null
 }
 
 async function verifyPayPalPayment({
@@ -59,6 +67,17 @@ async function verifyPayPalPayment({
   if (!Number.isFinite(amountValue)) return false
   if (purchaseUnit?.amount?.currency_code && purchaseUnit.amount.currency_code !== "USD") return false
   if (!isBundle && expectedAmount !== null && Number(amountValue.toFixed(2)) !== Number(expectedAmount.toFixed(2))) return false
+  if (isBundle) {
+    const prices = await getBeatPrices()
+    if (!prices) return false
+    const expectedTotal = customIds.reduce((total: number, beatId: string) => {
+      const price = prices[beatId]
+      if (typeof price !== "number") return NaN
+      return total + price
+    }, 0)
+    if (!Number.isFinite(expectedTotal)) return false
+    if (Number(amountValue.toFixed(2)) !== Number(expectedTotal.toFixed(2))) return false
+  }
 
   return true
 }
