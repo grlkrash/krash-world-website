@@ -29,6 +29,7 @@ export default function NewsletterPopup({ isOpen, onClose }: NewsletterPopupProp
       })
       if (!response.ok) throw new Error('Failed')
       setStatus("success")
+      localStorage.setItem("krash-bundle-code", "BUNDLE50")
     } catch {
       setStatus("error")
       setTimeout(() => setStatus("idle"), 3000)
@@ -41,10 +42,6 @@ export default function NewsletterPopup({ isOpen, onClose }: NewsletterPopupProp
     onClose()
     setEmail("")
     setStatus("idle")
-  }
-
-  const handleCopyPromo = () => {
-    navigator.clipboard.writeText("BUNDLE50")
   }
 
   if (!isOpen) return null
@@ -65,16 +62,16 @@ export default function NewsletterPopup({ isOpen, onClose }: NewsletterPopupProp
         {status === "success" ? (
           <div className="text-center py-4">
             <Gift className="h-12 w-12 text-[#00ff88] mx-auto mb-4" />
-            <h3 className="text-2xl font-black text-[#00ff88] mb-2">YOU'RE IN!</h3>
-            <div className="border-2 border-dashed border-[#ffda0f] rounded-lg p-4 mb-4">
-              <div className="text-xs text-gray-400 mb-1">YOUR CODE</div>
-              <button
-                onClick={() => navigator.clipboard.writeText("BUNDLE50")}
-                className="text-3xl font-black text-[#ffda0f] hover:scale-105 transition-transform"
-              >
-                BUNDLE50
-              </button>
-              <div className="text-xs text-gray-400 mt-2">50% off when you bundle 3 beats</div>
+            <h3 className="text-2xl font-black text-[#00ff88] mb-2">BUNDLE DISCOUNT UNLOCKED</h3>
+            <p className="text-gray-300 text-sm mb-4">
+              Your bundle discount auto-applies when you add 3 beats.
+            </p>
+            <div className="border border-[#ffda0f]/30 rounded-lg p-4 mb-4">
+              <div className="text-xs text-gray-400 mb-1">USE LATER, ANY DEVICE</div>
+              <div className="text-lg font-black text-[#ffda0f]">BUNDLE50</div>
+              <div className="text-xs text-gray-400 mt-2">
+                We emailed this code so you can unlock it on another device.
+              </div>
             </div>
             <Button onClick={handleClose} className="w-full bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 font-bold">
               SHOP NOW

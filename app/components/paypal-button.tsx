@@ -111,6 +111,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
               purchase_units: [
                 {
                   description,
+                  custom_id: beat.id,
                   amount: {
                     value: beat.price.toFixed(2),
                   },
@@ -156,6 +157,9 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
                   beatTitle: beat.title,
                   transactionId: data.orderID,
                   optInNewsletter: shouldSubscribe,
+                  isBundle: false,
+                  bundleDiscount: 0,
+                  beatPrice: beat.price,
                 }),
               })
 

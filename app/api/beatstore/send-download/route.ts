@@ -1,10 +1,37 @@
 import { storeTransaction } from "@/app/services/beatstore/transaction-store"
+import { logSale } from "@/app/services/beatstore/sales-log"
+import { notifySale, logSaleToGoogleSheets } from "@/app/services/beatstore/sale-notifications"
 import emailjs from "@emailjs/nodejs"
+import { readFile } from "fs/promises"
+import { join } from "path"
 
-async function verifyPayPalPayment(orderId: string): Promise<boolean> {
+async function getBeatPrice(beatId: string): Promise<number | null> {
+  try {
+    const data = JSON.parse(await readFile(join(process.cwd(), "beat-data.json"), "utf8"))
+    const beat = data?.beats?.find((item: { id: string }) => item.id === beatId)
+    return typeof beat?.price === "number" ? beat.price : null
+  } catch {
+    return null
+  }
+}
+
+async function verifyPayPalPayment({
+  orderId,
+  expectedBeatId,
+  expectedAmount,
+  isBundle,
+}: {
+  orderId: string
+  expectedBeatId: string
+  expectedAmount: number | null
+  isBundle: boolean
+}): Promise<boolean> {
   const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
   const secret = process.env.PAYPAL_CLIENT_SECRET
-  if (!clientId || !secret) return true // Skip verification if not configured
+  if (!clientId || !secret) {
+    console.error("❌ PayPal verification skipped: missing credentials")
+    return false
+  }
   
   const auth = Buffer.from(`${clientId}:${secret}`).toString("base64")
   const tokenRes = await fetch("https://api-m.paypal.com/v1/oauth2/token", {
@@ -21,19 +48,41 @@ async function verifyPayPalPayment(orderId: string): Promise<boolean> {
   if (!orderRes.ok) return false
   
   const order = await orderRes.json()
-  return order.status === "COMPLETED"
+  if (order.status !== "COMPLETED") return false
+
+  const purchaseUnit = order.purchase_units?.[0]
+  const customId = purchaseUnit?.custom_id || ""
+  const customIds = customId.split(",").map((value: string) => value.trim())
+  if (!customIds.includes(expectedBeatId)) return false
+
+  const amountValue = Number(purchaseUnit?.amount?.value)
+  if (!Number.isFinite(amountValue)) return false
+  if (purchaseUnit?.amount?.currency_code && purchaseUnit.amount.currency_code !== "USD") return false
+  if (!isBundle && expectedAmount !== null && Number(amountValue.toFixed(2)) !== Number(expectedAmount.toFixed(2))) return false
+
+  return true
 }
 
 export async function POST(request: Request) {
   try {
-    const { email, beatId, beatTitle, downloadUrl, transactionId, optInNewsletter } = await request.json()
+    const { email, beatId, beatTitle, downloadUrl, transactionId, optInNewsletter, isBundle, bundleDiscount } = await request.json()
 
     if (!email || !beatId || !transactionId) {
       return Response.json({ error: "Missing required fields" }, { status: 400 })
     }
 
+    const serverBeatPrice = await getBeatPrice(beatId)
+    if (serverBeatPrice === null) {
+      return Response.json({ error: "Unknown beat" }, { status: 400 })
+    }
+
     // Verify payment with PayPal before sending download
-    const isVerified = await verifyPayPalPayment(transactionId)
+    const isVerified = await verifyPayPalPayment({
+      orderId: transactionId,
+      expectedBeatId: beatId,
+      expectedAmount: serverBeatPrice,
+      isBundle: !!isBundle,
+    })
     if (!isVerified) {
       console.error("❌ PayPal verification failed for order:", transactionId)
       return Response.json({ error: "Payment verification failed" }, { status: 403 })
@@ -62,16 +111,57 @@ export async function POST(request: Request) {
     const secureDownloadUrl = `${baseUrl}/download/${downloadToken}`
 
     // Log the purchase for easy access (backup method)
+    const purchaseTimestamp = new Date().toISOString()
     console.log("🎵 Beat Purchase:", {
       email,
       beatId,
       beatTitle,
       transactionId,
       downloadToken,
-      timestamp: new Date().toISOString(),
+      timestamp: purchaseTimestamp,
       downloadUrl: secureDownloadUrl,
       optInNewsletter,
     })
+
+    // ============================================
+    // SALES TRACKING & NOTIFICATIONS
+    // ============================================
+    
+    // Log sale to Redis for persistent tracking
+    const saleAmount = serverBeatPrice || 0
+    await logSale({
+      transactionId,
+      beatId,
+      beatTitle: beatTitle || "Beat",
+      email,
+      amount: saleAmount,
+      isBundle: isBundle || false,
+      bundleDiscount: bundleDiscount || 0,
+    })
+
+    // Send instant notifications (Discord, Slack, Email)
+    // Don't await - let it run in background so customer email isn't delayed
+    notifySale({
+      beatTitle: beatTitle || "Beat",
+      beatId,
+      amount: saleAmount,
+      customerEmail: email,
+      transactionId,
+      isBundle: isBundle || false,
+      bundleSize: isBundle ? undefined : 1,
+      timestamp: purchaseTimestamp,
+    }).catch(err => console.error("Notification error (non-blocking):", err))
+
+    // Log to Google Sheets for spreadsheet tracking (optional)
+    logSaleToGoogleSheets({
+      beatTitle: beatTitle || "Beat",
+      beatId,
+      amount: saleAmount,
+      customerEmail: email,
+      transactionId,
+      isBundle: isBundle || false,
+      timestamp: purchaseTimestamp,
+    }).catch(err => console.error("Google Sheets log error (non-blocking):", err))
 
     // Add to newsletter if opted in
     if (optInNewsletter && email) {

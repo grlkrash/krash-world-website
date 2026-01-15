@@ -3,6 +3,7 @@
 // Updated: Now uses downloadToken (transactionId-beatId) as unique key for bundles
 
 import { Redis } from "@upstash/redis"
+import { randomUUID } from "crypto"
 
 interface Transaction {
   transactionId: string
@@ -16,8 +17,8 @@ interface Transaction {
 }
 
 // Generate unique download token for each beat in a bundle
-export function generateDownloadToken(transactionId: string, beatId: string): string {
-  return `${transactionId}-${beatId}`
+export function generateDownloadToken(): string {
+  return randomUUID()
 }
 
 // Lazy-initialized Redis client to ensure environment variables are available
@@ -80,7 +81,7 @@ export async function storeTransaction(
 ): Promise<string> {
   const now = Date.now()
   // Generate unique download token for this beat (supports bundles)
-  const downloadToken = generateDownloadToken(transactionId, beatId)
+  const downloadToken = generateDownloadToken()
   
   const transaction: Transaction = {
     transactionId,

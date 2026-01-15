@@ -6,7 +6,7 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Play, Pause, ShoppingCart, Check, Zap } from "lucide-react"
+import { Play, Pause, ShoppingCart, Check, Zap, Layers } from "lucide-react"
 import { useAudio } from "./audio-context"
 import { useCart } from "./cart-context"
 
@@ -19,6 +19,7 @@ interface Beat {
   previewUrl: string
   coverImage: string
   includesWav?: boolean
+  includesStems?: boolean
   fileFormat?: string
   featured?: boolean
   genre?: string[]
@@ -215,8 +216,14 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                 <span className="text-gray-400 text-sm">USD</span>
               </div>
               {beat.fileFormat && (
-                <div className="text-xs text-gray-400">
-                  {beat.fileFormat}
+                <div className="flex items-center gap-2 text-xs text-gray-400">
+                  <span>{beat.fileFormat}</span>
+                  {beat.includesStems && (
+                    <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 text-purple-300">
+                      <Layers className="h-3 w-3" />
+                      STEMS
+                    </span>
+                  )}
                 </div>
               )}
               <div className="w-full md:w-auto flex flex-col gap-2">
@@ -367,8 +374,14 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         {/* File Format & Price */}
         <div className="space-y-2">
           {beat.fileFormat && (
-            <div className="text-xs text-gray-400">
-              Format: <span className={`font-semibold ${currentTier?.priceColor || "text-[#ffda0f]"}`}>{beat.fileFormat}</span>
+            <div className="flex items-center gap-2 text-xs text-gray-400">
+              <span>Format: <span className={`font-semibold ${currentTier?.priceColor || "text-[#ffda0f]"}`}>{beat.fileFormat}</span></span>
+              {beat.includesStems && (
+                <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 text-purple-300 font-semibold">
+                  <Layers className="h-3 w-3" />
+                  STEMS
+                </span>
+              )}
             </div>
           )}
           <div className="flex items-baseline gap-2">
@@ -388,6 +401,9 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               STANDARD LEASE INCLUDES:
             </div>
             <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
+              {beat.includesStems && (
+                <li className="text-purple-300 font-semibold">Full Stems Package (Individual Tracks)</li>
+              )}
               <li>50% Publishing Rights (50/50 split)</li>
               <li>2,500 Units • 50K Streams</li>
               <li>1 Music Video • Unlimited Live</li>

@@ -3,10 +3,11 @@
 import { useState, useEffect, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, ShoppingCart, Trash2, Sparkles, Tag, CheckCircle, Loader2, Music } from "lucide-react"
+import { ArrowLeft, ShoppingCart, Trash2, Sparkles, Tag, CheckCircle, Loader2, Music, AlertCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
+import { Input } from "@/components/ui/input"
 import { CartProvider, useCart } from "../components/cart-context"
 import NavigationMenu from "../components/navigation-menu"
 import { Menu, X } from "lucide-react"
@@ -32,7 +33,7 @@ declare global {
 }
 
 function CartPageContent() {
-  const { items, removeItem, subtotal, discount, total, discountApplied, cheapestItem, clearCart } = useCart()
+  const { items, removeItem, subtotal, discount, total, discountApplied, cheapestItem, clearCart, isBundleCodeApplied, applyBundleCode } = useCart()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
   const [termsAccepted, setTermsAccepted] = useState(false)
@@ -40,6 +41,9 @@ function CartPageContent() {
   const [isScriptLoaded, setIsScriptLoaded] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
   const [purchaseComplete, setPurchaseComplete] = useState(false)
+  const [bundleCodeInput, setBundleCodeInput] = useState("")
+  const [bundleCodeMessage, setBundleCodeMessage] = useState("")
+  const [bundleCodeStatus, setBundleCodeStatus] = useState<"idle" | "success" | "error">("idle")
   const paypalButtonRef = useRef<HTMLDivElement>(null)
 
   // Check if any items need lease terms (non-templates)
@@ -94,6 +98,7 @@ function CartPageContent() {
               purchase_units: [
                 {
                   description: description.substring(0, 127), // PayPal limit
+                  custom_id: items.map(item => item.id).join(","),
                   amount: {
                     value: total.toFixed(2),
                   },
@@ -110,8 +115,12 @@ function CartPageContent() {
               const payerEmail = details.payer?.email_address
 
               // Send download emails for each item
-              const downloadPromises = items.map(item => 
-                fetch("/api/beatstore/send-download", {
+              const downloadPromises = items.map(item => {
+                // Calculate actual price paid for this item (accounting for bundle discount)
+                const isDiscountedItem = discountApplied && cheapestItem?.id === item.id
+                const actualPrice = isDiscountedItem ? item.price * 0.5 : item.price
+                
+                return fetch("/api/beatstore/send-download", {
                   method: "POST",
                   headers: { "Content-Type": "application/json" },
                   body: JSON.stringify({
@@ -120,11 +129,12 @@ function CartPageContent() {
                     beatTitle: item.title,
                     transactionId: data.orderID,
                     optInNewsletter: optInNewsletter,
-                    isBundle: true,
-                    bundleDiscount: discountApplied ? discount : 0,
+                    isBundle: items.length > 1,
+                    bundleDiscount: isDiscountedItem ? item.price * 0.5 : 0,
+                    beatPrice: actualPrice,
                   }),
                 })
-              )
+              })
 
               await Promise.all(downloadPromises)
 
@@ -155,6 +165,13 @@ function CartPageContent() {
       console.error("Error rendering PayPal button:", error)
     }
   }, [isScriptLoaded, items, termsAccepted, hasNonTemplates, total, discountApplied, discount, optInNewsletter, clearCart])
+
+  const handleApplyBundleCode = () => {
+    const result = applyBundleCode({ code: bundleCodeInput })
+    setBundleCodeStatus(result.isApplied ? "success" : "error")
+    setBundleCodeMessage(result.message)
+    if (result.isApplied) setBundleCodeInput("")
+  }
 
   // Success state
   if (purchaseComplete) {
@@ -335,6 +352,39 @@ function CartPageContent() {
                       </div>
                     </div>
                   )}
+
+                  {/* Bundle Code */}
+                  <div className="mb-6">
+                    <div className="text-xs text-gray-500 mb-2">HAVE A CODE?</div>
+                    <div className="flex items-center gap-2">
+                      <Input
+                        type="text"
+                        placeholder="Enter code"
+                        value={bundleCodeInput}
+                        onChange={(e) => setBundleCodeInput(e.target.value)}
+                        className="bg-gray-900 border-gray-700 text-white placeholder-gray-500 focus:border-[#ffda0f]"
+                        aria-label="Bundle code"
+                      />
+                      <Button
+                        type="button"
+                        onClick={handleApplyBundleCode}
+                        className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 font-bold"
+                      >
+                        Apply
+                      </Button>
+                    </div>
+                    {bundleCodeStatus !== "idle" && (
+                      <div className={`mt-2 text-xs ${bundleCodeStatus === "success" ? "text-[#00ff88]" : "text-red-400"} flex items-center gap-2`}>
+                        {bundleCodeStatus === "success" ? <CheckCircle className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
+                        <span>{bundleCodeMessage}</span>
+                      </div>
+                    )}
+                    {isBundleCodeApplied && items.length < 3 && (
+                      <p className="text-xs text-gray-400 mt-2">
+                        Bundle unlocked. Add {3 - items.length} more beat{3 - items.length > 1 ? "s" : ""} to apply 50% off the cheapest.
+                      </p>
+                    )}
+                  </div>
 
                   {/* Pricing */}
                   <div className="space-y-3 text-sm mb-6">

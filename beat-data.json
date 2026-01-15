@@ -968,14 +968,15 @@
     {
       "id": "beat-75",
       "title": "BUBBLEGUMJERK",
-      "description": "Premium beat for your next project. Includes full audio file.",
+      "description": "Premium beat with full stems included. Perfect for mixing and remixing.",
       "price": 50,
       "tier": 1,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-75-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": true,
-      "fileFormat": "WAV",
-      "featured": false,
+      "includesStems": true,
+      "fileFormat": "WAV + Stems",
+      "featured": true,
       "genre": [
         "Rap",
         "Che",
