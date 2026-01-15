@@ -70,12 +70,11 @@ async function verifyPayPalPayment({
   if (isBundle) {
     const prices = await getBeatPrices()
     if (!prices) return false
-    const expectedTotal = customIds.reduce((total: number, beatId: string) => {
-      const price = prices[beatId]
-      if (typeof price !== "number") return NaN
-      return total + price
-    }, 0)
-    if (!Number.isFinite(expectedTotal)) return false
+    const beatPrices = customIds.map((beatId: string) => prices[beatId])
+    if (beatPrices.some((price: number) => typeof price !== "number")) return false
+    const subtotal = beatPrices.reduce((sum: number, price: number) => sum + price, 0)
+    const cheapest = beatPrices.length >= 3 ? Math.min(...beatPrices) : 0
+    const expectedTotal = subtotal - cheapest * 0.5
     if (Number(amountValue.toFixed(2)) !== Number(expectedTotal.toFixed(2))) return false
   }
 
