@@ -135,8 +135,13 @@ function CartPageContent() {
                   }),
                 })
               })
-
-              await Promise.all(downloadPromises)
+              const responses = await Promise.all(downloadPromises)
+              const failed = responses.filter(res => !res.ok)
+              if (failed.length) {
+                console.error("Bundle send-download failures:", failed.length)
+                alert("Payment processed, but there was an issue sending your download links. Please contact support with your PayPal receipt.")
+                return
+              }
 
               // Clear cart and show success
               clearCart()

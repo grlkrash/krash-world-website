@@ -111,12 +111,9 @@ export async function storeTransaction(
       await client.set(key, transaction, { ex: ttl })
       
       // Verify it was stored
-      const verification = await client.get(key)
-      if (verification) {
-        console.log(`✅ Transaction ${downloadToken} stored and verified in Upstash Redis`)
-      } else {
-        console.error(`⚠️ Transaction ${downloadToken} stored but verification failed`)
-      }
+      const verification = await client.get<Transaction>(key)
+      if (!verification) throw new Error(`Redis verification failed for downloadToken ${downloadToken}`)
+      console.log(`✅ Transaction ${downloadToken} stored and verified in Upstash Redis`)
       return downloadToken
     } catch (error) {
       console.error(`❌ Failed to store transaction in Redis:`, error)
@@ -124,14 +121,17 @@ export async function storeTransaction(
         message: error instanceof Error ? error.message : String(error),
         name: error instanceof Error ? error.name : "Unknown",
       })
+      // If Redis is configured but write/verify fails, do NOT silently fall back:
+      // surface the error so the caller can avoid emailing a broken link.
+      throw error
     }
   }
-
-  // Fallback to in-memory (not reliable on serverless)
+  if (process.env.NODE_ENV === "production") {
+    console.error(`❌ Redis client unavailable in production; refusing to issue download token`)
+    throw new Error("Download storage unavailable")
+  }
   transactions.set(downloadToken, transaction)
-  console.log(`⚠️ Transaction ${downloadToken} stored in MEMORY ONLY`)
-  console.log(`⚠️ WARNING: This will NOT persist across serverless invocations!`)
-  console.log(`⚠️ Redis error: ${redisError || "Not configured"}`)
+  console.log(`⚠️ Transaction ${downloadToken} stored in MEMORY ONLY (development mode)`)
   return downloadToken
 }
 
@@ -188,7 +188,10 @@ export async function getTransaction(downloadToken: string): Promise<Transaction
     console.log(`⚠️ Redis client not available (error: ${redisError})`)
   }
 
-  // Fallback to in-memory
+  // In production, never trust memory fallback for download verification
+  if (process.env.NODE_ENV === "production") return undefined
+
+  // Fallback to in-memory (development only)
   console.log(`🔍 Checking in-memory store...`)
   console.log(`📋 In-memory transactions (${transactions.size} total):`, Array.from(transactions.keys()))
   
@@ -231,7 +234,8 @@ export async function markAsDownloaded(downloadToken: string): Promise<boolean> 
     }
   }
 
-  // Update in memory
+  // Update in memory (development only)
+  if (process.env.NODE_ENV === "production") return false
   transactions.set(downloadToken, transaction)
   console.log(`⚠️ Transaction ${downloadToken} marked as downloaded in memory only`)
   return true
