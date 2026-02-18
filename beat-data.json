@@ -1363,6 +1363,23 @@
         "Rap",
         "Underground"
       ]
+    },
+    {
+      "id": "beat-108",
+      "title": "LONGFELLOW",
+      "description": "Premium beat for your next project. Includes full audio file.",
+      "price": 50,
+      "tier": 1,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-108-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "fileFormat": "WAV",
+      "featured": true,
+      "genre": [
+        "Lofi",
+        "Boom Bap",
+        "Hip Hop"
+      ]
     }
   ],
   "loops": [
@@ -1519,10 +1536,76 @@
       "genre": [
         "Loop"
       ]
+    },
+    {
+      "id": "loop-12",
+      "title": "UNTSUNTS MELODY LOOP 145BPM",
+      "description": "Musical loop with full stems included. Perfect for custom production and remixing.",
+      "price": 20,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-12-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "includesStems": true,
+      "fileFormat": "WAV + Stems",
+      "featured": false,
+      "genre": [
+        "Loop",
+        "Synth",
+        "Dance"
+      ]
+    },
+    {
+      "id": "loop-13",
+      "title": "IN MY LIFE GUITAR LOOP 127BPM",
+      "description": "Musical loop with full stems included. Perfect for custom production and remixing.",
+      "price": 20,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-13-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "includesStems": true,
+      "fileFormat": "WAV + Stems",
+      "featured": false,
+      "genre": [
+        "Rock",
+        "Punk",
+        "Guitar"
+      ]
+    },
+    {
+      "id": "loop-14",
+      "title": "RICO LOOP 128BPM",
+      "description": "Musical loop perfect for your projects. Includes full audio file.",
+      "price": 20,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-14-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "fileFormat": "WAV",
+      "featured": false,
+      "genre": [
+        "Rock",
+        "Punk",
+        "Guitar"
+      ]
+    },
+    {
+      "id": "loop-15",
+      "title": "I AM SAD (GUITAR LOOP 148BPM)",
+      "description": "Musical loop perfect for your projects. Includes full audio file.",
+      "price": 20,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-15-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "fileFormat": "WAV",
+      "featured": false,
+      "genre": [
+        "Rock",
+        "Punk",
+        "Guitar"
+      ]
     }
   ],
-  "totalBeats": 77,
-  "totalLoops": 11,
+  "totalBeats": 78,
+  "totalLoops": 15,
   "templates": [
     {
       "id": "template-1",
