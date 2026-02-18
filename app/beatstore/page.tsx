@@ -582,34 +582,45 @@ export default function BeatstorePage() {
 
           {/* Info Section */}
           <div className="mt-16 text-center border-t border-[#ffda0f]/20 pt-12">
-            <div className="text-[#ffda0f] text-sm font-mono mb-4">WHAT YOU GET</div>
+            <div className="text-[#ffda0f] text-sm font-mono mb-4">LICENSE OPTIONS</div>
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto text-gray-300">
               <div>
-                <div className="text-white font-bold mb-2">HIGH QUALITY AUDIO</div>
-                <div className="text-sm">WAV or MP3 format for professional use</div>
+                <div className="text-white font-bold mb-2">MP3 LEASE</div>
+                <div className="text-sm">$30-$60 per beat</div>
+              </div>
+              <div>
+                <div className="text-white font-bold mb-2">MP3 + WAV LEASE</div>
+                <div className="text-sm">Around $75 per beat</div>
+              </div>
+              <div>
+                <div className="text-white font-bold mb-2">STEMS + MP3 + WAV</div>
+                <div className="text-sm">Around $120 per beat</div>
+              </div>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto text-gray-300 mt-6">
+              <div>
+                <div className="text-white font-bold mb-2">UNLIMITED LEASE</div>
+                <div className="text-sm">Around $200 with unlimited streams, shows, and music videos</div>
               </div>
               <div>
                 <div className="text-white font-bold mb-2">INSTANT DELIVERY</div>
-                <div className="text-sm">Download link sent to your email after purchase</div>
-              </div>
-              <div>
-                <div className="text-white font-bold mb-2">50% PUBLISHING RIGHTS</div>
-                <div className="text-sm">Standard lease includes 50/50 publishing split and 2,500 unit distribution</div>
+                <div className="text-sm">Delivered to your email after secure checkout</div>
               </div>
             </div>
+            <p className="text-xs text-gray-500 mt-4">Tier availability depends on each beat&apos;s available files (MP3, WAV, and stems).</p>
           </div>
 
           {/* Contact Section */}
           <div className="mt-12 text-center border-t border-[#ffda0f]/20 pt-12">
             <div className="text-[#ffda0f] text-sm font-mono mb-4">NEED EXCLUSIVE RIGHTS?</div>
             <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
-              Interested in purchasing exclusive rights to a beat? Contact us to discuss pricing and terms.
+              For exclusive rights, submit your custom offer and we will review terms with you directly.
             </p>
             <Link
-              href="/contact"
+              href="/contact?subject=Exclusive%20Beat%20Offer"
               className="inline-block bg-[#ffda0f] text-black px-8 py-3 rounded-lg font-bold hover:bg-[#ffda0f]/80 transition-colors"
             >
-              CONTACT US
+              MAKE AN OFFER
             </Link>
           </div>
         </div>

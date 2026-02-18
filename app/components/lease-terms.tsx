@@ -17,7 +17,7 @@ export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includes
       <DialogContent className="bg-black border-[#ffda0f]/30 text-white max-w-3xl max-h-[90vh]">
         <DialogHeader>
           <DialogTitle className="text-2xl font-black text-[#ffda0f] mb-2">
-            STANDARD LEASE AGREEMENT
+            BEAT LICENSE AGREEMENT
           </DialogTitle>
           <DialogDescription className="text-gray-300">
             {beatTitle && `Beat: ${beatTitle}`}
@@ -40,11 +40,14 @@ export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includes
             <div>
               <h3 className="text-white font-bold mb-2 text-base">2. DISTRIBUTION RIGHTS</h3>
               <p>
-                Licensee may distribute up to <strong className="text-white">2,500 units</strong> (including 
-                physical copies, digital downloads, and streams) of the Master Recording. Distribution 
-                includes but is not limited to: streaming platforms, digital downloads, physical CDs, 
-                and radio play.
+                Distribution limits depend on your purchased tier:
               </p>
+              <ul className="list-disc list-inside space-y-1 ml-2 mt-2">
+                <li>MP3 Lease: up to 2,000 copies, 250,000 audio streams</li>
+                <li>WAV Lease: up to 3,000 copies, 500,000 audio streams</li>
+                <li>Stems Lease: up to 10,000 copies, 1,000,000 audio streams</li>
+                <li>Unlimited Lease: unlimited copies and streams</li>
+              </ul>
             </div>
 
             <div>

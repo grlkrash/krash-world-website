@@ -295,6 +295,9 @@ function CartPageContent() {
                       <div className="flex items-start justify-between">
                         <div>
                           <h3 className="text-white font-bold text-lg">{item.title}</h3>
+                          {item.licenseName && (
+                            <p className="text-[#ffda0f] text-xs font-semibold">{item.licenseName}</p>
+                          )}
                           {item.fileFormat && (
                             <p className="text-gray-500 text-sm">{item.fileFormat}</p>
                           )}
@@ -420,7 +423,7 @@ function CartPageContent() {
                           className="mt-1 border-[#ffda0f]/50 data-[state=checked]:bg-[#ffda0f] data-[state=checked]:border-[#ffda0f]"
                         />
                         <Label htmlFor="terms" className="text-xs text-gray-300 leading-relaxed cursor-pointer">
-                          I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">Lease Terms</Link> (50% publishing, 2,500 units, 50K streams)
+                          I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">License Terms</Link> for my selected tier(s)
                         </Label>
                       </div>
                     )}

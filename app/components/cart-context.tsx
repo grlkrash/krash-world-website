@@ -9,6 +9,8 @@ interface CartItem {
   coverImage: string
   fileFormat?: string
   tier?: number
+  licenseId?: string
+  licenseName?: string
 }
 
 interface CartContextType {

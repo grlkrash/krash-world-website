@@ -46,7 +46,7 @@ export default function LeaseTermsPage() {
 
           <div className="bg-black/60 backdrop-blur-md border border-[#ffda0f]/30 rounded-lg p-8 md:p-12">
             <div className="text-center mb-8">
-              <div className="text-[#ffda0f] text-sm font-mono mb-2">STANDARD LEASE AGREEMENT</div>
+              <div className="text-[#ffda0f] text-sm font-mono mb-2">BEAT LICENSE AGREEMENT</div>
               <h1 className="text-4xl md:text-5xl font-black mb-4">
                 <span className="text-white">BEAT</span>
                 <br />
@@ -72,14 +72,14 @@ export default function LeaseTermsPage() {
                 <div>
                   <h3 className="text-white font-bold mb-2 text-lg">2. DISTRIBUTION RIGHTS</h3>
                   <p>
-                    Licensee may distribute the Master Recording under the following limits:
+                    Licensee may distribute the Master Recording based on the purchased license tier:
                   </p>
                   <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
-                    <li><strong className="text-white">2,500 units</strong> - Physical copies and digital downloads (CDs, vinyl, digital sales)</li>
-                    <li><strong className="text-white">50,000 audio streams</strong> - Across all streaming platforms (Spotify, Apple Music, YouTube Music, etc.)</li>
-                    <li><strong className="text-white">1 music video</strong> - For promotional use on YouTube and other video platforms</li>
-                    <li><strong className="text-white">Unlimited live performances</strong> - Licensee may perform the Master Recording live without restriction</li>
-                    <li><strong className="text-white">Radio play</strong> - Allowed within the unit and stream limits above</li>
+                    <li><strong className="text-white">MP3 Lease</strong>: up to 2,000 copies, up to 250,000 audio streams, 1 music video, radio rights up to 2 stations</li>
+                    <li><strong className="text-white">WAV Lease</strong>: up to 3,000 copies, up to 500,000 audio streams, 1 music video, radio rights up to 2 stations</li>
+                    <li><strong className="text-white">Stems Lease</strong>: up to 10,000 copies, up to 1,000,000 audio streams, 1 music video, radio rights up to 2 stations</li>
+                    <li><strong className="text-white">Unlimited Lease</strong>: unlimited copies, unlimited audio streams, 1 music video, unlimited radio stations</li>
+                    <li><strong className="text-white">All tiers</strong>: for-profit live performances are allowed</li>
                   </ul>
                   <p className="mt-2">
                     Once any limit is reached, Licensee must either purchase an extended license or cease 
@@ -158,7 +158,7 @@ export default function LeaseTermsPage() {
                   <h3 className="text-white font-bold mb-2 text-lg">6. TERM</h3>
                   <p>
                     This license is valid for the lifetime of the Master Recording. Upon expiration of 
-                    distribution rights (2,500 units), Licensee must either:
+                    the selected tier&apos;s distribution rights, Licensee must either:
                   </p>
                   <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
                     <li>Purchase an extended license for additional units</li>

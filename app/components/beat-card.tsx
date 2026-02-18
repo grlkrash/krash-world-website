@@ -30,6 +30,20 @@ interface BeatCardProps {
   viewMode?: "grid" | "list"
 }
 
+interface LicenseOption {
+  id: "mp3" | "wav" | "stems" | "unlimited"
+  name: string
+  price: number
+  fileFormat: string
+  usage: string[]
+}
+
+function getMp3LeasePrice(input: { tier?: number }) {
+  if (input.tier === 1) return 60
+  if (input.tier === 2) return 45
+  return 30
+}
+
 export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const router = useRouter()
   const { playAudio, isPlaying } = useAudio()
@@ -37,25 +51,63 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const [audioError, setAudioError] = useState(false)
   const currentlyPlaying = isPlaying(beat.id)
   const inCart = isInCart(beat.id)
+  const isTemplate = beat.genre?.includes("Template")
+  const mp3LeasePrice = getMp3LeasePrice({ tier: beat.tier })
+  const licenseOptions: LicenseOption[] = isTemplate ? [] : [
+    {
+      id: "mp3",
+      name: "MP3 Lease",
+      price: mp3LeasePrice,
+      fileFormat: "MP3",
+      usage: ["Up to 2,000 copies", "250,000 audio streams", "1 music video", "Radio rights (2 stations)"],
+    },
+    ...(beat.includesWav ? [{
+      id: "wav" as const,
+      name: "WAV Lease",
+      price: 75,
+      fileFormat: "MP3 + WAV",
+      usage: ["Up to 3,000 copies", "500,000 audio streams", "1 music video", "Radio rights (2 stations)"],
+    }] : []),
+    ...(beat.includesStems ? [{
+      id: "stems" as const,
+      name: "Stems Lease",
+      price: 120,
+      fileFormat: "MP3 + WAV + Stems",
+      usage: ["Up to 10,000 copies", "1,000,000 audio streams", "1 music video", "Radio rights (2 stations)"],
+    }] : []),
+    ...(beat.includesWav && beat.includesStems ? [{
+      id: "unlimited" as const,
+      name: "Unlimited Lease",
+      price: 200,
+      fileFormat: "MP3 + WAV + Stems",
+      usage: ["Unlimited copies", "Unlimited audio streams", "1 music video", "Unlimited radio stations"],
+    }] : []),
+  ]
+  const [selectedLicenseId, setSelectedLicenseId] = useState<LicenseOption["id"]>(licenseOptions[0]?.id || "mp3")
+  const selectedLicense = licenseOptions.find((license) => license.id === selectedLicenseId) || licenseOptions[0]
+  const displayPrice = selectedLicense?.price || beat.price
+  const displayFormat = selectedLicense?.fileFormat || beat.fileFormat || "MP3"
+
+  const getCartPayload = () => ({
+    id: beat.id,
+    title: beat.title,
+    price: displayPrice,
+    coverImage: beat.coverImage,
+    fileFormat: displayFormat,
+    tier: beat.tier,
+    licenseId: selectedLicense?.id,
+    licenseName: selectedLicense?.name,
+  })
 
   const handleBuyNow = () => {
-    if (!inCart) addItem({ id: beat.id, title: beat.title, price: beat.price, coverImage: beat.coverImage, fileFormat: beat.fileFormat, tier: beat.tier })
+    if (inCart) removeItem(beat.id)
+    addItem(getCartPayload())
     router.push("/cart")
   }
 
   const handleAddToCart = () => {
-    if (inCart) {
-      removeItem(beat.id)
-    } else {
-      addItem({
-        id: beat.id,
-        title: beat.title,
-        price: beat.price,
-        coverImage: beat.coverImage,
-        fileFormat: beat.fileFormat,
-        tier: beat.tier,
-      })
-    }
+    if (inCart) removeItem(beat.id)
+    addItem(getCartPayload())
   }
 
   const handlePlayPause = async () => {
@@ -211,25 +263,60 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
             <div className="flex flex-col md:items-end gap-3">
               <div className="flex items-baseline gap-2">
                 <span className={`text-2xl font-black ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
-                  ${beat.price}
+                  ${displayPrice}
                 </span>
                 <span className="text-gray-400 text-sm">USD</span>
               </div>
-              {beat.fileFormat && (
+              {displayFormat && (
                 <div className="flex items-center gap-2 text-xs text-gray-400">
-                  <span>{beat.fileFormat}</span>
-                  {beat.includesStems && (
+                  <span>{displayFormat}</span>
+                  {selectedLicense?.id === "stems" || selectedLicense?.id === "unlimited" ? (
                     <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 text-purple-300">
                       <Layers className="h-3 w-3" />
                       STEMS
                     </span>
-                  )}
+                  ) : null}
+                </div>
+              )}
+              {!isTemplate && (
+                <div className={`w-full md:w-72 rounded-lg p-3 border bg-black/50 space-y-2 ${
+                  currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
+                }`}>
+                  <div className={`text-xs font-semibold ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
+                    PICK A LICENSE:
+                  </div>
+                  <div className="grid grid-cols-1 gap-1.5">
+                    {licenseOptions.map((license) => (
+                      <button
+                        key={license.id}
+                        onClick={() => setSelectedLicenseId(license.id)}
+                        className={`text-left px-2.5 py-2 rounded border text-xs transition-colors ${
+                          selectedLicense?.id === license.id
+                            ? `${currentTier?.border || "border-[#ffda0f]"} ${currentTier?.priceColor || "text-[#ffda0f]"} bg-black`
+                            : "border-white/10 text-gray-300 hover:border-[#ffda0f]/40"
+                        }`}
+                        aria-label={`Select ${license.name}`}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="font-medium">{license.name}</span>
+                          <span className="font-black">${license.price}</span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                  {(!beat.includesWav || !beat.includesStems) && <p className="text-[11px] text-gray-500">Some higher tiers are unavailable for this beat.</p>}
+                  <Link
+                    href="/contact?subject=Exclusive%20Beat%20Offer"
+                    className="inline-block text-xs font-semibold text-[#00ff88] hover:text-[#00ff88]/80 hover:underline"
+                  >
+                    Exclusive License: Make an Offer →
+                  </Link>
                 </div>
               )}
               <div className="w-full md:w-auto flex flex-col gap-2">
                 <div className="flex gap-2">
                   <Button onClick={handleAddToCart} className={`flex-1 font-bold transition-all ${inCart ? "bg-[#00ff88] text-black hover:bg-[#00ff88]/80" : currentTier ? `${currentTier.border.replace('border-', 'bg-')} text-black hover:opacity-80` : "bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80"}`}>
-                    {inCart ? <><Check className="mr-1 h-4 w-4" />IN CART</> : <><ShoppingCart className="mr-1 h-4 w-4" />ADD</>}
+                    {inCart ? <><Check className="mr-1 h-4 w-4" />UPDATE</> : <><ShoppingCart className="mr-1 h-4 w-4" />ADD</>}
                   </Button>
                   <Button onClick={handleBuyNow} className="bg-white text-black hover:bg-gray-100 font-bold">
                     <Zap className="mr-1 h-4 w-4" />BUY
@@ -373,48 +460,74 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
 
         {/* File Format & Price */}
         <div className="space-y-2">
-          {beat.fileFormat && (
+          {displayFormat && (
             <div className="flex items-center gap-2 text-xs text-gray-400">
-              <span>Format: <span className={`font-semibold ${currentTier?.priceColor || "text-[#ffda0f]"}`}>{beat.fileFormat}</span></span>
-              {beat.includesStems && (
+              <span>Format: <span className={`font-semibold ${currentTier?.priceColor || "text-[#ffda0f]"}`}>{displayFormat}</span></span>
+              {selectedLicense?.id === "stems" || selectedLicense?.id === "unlimited" ? (
                 <span className="flex items-center gap-1 px-2 py-0.5 rounded bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-400/30 text-purple-300 font-semibold">
                   <Layers className="h-3 w-3" />
                   STEMS
                 </span>
-              )}
+              ) : null}
             </div>
           )}
           <div className="flex items-baseline gap-2">
             <span className={`text-3xl font-black ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
-              ${beat.price}
+              ${displayPrice}
             </span>
             <span className="text-gray-400 text-sm">USD</span>
           </div>
         </div>
 
-        {/* Lease Terms Summary - Only for beats/loops, not templates */}
-        {!beat.genre?.includes("Template") && (
+        {/* License Options Summary - Only for beats/loops, not templates */}
+        {!isTemplate && (
           <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
             currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
           }`}>
             <div className={`text-xs font-semibold mb-1 ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
-              STANDARD LEASE INCLUDES:
+              LICENSE TIERS:
             </div>
-            <ul className="text-xs text-gray-300 space-y-1 list-disc list-inside">
-              {beat.includesStems && (
-                <li className="text-purple-300 font-semibold">Full Stems Package (Individual Tracks)</li>
-              )}
-              <li>50% Publishing Rights (50/50 split)</li>
-              <li>2,500 Units • 50K Streams</li>
-              <li>1 Music Video • Unlimited Live</li>
-              <li>Lifetime License Term</li>
-            </ul>
-            <Link
-              href="/lease-terms"
-              className={`text-xs hover:underline inline-block mt-2 ${currentTier?.priceColor || "text-[#ffda0f]"}`}
-            >
-              View Full Terms →
-            </Link>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+              {licenseOptions.map((license) => (
+                <button
+                  key={license.id}
+                  onClick={() => setSelectedLicenseId(license.id)}
+                  className={`text-left px-2.5 py-2 rounded border text-xs transition-colors ${
+                    selectedLicense?.id === license.id
+                      ? `${currentTier?.border || "border-[#ffda0f]"} ${currentTier?.priceColor || "text-[#ffda0f]"} bg-black`
+                      : "border-white/10 text-gray-300 hover:border-[#ffda0f]/40"
+                  }`}
+                  aria-label={`Select ${license.name}`}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium">{license.name}</span>
+                    <span className="font-black">${license.price}</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+            <div className="text-xs text-gray-300">
+              <div className="font-semibold text-white mb-1">{selectedLicense?.name} usage:</div>
+              <ul className="space-y-0.5 list-disc list-inside">
+                {(selectedLicense?.usage || []).map((usageItem) => <li key={usageItem}>{usageItem}</li>)}
+                <li>For-profit live performances</li>
+              </ul>
+            </div>
+            {(!beat.includesWav || !beat.includesStems) && <p className="text-[11px] text-gray-500">This beat does not include every file type, so some tiers are hidden.</p>}
+            <div className="pt-1 flex items-center justify-between gap-2">
+              <Link
+                href="/lease-terms"
+                className={`text-xs hover:underline inline-block ${currentTier?.priceColor || "text-[#ffda0f]"}`}
+              >
+                View Full Terms →
+              </Link>
+              <Link
+                href="/contact?subject=Exclusive%20Beat%20Offer"
+                className="text-xs font-semibold text-[#00ff88] hover:text-[#00ff88]/80 hover:underline"
+              >
+                Make an Offer (Exclusive) →
+              </Link>
+            </div>
           </div>
         )}
         
@@ -440,7 +553,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         <div className="w-full space-y-2">
           <div className="flex gap-2">
             <Button onClick={handleAddToCart} className={`flex-1 font-bold text-lg py-6 transition-all ${inCart ? "bg-[#00ff88] text-black hover:bg-[#00ff88]/80" : currentTier ? `${currentTier.border.replace('border-', 'bg-')} text-black hover:opacity-80` : "bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80"}`}>
-              {inCart ? <><Check className="mr-2 h-5 w-5" />ADDED</> : <><ShoppingCart className="mr-2 h-5 w-5" />ADD</>}
+              {inCart ? <><Check className="mr-2 h-5 w-5" />UPDATE</> : <><ShoppingCart className="mr-2 h-5 w-5" />ADD</>}
             </Button>
             <Button onClick={handleBuyNow} className="bg-white text-black hover:bg-gray-100 font-bold text-lg py-6 px-6">
               <Zap className="mr-1 h-5 w-5" />BUY
