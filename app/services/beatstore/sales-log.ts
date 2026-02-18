@@ -12,6 +12,7 @@ export interface Sale {
   amount: number
   isBundle: boolean
   bundleDiscount: number
+  licenseTermsVersion?: string
   timestamp: number
   timestampISO: string
 }
@@ -63,6 +64,7 @@ export async function logSale({
   amount,
   isBundle = false,
   bundleDiscount = 0,
+  licenseTermsVersion,
 }: {
   transactionId: string
   beatId: string
@@ -71,6 +73,7 @@ export async function logSale({
   amount: number
   isBundle?: boolean
   bundleDiscount?: number
+  licenseTermsVersion?: string
 }): Promise<Sale | null> {
   const client = getRedisClient()
   
@@ -86,6 +89,7 @@ export async function logSale({
     amount,
     isBundle,
     bundleDiscount,
+    licenseTermsVersion,
     timestamp: now,
     timestampISO: new Date(now).toISOString(),
   }
@@ -97,6 +101,7 @@ export async function logSale({
     email: email.substring(0, 3) + "***@" + email.split("@")[1],
     timestamp: sale.timestampISO,
     isBundle,
+    licenseTermsVersion,
   })
 
   if (!client) {

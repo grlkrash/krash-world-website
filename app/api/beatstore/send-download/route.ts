@@ -1,6 +1,7 @@
 import { storeTransaction } from "@/app/services/beatstore/transaction-store"
 import { logSale } from "@/app/services/beatstore/sales-log"
 import { notifySale, logSaleToGoogleSheets } from "@/app/services/beatstore/sale-notifications"
+import type { LicenseId } from "@/app/services/beatstore/license-config"
 import emailjs from "@emailjs/nodejs"
 import { readFile } from "fs/promises"
 import { join } from "path"
@@ -83,7 +84,31 @@ async function verifyPayPalPayment({
 
 export async function POST(request: Request) {
   try {
-    const { email, beatId, beatTitle, downloadUrl, transactionId, optInNewsletter, isBundle, bundleDiscount } = await request.json()
+    const {
+      email,
+      beatId,
+      beatTitle,
+      downloadUrl,
+      transactionId,
+      optInNewsletter,
+      isBundle,
+      bundleDiscount,
+      licenseId,
+      licenseName,
+      licenseTermsVersion,
+    }: {
+      email?: string
+      beatId?: string
+      beatTitle?: string
+      downloadUrl?: string
+      transactionId?: string
+      optInNewsletter?: boolean
+      isBundle?: boolean
+      bundleDiscount?: number
+      licenseId?: LicenseId
+      licenseName?: string
+      licenseTermsVersion?: string
+    } = await request.json()
 
     if (!email || !beatId || !transactionId) {
       return Response.json({ error: "Missing required fields" }, { status: 400 })
@@ -134,6 +159,9 @@ export async function POST(request: Request) {
       email,
       beatId,
       beatTitle,
+      licenseId,
+      licenseName,
+      licenseTermsVersion,
       transactionId,
       downloadToken,
       timestamp: purchaseTimestamp,
@@ -155,6 +183,7 @@ export async function POST(request: Request) {
       amount: saleAmount,
       isBundle: isBundle || false,
       bundleDiscount: bundleDiscount || 0,
+      licenseTermsVersion,
     })
 
     // Send instant notifications (Discord, Slack, Email)

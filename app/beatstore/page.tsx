@@ -9,6 +9,7 @@ import { AudioProvider } from "../components/audio-context"
 import { CartProvider } from "../components/cart-context"
 import CartIcon from "../components/cart-icon"
 import CartDrawer from "../components/cart-drawer"
+import { getLicensePrice } from "@/app/services/beatstore/license-config"
 import { Menu, X, ArrowLeft, Grid3x3, List, Filter, ChevronDown, SlidersHorizontal, Search } from "lucide-react"
 import beatData from "../../beat-data.json"
 
@@ -586,21 +587,21 @@ export default function BeatstorePage() {
             <div className="grid md:grid-cols-3 gap-6 max-w-3xl mx-auto text-gray-300">
               <div>
                 <div className="text-white font-bold mb-2">MP3 LEASE</div>
-                <div className="text-sm">$30-$60 per beat</div>
+                <div className="text-sm">${getLicensePrice({ licenseId: "mp3", tier: 3 })}-${getLicensePrice({ licenseId: "mp3", tier: 1 })} per beat</div>
               </div>
               <div>
                 <div className="text-white font-bold mb-2">MP3 + WAV LEASE</div>
-                <div className="text-sm">Around $75 per beat</div>
+                <div className="text-sm">${getLicensePrice({ licenseId: "wav" })} per beat</div>
               </div>
               <div>
                 <div className="text-white font-bold mb-2">STEMS + MP3 + WAV</div>
-                <div className="text-sm">Around $120 per beat</div>
+                <div className="text-sm">${getLicensePrice({ licenseId: "stems" })} per beat</div>
               </div>
             </div>
             <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto text-gray-300 mt-6">
               <div>
                 <div className="text-white font-bold mb-2">UNLIMITED LEASE</div>
-                <div className="text-sm">Around $200 with unlimited streams, shows, and music videos</div>
+                <div className="text-sm">${getLicensePrice({ licenseId: "unlimited" })} with unlimited streams, shows, and radio stations</div>
               </div>
               <div>
                 <div className="text-white font-bold mb-2">INSTANT DELIVERY</div>

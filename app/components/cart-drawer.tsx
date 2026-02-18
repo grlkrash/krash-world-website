@@ -6,6 +6,7 @@ import Link from "next/link"
 import { X, ShoppingCart, Trash2, Sparkles, Tag } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useCart } from "./cart-context"
+import { getLicenseUsageText } from "@/app/services/beatstore/license-config"
 
 interface CartDrawerProps {
   isOpen: boolean
@@ -80,9 +81,11 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
             </div>
           ) : (
             <div className="space-y-4">
-              {items.map((item) => (
-                <div
-                  key={item.id}
+              {items.map((item) => {
+                const usageCaps = item.licenseId ? getLicenseUsageText({ licenseId: item.licenseId }) : []
+
+                return <div
+                  key={`${item.id}-${item.licenseId || "default"}`}
                   className={`flex gap-4 p-3 rounded-lg border transition-all ${
                     discountApplied && cheapestItem?.id === item.id
                       ? "bg-[#00ff88]/10 border-[#00ff88]/30"
@@ -100,8 +103,16 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   </div>
                   <div className="flex-1 min-w-0">
                     <h3 className="text-white font-bold text-sm truncate">{item.title}</h3>
+                    {item.licenseName && (
+                      <p className="text-[#ffda0f] text-xs font-semibold">{item.licenseName}</p>
+                    )}
                     {item.fileFormat && (
                       <p className="text-gray-500 text-xs">{item.fileFormat}</p>
+                    )}
+                    {usageCaps.length > 1 && (
+                      <p className="text-gray-500 text-[11px]">
+                        {usageCaps[0]} • {usageCaps[1]}
+                      </p>
                     )}
                     <div className="flex items-center gap-2 mt-1">
                       {discountApplied && cheapestItem?.id === item.id ? (
@@ -125,7 +136,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                     <Trash2 size={18} />
                   </button>
                 </div>
-              ))}
+              })}
             </div>
           )}
 

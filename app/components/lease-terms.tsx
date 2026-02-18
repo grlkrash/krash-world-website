@@ -2,6 +2,7 @@
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { LICENSE_DISPLAY_ORDER, getLicenseRule } from "@/app/services/beatstore/license-config"
 
 interface LeaseTermsProps {
   isOpen: boolean
@@ -12,6 +13,13 @@ interface LeaseTermsProps {
 }
 
 export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includesWav }: LeaseTermsProps) {
+  const distributionLines = LICENSE_DISPLAY_ORDER.map((licenseId) => {
+    const rule = getLicenseRule({ licenseId })
+    const copies = rule.caps.maxCopies === null ? "unlimited copies" : `up to ${rule.caps.maxCopies.toLocaleString("en-US")} copies`
+    const streams = rule.caps.maxAudioStreams === null ? "unlimited audio streams" : `${rule.caps.maxAudioStreams.toLocaleString("en-US")} audio streams`
+    return `${rule.name}: ${copies}, ${streams}`
+  })
+
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="bg-black border-[#ffda0f]/30 text-white max-w-3xl max-h-[90vh]">
@@ -43,10 +51,7 @@ export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includes
                 Distribution limits depend on your purchased tier:
               </p>
               <ul className="list-disc list-inside space-y-1 ml-2 mt-2">
-                <li>MP3 Lease: up to 2,000 copies, 250,000 audio streams</li>
-                <li>WAV Lease: up to 3,000 copies, 500,000 audio streams</li>
-                <li>Stems Lease: up to 10,000 copies, 1,000,000 audio streams</li>
-                <li>Unlimited Lease: unlimited copies and streams</li>
+                {distributionLines.map((line) => <li key={line}>{line}</li>)}
               </ul>
             </div>
 
@@ -84,9 +89,9 @@ export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includes
             <div>
               <h3 className="text-white font-bold mb-2 text-base">6. TERM</h3>
               <p>
-                This license is valid for the lifetime of the Master Recording. Upon expiration of 
-                distribution rights (2,500 units), Licensee must either purchase an extended license 
-                or cease distribution.
+                This license remains valid for the life of the Master Recording. If your selected
+                tier reaches its usage caps, you must upgrade to a higher or extended license
+                before continuing distribution.
               </p>
             </div>
 

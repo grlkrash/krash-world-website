@@ -4,8 +4,15 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { LICENSE_DISPLAY_ORDER, getLicenseRule, getLicenseUsageText } from "@/app/services/beatstore/license-config"
 
 export default function LeaseTermsPage() {
+  const distributionRules = LICENSE_DISPLAY_ORDER.map((licenseId) => {
+    const rule = getLicenseRule({ licenseId })
+    const usage = getLicenseUsageText({ licenseId })
+    return { name: rule.name, usage }
+  })
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Grid Background */}
@@ -75,11 +82,11 @@ export default function LeaseTermsPage() {
                     Licensee may distribute the Master Recording based on the purchased license tier:
                   </p>
                   <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
-                    <li><strong className="text-white">MP3 Lease</strong>: up to 2,000 copies, up to 250,000 audio streams, 1 music video, radio rights up to 2 stations</li>
-                    <li><strong className="text-white">WAV Lease</strong>: up to 3,000 copies, up to 500,000 audio streams, 1 music video, radio rights up to 2 stations</li>
-                    <li><strong className="text-white">Stems Lease</strong>: up to 10,000 copies, up to 1,000,000 audio streams, 1 music video, radio rights up to 2 stations</li>
-                    <li><strong className="text-white">Unlimited Lease</strong>: unlimited copies, unlimited audio streams, 1 music video, unlimited radio stations</li>
-                    <li><strong className="text-white">All tiers</strong>: for-profit live performances are allowed</li>
+                    {distributionRules.map(({ name, usage }) => (
+                      <li key={name}>
+                        <strong className="text-white">{name}</strong>: {usage.slice(0, 4).join(", ")}
+                      </li>
+                    ))}
                   </ul>
                   <p className="mt-2">
                     Once any limit is reached, Licensee must either purchase an extended license or cease 

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Loader2 } from "lucide-react"
+import { getLicenseRule, getLicenseUsageText, LICENSE_TERMS_VERSION } from "@/app/services/beatstore/license-config"
 
 interface Beat {
   id: string
@@ -14,6 +15,7 @@ interface Beat {
   downloadUrl?: string
   includesWav?: boolean
   fileFormat?: string
+  genre?: string[]
 }
 
 interface PayPalButtonProps {
@@ -34,7 +36,7 @@ declare global {
           label?: string
         }
       }) => {
-        render: (selector: string) => void
+        render: (selector: string | HTMLElement) => void
       }
     }
   }
@@ -51,6 +53,8 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
   // Templates don't need lease terms acceptance
   const isTemplate = beat.genre?.includes("Template") || beat.id?.startsWith("template")
   const needsTerms = !isTemplate
+  const starterLicenseRule = getLicenseRule({ licenseId: "mp3" })
+  const starterUsage = getLicenseUsageText({ licenseId: "mp3" })
 
   // Check if email is already subscribed (client-side duplicate prevention)
   useEffect(() => {
@@ -105,7 +109,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
             const isTemplate = beat.genre?.includes("Template") || beat.id?.startsWith("template")
             const description = isTemplate
               ? `${beat.title} - Logic Pro Template`
-              : `${beat.title} - Standard Lease (${format}) - 50% Publishing`
+              : `${beat.title} - ${starterLicenseRule.name} (${format}) - 50% Publishing`
             
             return actions.order.create({
               purchase_units: [
@@ -160,6 +164,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
                   isBundle: false,
                   bundleDiscount: 0,
                   beatPrice: beat.price,
+                  licenseTermsVersion: LICENSE_TERMS_VERSION,
                 }),
               })
 
@@ -229,7 +234,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
               className="text-xs text-gray-300 leading-tight cursor-pointer"
             >
               I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">Lease Terms</Link> and understand 
-              this purchase includes 50% publishing rights, 2,500 units, 50K streams, and 1 music video.
+              this purchase includes 50% publishing rights, {starterUsage[0]}, {starterUsage[1]}, and {starterUsage[2]}.
             </Label>
           </div>
         )}

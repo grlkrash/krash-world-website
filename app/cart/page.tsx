@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input"
 import { CartProvider, useCart } from "../components/cart-context"
 import NavigationMenu from "../components/navigation-menu"
 import { Menu, X } from "lucide-react"
+import { getLicenseUsageText, LICENSE_TERMS_VERSION } from "@/app/services/beatstore/license-config"
 
 declare global {
   interface Window {
@@ -26,7 +27,7 @@ declare global {
           label?: string
         }
       }) => {
-        render: (selector: string) => void
+        render: (selector: string | HTMLElement) => void
       }
     }
   }
@@ -91,7 +92,10 @@ function CartPageContent() {
         .Buttons({
           createOrder: function (data, actions) {
             // Create order with all cart items
-            const itemDescriptions = items.map(item => item.title).join(", ")
+            const itemDescriptions = items.map((item) => {
+              if (!item.licenseName) return item.title
+              return `${item.title} (${item.licenseName})`
+            }).join(", ")
             const description = `GRLKRASH Beats: ${itemDescriptions}${discountApplied ? " (BUNDLE50 discount applied)" : ""}`
             
             return actions.order.create({
@@ -132,6 +136,9 @@ function CartPageContent() {
                     isBundle: items.length > 1,
                     bundleDiscount: isDiscountedItem ? item.price * 0.5 : 0,
                     beatPrice: actualPrice,
+                    licenseId: item.licenseId,
+                    licenseName: item.licenseName,
+                    licenseTermsVersion: LICENSE_TERMS_VERSION,
                   }),
                 })
               })
@@ -273,9 +280,11 @@ function CartPageContent() {
             <div className="grid lg:grid-cols-3 gap-8">
               {/* Cart Items */}
               <div className="lg:col-span-2 space-y-4">
-                {items.map((item) => (
-                  <div
-                    key={item.id}
+                {items.map((item) => {
+                  const usageCaps = item.licenseId ? getLicenseUsageText({ licenseId: item.licenseId }) : []
+
+                  return <div
+                    key={`${item.id}-${item.licenseId || "default"}`}
                     className={`flex gap-4 p-4 rounded-xl border transition-all ${
                       discountApplied && cheapestItem?.id === item.id
                         ? "bg-[#00ff88]/10 border-[#00ff88]/30"
@@ -301,6 +310,11 @@ function CartPageContent() {
                           {item.fileFormat && (
                             <p className="text-gray-500 text-sm">{item.fileFormat}</p>
                           )}
+                          {usageCaps.length > 1 && (
+                            <p className="text-gray-500 text-xs mt-1">
+                              {usageCaps[0]} • {usageCaps[1]}
+                            </p>
+                          )}
                         </div>
                         <button
                           onClick={() => removeItem(item.id)}
@@ -325,7 +339,7 @@ function CartPageContent() {
                       </div>
                     </div>
                   </div>
-                ))}
+                })}
 
                 {/* Bundle Deal Hint */}
                 {items.length < 3 && (

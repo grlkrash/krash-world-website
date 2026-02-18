@@ -1,6 +1,7 @@
 "use client"
 
 import { createContext, useContext, useState, useEffect, useCallback, type ReactNode } from "react"
+import type { LicenseId } from "@/app/services/beatstore/license-config"
 
 interface CartItem {
   id: string
@@ -9,7 +10,7 @@ interface CartItem {
   coverImage: string
   fileFormat?: string
   tier?: number
-  licenseId?: string
+  licenseId?: LicenseId
   licenseName?: string
 }
 

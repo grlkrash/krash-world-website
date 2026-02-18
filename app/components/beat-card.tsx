@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Play, Pause, ShoppingCart, Check, Zap, Layers } from "lucide-react"
 import { useAudio } from "./audio-context"
 import { useCart } from "./cart-context"
+import { getAvailableLicenseOptions, type LicenseOption } from "@/app/services/beatstore/license-config"
 
 interface Beat {
   id: string
@@ -30,20 +31,6 @@ interface BeatCardProps {
   viewMode?: "grid" | "list"
 }
 
-interface LicenseOption {
-  id: "mp3" | "wav" | "stems" | "unlimited"
-  name: string
-  price: number
-  fileFormat: string
-  usage: string[]
-}
-
-function getMp3LeasePrice(input: { tier?: number }) {
-  if (input.tier === 1) return 60
-  if (input.tier === 2) return 45
-  return 30
-}
-
 export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const router = useRouter()
   const { playAudio, isPlaying } = useAudio()
@@ -52,37 +39,13 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const currentlyPlaying = isPlaying(beat.id)
   const inCart = isInCart(beat.id)
   const isTemplate = beat.genre?.includes("Template")
-  const mp3LeasePrice = getMp3LeasePrice({ tier: beat.tier })
-  const licenseOptions: LicenseOption[] = isTemplate ? [] : [
-    {
-      id: "mp3",
-      name: "MP3 Lease",
-      price: mp3LeasePrice,
-      fileFormat: "MP3",
-      usage: ["Up to 2,000 copies", "250,000 audio streams", "1 music video", "Radio rights (2 stations)"],
-    },
-    ...(beat.includesWav ? [{
-      id: "wav" as const,
-      name: "WAV Lease",
-      price: 75,
-      fileFormat: "MP3 + WAV",
-      usage: ["Up to 3,000 copies", "500,000 audio streams", "1 music video", "Radio rights (2 stations)"],
-    }] : []),
-    ...(beat.includesStems ? [{
-      id: "stems" as const,
-      name: "Stems Lease",
-      price: 120,
-      fileFormat: "MP3 + WAV + Stems",
-      usage: ["Up to 10,000 copies", "1,000,000 audio streams", "1 music video", "Radio rights (2 stations)"],
-    }] : []),
-    ...(beat.includesWav && beat.includesStems ? [{
-      id: "unlimited" as const,
-      name: "Unlimited Lease",
-      price: 200,
-      fileFormat: "MP3 + WAV + Stems",
-      usage: ["Unlimited copies", "Unlimited audio streams", "1 music video", "Unlimited radio stations"],
-    }] : []),
-  ]
+  const licenseOptions: LicenseOption[] = isTemplate
+    ? []
+    : getAvailableLicenseOptions({
+        includesWav: beat.includesWav,
+        includesStems: beat.includesStems,
+        tier: beat.tier,
+      })
   const [selectedLicenseId, setSelectedLicenseId] = useState<LicenseOption["id"]>(licenseOptions[0]?.id || "mp3")
   const selectedLicense = licenseOptions.find((license) => license.id === selectedLicenseId) || licenseOptions[0]
   const displayPrice = selectedLicense?.price || beat.price
@@ -510,7 +473,6 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               <div className="font-semibold text-white mb-1">{selectedLicense?.name} usage:</div>
               <ul className="space-y-0.5 list-disc list-inside">
                 {(selectedLicense?.usage || []).map((usageItem) => <li key={usageItem}>{usageItem}</li>)}
-                <li>For-profit live performances</li>
               </ul>
             </div>
             {(!beat.includesWav || !beat.includesStems) && <p className="text-[11px] text-gray-500">This beat does not include every file type, so some tiers are hidden.</p>}
