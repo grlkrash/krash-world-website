@@ -64,14 +64,27 @@ export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includes
                 including but not limited to mechanical royalties, performance royalties, and synchronization 
                 fees.
               </p>
+              <p className="mt-2">
+                By purchasing this Beat, Licensee agrees that all song registrations (including PRO and
+                publishing administration registrations) must reflect a 50% allocation to Producer and a
+                50% allocation to Licensee.
+              </p>
             </div>
 
             <div>
               <h3 className="text-white font-bold mb-2 text-base">4. CREDIT REQUIREMENTS</h3>
               <p>
-                Licensee must credit Producer as "Produced by GRLKRASH" or "Beat by GRLKRASH" in all 
-                releases, promotional materials, and metadata. Failure to provide proper credit may 
-                result in termination of this license.
+                Licensee must credit Producer as "Produced by GRLKRASH" or "Beat by GRLKRASH" in all
+                releases, promotional materials, and metadata.
+              </p>
+              <p className="mt-2">
+                For publishing and PRO metadata, Producer must be listed as:
+                <span className="text-white"> GRLKRASH a/k/a Sonia Gibbs</span> with
+                <span className="text-white"> BMI IPI: 01057188153</span>.
+              </p>
+              <p className="mt-2">
+                Failure to provide proper credit and registration information may result in termination of
+                this license.
               </p>
             </div>
 
@@ -82,7 +95,10 @@ export default function LeaseTerms({ isOpen, onClose, beatTitle, price, includes
                 <li>Licensee may not claim ownership of the Beat itself</li>
                 <li>Licensee may not use the Beat in a way that is defamatory or illegal</li>
                 <li>Licensee may not register the Beat with a Performance Rights Organization (PRO) 
-                    without including Producer's information</li>
+                    without including Producer information as "GRLKRASH a/k/a Sonia Gibbs," BMI IPI
+                    01057188153, and the required 50/50 split</li>
+                <li>Licensee may not register or distribute the song with royalty allocations that differ
+                    from Producer 50% and Licensee 50%</li>
               </ul>
             </div>
 

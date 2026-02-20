@@ -4,7 +4,7 @@ import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
-import { Download, Loader2, CheckCircle, XCircle, ArrowLeft } from "lucide-react"
+import { Download, Loader2, CheckCircle, XCircle, ArrowLeft, FileText } from "lucide-react"
 import NavigationMenu from "@/app/components/navigation-menu"
 
 export default function DownloadPage() {
@@ -175,6 +175,17 @@ export default function DownloadPage() {
     }
   }
 
+  function handleDownloadLicensePdf() {
+    if (!downloadToken) {
+      setStatus("error")
+      setErrorMessage("Download token missing. Please use your original purchase email link.")
+      return
+    }
+
+    const licensePdfUrl = `/api/beatstore/license-pdf?token=${encodeURIComponent(downloadToken)}`
+    window.open(licensePdfUrl, "_blank", "noopener,noreferrer")
+  }
+
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden relative">
       {/* Grid Background */}
@@ -265,6 +276,13 @@ export default function DownloadPage() {
                 >
                   <Download size={24} />
                   DOWNLOAD BEAT
+                </button>
+                <button
+                  onClick={handleDownloadLicensePdf}
+                  className="w-full bg-black border border-[#ffda0f]/40 text-[#ffda0f] px-8 py-3 rounded-lg font-bold text-sm hover:bg-[#ffda0f]/10 transition-colors flex items-center justify-center gap-2"
+                >
+                  <FileText size={16} />
+                  DOWNLOAD LICENSE PDF
                 </button>
                 <div className="text-xs text-gray-500 mt-4">
                   This link expires in 48 hours. Download your files now.

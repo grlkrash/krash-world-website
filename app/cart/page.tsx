@@ -117,6 +117,7 @@ function CartPageContent() {
               if (!details) throw new Error("Payment capture failed")
 
               const payerEmail = details.payer?.email_address
+              const payerName = [details.payer?.name?.given_name, details.payer?.name?.surname].filter(Boolean).join(" ") || "Licensee"
 
               // Send download emails for each item
               const downloadPromises = items.map(item => {
@@ -132,6 +133,7 @@ function CartPageContent() {
                     beatId: item.id,
                     beatTitle: item.title,
                     transactionId: data.orderID,
+                    buyerName: payerName,
                     optInNewsletter: optInNewsletter,
                     isBundle: items.length > 1,
                     bundleDiscount: isDiscountedItem ? item.price * 0.5 : 0,
@@ -437,7 +439,9 @@ function CartPageContent() {
                           className="mt-1 border-[#ffda0f]/50 data-[state=checked]:bg-[#ffda0f] data-[state=checked]:border-[#ffda0f]"
                         />
                         <Label htmlFor="terms" className="text-xs text-gray-300 leading-relaxed cursor-pointer">
-                          I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">License Terms</Link> for my selected tier(s)
+                          I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">License Terms</Link>, including
+                          producer credit as GRLKRASH a/k/a Sonia Gibbs (BMI IPI 01057188153) and a mandatory
+                          50% Producer / 50% Licensee split for publishing, royalties, and distribution.
                         </Label>
                       </div>
                     )}

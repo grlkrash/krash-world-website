@@ -129,6 +129,7 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
               if (!details) throw new Error("Payment capture failed")
 
               const payerEmail = details.payer?.email_address
+              const payerName = [details.payer?.name?.given_name, details.payer?.name?.surname].filter(Boolean).join(" ") || "Licensee"
 
               // Check for duplicate newsletter subscription before sending
               let shouldSubscribe = optInNewsletter
@@ -160,10 +161,13 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
                   beatId: beat.id,
                   beatTitle: beat.title,
                   transactionId: data.orderID,
+                  buyerName: payerName,
                   optInNewsletter: shouldSubscribe,
                   isBundle: false,
                   bundleDiscount: 0,
                   beatPrice: beat.price,
+                  licenseId: "mp3",
+                  licenseName: starterLicenseRule.name,
                   licenseTermsVersion: LICENSE_TERMS_VERSION,
                 }),
               })
@@ -234,7 +238,9 @@ export default function PayPalButton({ beat }: PayPalButtonProps) {
               className="text-xs text-gray-300 leading-tight cursor-pointer"
             >
               I agree to the <Link href="/lease-terms" className="text-[#ffda0f] underline hover:no-underline">Lease Terms</Link> and understand 
-              this purchase includes 50% publishing rights, {starterUsage[0]}, {starterUsage[1]}, and {starterUsage[2]}.
+              producer credit is GRLKRASH a/k/a Sonia Gibbs (BMI IPI 01057188153), plus a mandatory 50%
+              Producer / 50% Licensee split for publishing, royalties, and distribution. This purchase includes
+              {` ${starterUsage[0]}, ${starterUsage[1]}, and ${starterUsage[2]}.`}
             </Label>
           </div>
         )}

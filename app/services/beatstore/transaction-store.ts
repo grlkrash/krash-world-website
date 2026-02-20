@@ -10,7 +10,10 @@ interface Transaction {
   beatId: string
   downloadToken: string // Unique token: transactionId-beatId
   email: string
+  buyerName: string
   beatTitle: string
+  licenseName: string
+  licenseTermsVersion: string
   createdAt: number
   expiresAt: number
   downloaded: boolean
@@ -78,6 +81,11 @@ export async function storeTransaction(
   email: string,
   beatTitle: string,
   expiresInHours: number = 48,
+  metadata: {
+    buyerName?: string
+    licenseName?: string
+    licenseTermsVersion?: string
+  } = {},
 ): Promise<string> {
   const now = Date.now()
   // Generate unique download token for this beat (supports bundles)
@@ -88,7 +96,10 @@ export async function storeTransaction(
     beatId,
     downloadToken,
     email,
+    buyerName: metadata.buyerName || "Licensee",
     beatTitle,
+    licenseName: metadata.licenseName || "Starter License",
+    licenseTermsVersion: metadata.licenseTermsVersion || "unknown",
     createdAt: now,
     expiresAt: now + expiresInHours * 60 * 60 * 1000,
     downloaded: false,

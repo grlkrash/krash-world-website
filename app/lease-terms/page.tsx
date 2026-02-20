@@ -69,8 +69,9 @@ export default function LeaseTermsPage() {
                 <div>
                   <h3 className="text-white font-bold mb-2 text-lg">1. GRANT OF LICENSE</h3>
                   <p>
-                    Producer (GRLKRASH) grants Licensee a non-exclusive license to use the Instrumental 
-                    (the "Beat") in the creation of new musical compositions. This license includes the 
+                    Producer (GRLKRASH a/k/a Sonia Gibbs, BMI IPI: 01057188153) grants Licensee a
+                    non-exclusive license to use the Instrumental (the "Beat") in the creation of new
+                    musical compositions. This license includes the
                     right to use MP3 and/or WAV formats (as specified in your purchase) for recording, 
                     distribution, and performance purposes.
                   </p>
@@ -113,6 +114,10 @@ export default function LeaseTermsPage() {
                     <li>Performance royalties (from radio, TV, live performances)</li>
                     <li>Synchronization fees (for use in film, TV, commercials, etc.)</li>
                   </ul>
+                  <p className="mt-2">
+                    Licensee agrees that all song registrations (including PRO and publishing
+                    administration registrations) must reflect Producer at 50% and Licensee at 50%.
+                  </p>
                 </div>
 
                 <div>
@@ -121,6 +126,11 @@ export default function LeaseTermsPage() {
                     Licensee must credit Producer as <strong className="text-white">"Produced by GRLKRASH"</strong> 
                     or <strong className="text-white">"Beat by GRLKRASH"</strong> in all releases, promotional 
                     materials, and metadata. This includes:
+                  </p>
+                  <p className="mt-2">
+                    For publishing and PRO metadata, list Producer as
+                    <strong className="text-white"> GRLKRASH a/k/a Sonia Gibbs</strong> with
+                    <strong className="text-white"> BMI IPI: 01057188153</strong>.
                   </p>
                   <ul className="list-disc list-inside space-y-1 ml-4 mt-2">
                     <li>Streaming platform metadata (Spotify, Apple Music, etc.)</li>
@@ -151,8 +161,13 @@ export default function LeaseTermsPage() {
                     </li>
                     <li>
                       <strong className="text-white">PRO Registration:</strong> Licensee may not register 
-                      the Beat with a Performance Rights Organization (PRO) without including Producer's 
-                      information and the 50/50 split
+                      the Beat with a Performance Rights Organization (PRO) without including Producer as
+                      GRLKRASH a/k/a Sonia Gibbs, BMI IPI 01057188153, and the required 50/50 split
+                    </li>
+                    <li>
+                      <strong className="text-white">Royalty and Distribution Allocation:</strong> Licensee
+                      may not register or distribute the song with royalty or distribution allocations that
+                      differ from Producer 50% and Licensee 50%
                     </li>
                     <li>
                       <strong className="text-white">No Sample Clearance:</strong> If the Beat contains 

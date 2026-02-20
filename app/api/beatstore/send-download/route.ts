@@ -6,6 +6,10 @@ import emailjs from "@emailjs/nodejs"
 import { readFile } from "fs/promises"
 import { join } from "path"
 
+const PRODUCER_CREDIT = "GRLKRASH a/k/a Sonia Gibbs"
+const PRODUCER_BMI_IPI = "01057188153"
+const SPLIT_TERMS = "Producer 50% / Licensee 50% for publishing, royalties, and distribution"
+
 async function getBeatPrices(): Promise<Record<string, number> | null> {
   try {
     const data = JSON.parse(await readFile(join(process.cwd(), "beat-data.json"), "utf8"))
@@ -96,6 +100,7 @@ export async function POST(request: Request) {
       licenseId,
       licenseName,
       licenseTermsVersion,
+      buyerName,
     }: {
       email?: string
       beatId?: string
@@ -108,6 +113,7 @@ export async function POST(request: Request) {
       licenseId?: LicenseId
       licenseName?: string
       licenseTermsVersion?: string
+      buyerName?: string
     } = await request.json()
 
     if (!email || !beatId || !transactionId) {
@@ -133,7 +139,11 @@ export async function POST(request: Request) {
     console.log("✅ PayPal payment verified:", transactionId)
 
     // Store transaction for download verification - now returns unique downloadToken per beat
-    const downloadToken = await storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48) // 48 hour expiry
+    const downloadToken = await storeTransaction(transactionId, beatId, email, beatTitle || "Beat", 48, {
+      buyerName,
+      licenseName,
+      licenseTermsVersion,
+    }) // 48 hour expiry
 
     // Generate secure download link using unique downloadToken (supports bundles!)
     // Priority: NEXT_PUBLIC_BASE_URL > production domain > VERCEL_URL (preview) > localhost
@@ -152,6 +162,7 @@ export async function POST(request: Request) {
     
     // Use downloadToken (transactionId-beatId) for unique URLs per beat in bundle
     const secureDownloadUrl = `${baseUrl}/download/${downloadToken}`
+    const licensePdfUrl = `${baseUrl}/api/beatstore/license-pdf?token=${encodeURIComponent(downloadToken)}`
 
     // Log the purchase for easy access (backup method)
     const purchaseTimestamp = new Date().toISOString()
@@ -166,6 +177,7 @@ export async function POST(request: Request) {
       downloadToken,
       timestamp: purchaseTimestamp,
       downloadUrl: secureDownloadUrl,
+      licensePdfUrl,
       optInNewsletter,
     })
 
@@ -261,7 +273,14 @@ export async function POST(request: Request) {
             to_email: email,
             beat_title: beatTitle || "Beat",
             download_link: secureDownloadUrl,
+            license_pdf_url: licensePdfUrl,
             transaction_id: transactionId,
+            buyer_name: buyerName || "Licensee",
+            producer_credit: PRODUCER_CREDIT,
+            producer_bmi_ipi: PRODUCER_BMI_IPI,
+            split_terms: SPLIT_TERMS,
+            license_name: licenseName || "Starter License",
+            license_terms_version: licenseTermsVersion || "unknown",
           }
         )
 
@@ -304,8 +323,15 @@ export async function POST(request: Request) {
             beatId,
             beatTitle,
             downloadUrl: secureDownloadUrl,
+            licensePdfUrl,
             transactionId,
             timestamp: new Date().toISOString(),
+            buyerName: buyerName || "Licensee",
+            producerCredit: PRODUCER_CREDIT,
+            producerBmiIpi: PRODUCER_BMI_IPI,
+            splitTerms: SPLIT_TERMS,
+            licenseName: licenseName || "Starter License",
+            licenseTermsVersion: licenseTermsVersion || "unknown",
           }),
         })
 
@@ -335,6 +361,10 @@ export async function POST(request: Request) {
       method: "manual",
       message: "Purchase logged. Please send download link manually.",
       downloadUrl: secureDownloadUrl,
+      licensePdfUrl,
+      producerCredit: PRODUCER_CREDIT,
+      producerBmiIpi: PRODUCER_BMI_IPI,
+      splitTerms: SPLIT_TERMS,
     })
   } catch (error) {
     console.error("Send download error:", error)
