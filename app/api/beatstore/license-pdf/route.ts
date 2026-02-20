@@ -168,6 +168,14 @@ export async function GET(request: NextRequest) {
       maxWidth,
     })
 
+    page.drawText(`KRASH WORLD | TERMS ${transaction.licenseTermsVersion} | ${new Date(transaction.createdAt).toISOString()}`, {
+      x: marginLeft,
+      y: 24,
+      size: 8,
+      color: rgb(0.45, 0.45, 0.45),
+      font,
+    })
+
     const pdfBytes = await pdf.save()
     const fileName = `${sanitizeFilename({ value: transaction.beatTitle })}_license.pdf`
 
