@@ -1623,5 +1623,27 @@
       ]
     }
   ],
-  "totalTemplates": 1
+  "totalTemplates": 1,
+  "drumkits": [
+    {
+      "id": "drumkit-1",
+      "title": "KRASH KIT 1",
+      "description": "26 custom one-shots: kicks, snares, claps, hi-hats, percs & vox. All WAV, royalty-free.",
+      "price": 35,
+      "previewUrl": "/images/beat-cover.jpg",
+      "coverImage": "/images/beat-cover.jpg",
+      "fileFormat": "WAV",
+      "featured": true,
+      "genre": ["Drumkit"],
+      "contents": {
+        "KICK": 4,
+        "SNARE": 9,
+        "CLAP": 3,
+        "HI-HAT": 6,
+        "PERC": 3,
+        "VOX": 1
+      }
+    }
+  ],
+  "totalDrumkits": 1
 }

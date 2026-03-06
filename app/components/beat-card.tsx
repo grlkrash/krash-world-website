@@ -24,6 +24,7 @@ interface Beat {
   fileFormat?: string
   featured?: boolean
   genre?: string[]
+  contents?: Record<string, number>
 }
 
 interface BeatCardProps {
@@ -39,7 +40,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const currentlyPlaying = isPlaying(beat.id)
   const inCart = isInCart(beat.id)
   const isTemplate = beat.genre?.includes("Template")
-  const licenseOptions: LicenseOption[] = isTemplate
+  const isDrumkit = beat.genre?.includes("Drumkit")
+  const licenseOptions: LicenseOption[] = isTemplate || isDrumkit
     ? []
     : getAvailableLicenseOptions({
         includesWav: beat.includesWav,
@@ -200,7 +202,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               </CardDescription>
               
               {/* Audio Preview - Only for beats/loops */}
-              {!beat.genre?.includes("Template") && (
+              {!isTemplate && !isDrumkit && (
                 <div className="flex items-center gap-2 mt-2">
                   <Button
                     onClick={handlePlayPause}
@@ -241,7 +243,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                   ) : null}
                 </div>
               )}
-              {!isTemplate && (
+              {!isTemplate && !isDrumkit && (
                 <div className={`w-full md:w-72 rounded-lg p-3 border bg-black/50 space-y-2 ${
                   currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
                 }`}>
@@ -380,7 +382,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         </CardDescription>
 
         {/* Audio Preview - Only for beats/loops */}
-        {!beat.genre?.includes("Template") && (
+        {!isTemplate && !isDrumkit && (
           <div className={`flex items-center gap-3 bg-black/50 rounded-lg p-3 border ${
             currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
           }`}>
@@ -442,8 +444,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
           </div>
         </div>
 
-        {/* License Options Summary - Only for beats/loops, not templates */}
-        {!isTemplate && (
+        {/* License Options Summary - Only for beats/loops, not templates/drumkits */}
+        {!isTemplate && !isDrumkit && (
           <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
             currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
           }`}>
@@ -494,7 +496,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         )}
         
         {/* Template Info */}
-        {beat.genre?.includes("Template") && (
+        {isTemplate && (
           <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
             currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
           }`}>
@@ -507,6 +509,26 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
               <li>Instant download after purchase</li>
               <li>Commercial use included</li>
             </ul>
+          </div>
+        )}
+
+        {/* Drumkit Contents */}
+        {isDrumkit && beat.contents && (
+          <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
+            currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
+          }`}>
+            <div className={`text-xs font-semibold mb-1 ${currentTier?.priceColor || "text-[#ffda0f]"}`}>
+              KIT CONTAINS ({Object.values(beat.contents).reduce((a, b) => a + b, 0)} SAMPLES):
+            </div>
+            <div className="grid grid-cols-2 gap-1.5">
+              {Object.entries(beat.contents).map(([name, count]) => (
+                <div key={name} className="flex items-center justify-between text-xs text-gray-300 px-2 py-1 rounded bg-white/5">
+                  <span className="font-medium">{name}</span>
+                  <span className="text-[#ffda0f] font-black">x{count}</span>
+                </div>
+              ))}
+            </div>
+            <p className="text-[11px] text-gray-500">All WAV, royalty-free, instant download</p>
           </div>
         )}
       </CardContent>
