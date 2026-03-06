@@ -41,7 +41,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
   const inCart = isInCart(beat.id)
   const isTemplate = beat.genre?.includes("Template")
   const isDrumkit = beat.genre?.includes("Drumkit")
-  const licenseOptions: LicenseOption[] = isTemplate || isDrumkit
+  const isDrumLoop = beat.genre?.includes("Drum Loop")
+  const licenseOptions: LicenseOption[] = isTemplate || isDrumkit || isDrumLoop
     ? []
     : getAvailableLicenseOptions({
         includesWav: beat.includesWav,
@@ -243,7 +244,7 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
                   ) : null}
                 </div>
               )}
-              {!isTemplate && !isDrumkit && (
+              {!isTemplate && !isDrumkit && !isDrumLoop && (
                 <div className={`w-full md:w-72 rounded-lg p-3 border bg-black/50 space-y-2 ${
                   currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
                 }`}>
@@ -444,8 +445,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
           </div>
         </div>
 
-        {/* License Options Summary - Only for beats/loops, not templates/drumkits */}
-        {!isTemplate && !isDrumkit && (
+        {/* License Options Summary - Only for beats/loops, not templates/drumkits/drumloops */}
+        {!isTemplate && !isDrumkit && !isDrumLoop && (
           <div className={`bg-black/50 rounded-lg p-3 border space-y-2 ${
             currentTier ? `${currentTier.border}/20` : "border-[#ffda0f]/10"
           }`}>

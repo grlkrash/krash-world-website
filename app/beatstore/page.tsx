@@ -33,7 +33,7 @@ export default function BeatstorePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isCartOpen, setIsCartOpen] = useState(false)
   const [currentTime, setCurrentTime] = useState("")
-  const [activeTab, setActiveTab] = useState<"beats" | "loops" | "templates" | "drumkits">("beats")
+  const [activeTab, setActiveTab] = useState<"beats" | "loops" | "templates" | "drumkits" | "drumloops">("beats")
   const [viewMode, setViewMode] = useState<"grid" | "list">("grid")
   
   // Filter states
@@ -131,6 +131,8 @@ export default function BeatstorePage() {
     ? beatData.loops 
     : activeTab === "drumkits"
     ? (beatData.drumkits || [])
+    : activeTab === "drumloops"
+    ? (beatData.drumloops || [])
     : (beatData.templates || [])
 
   // Apply filters and sorting
@@ -268,7 +270,7 @@ export default function BeatstorePage() {
               <span className="text-white">PREMIUM</span>
               <br />
               <span className="text-[#ffda0f]">
-                {activeTab === "templates" ? "TEMPLATES" : activeTab === "loops" ? "LOOPS" : activeTab === "drumkits" ? "DRUM KITS" : "BEATS"}
+                {activeTab === "templates" ? "TEMPLATES" : activeTab === "loops" ? "LOOPS" : activeTab === "drumkits" ? "DRUM KITS" : activeTab === "drumloops" ? "DRUM LOOPS" : "BEATS"}
               </span>
             </h1>
             <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
@@ -276,6 +278,8 @@ export default function BeatstorePage() {
                 ? "Professional Logic Pro mixing templates and channel strip settings."
                 : activeTab === "drumkits"
                 ? "Custom drum kits packed with one-shots. Drag, drop, make hits."
+                : activeTab === "drumloops"
+                ? "Ready-made drum loops to chop, flip, or drop into your session."
                 : "Premium beats, loops, and Logic Pro templates for your next project."}
             </p>
 
@@ -323,6 +327,18 @@ export default function BeatstorePage() {
                   }`}
                 >
                   DRUM KITS ({beatData.drumkits.length})
+                </button>
+              )}
+              {beatData.drumloops && beatData.drumloops.length > 0 && (
+                <button
+                  onClick={() => setActiveTab("drumloops")}
+                  className={`px-6 py-2 rounded-lg font-bold transition-all ${
+                    activeTab === "drumloops"
+                      ? "bg-[#ffda0f] text-black"
+                      : "bg-black/50 text-gray-400 hover:text-white border border-[#ffda0f]/20"
+                  }`}
+                >
+                  DRUM LOOPS ({beatData.drumloops.length})
                 </button>
               )}
             </div>
@@ -536,7 +552,7 @@ export default function BeatstorePage() {
           </div>
 
           {/* Featured Section - Only show when not sorting */}
-          {featuredItems.length > 0 && sortBy === "default" && (activeTab === "beats" || activeTab === "templates" || activeTab === "drumkits") && (
+          {featuredItems.length > 0 && sortBy === "default" && (activeTab === "beats" || activeTab === "templates" || activeTab === "drumkits" || activeTab === "drumloops") && (
             <div className="mb-16 scroll-mt-24">
               <div className="text-center mb-8">
                 <div className="text-[#ffda0f] text-sm font-mono mb-2">TRENDING NOW</div>
@@ -559,7 +575,7 @@ export default function BeatstorePage() {
           {/* All Items Grid */}
           {filteredAndSortedItems.length > 0 ? (
             <div className="scroll-mt-24">
-              {featuredItems.length > 0 && sortBy === "default" && regularItems.length > 0 && (activeTab === "beats" || activeTab === "templates" || activeTab === "drumkits") && (
+              {featuredItems.length > 0 && sortBy === "default" && regularItems.length > 0 && (activeTab === "beats" || activeTab === "templates" || activeTab === "drumkits" || activeTab === "drumloops") && (
                 <div className="text-center mb-8">
                   <div className="text-[#ffda0f] text-sm font-mono mb-2">FULL CATALOG</div>
                   <h2 className="text-2xl md:text-3xl font-black text-white">
