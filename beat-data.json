@@ -1586,34 +1586,10 @@
         "Punk",
         "Guitar"
       ]
-    },
-    {
-      "id": "loop-16",
-      "title": "UNTITLED 7",
-      "description": "Musical loop perfect for your projects. Includes full audio file.",
-      "price": 5,
-      "previewUrl": "/audio/loop-16-preview.wav",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": true,
-      "fileFormat": "WAV",
-      "featured": false,
-      "genre": ["Loop", "Synthesizer", "Alien"]
-    },
-    {
-      "id": "loop-17",
-      "title": "UNTITLED 8",
-      "description": "Musical loop perfect for your projects. Includes full audio file.",
-      "price": 5,
-      "previewUrl": "/audio/loop-17-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": ["Loop", "Synthesizer", "Alien"]
     }
   ],
   "totalBeats": 78,
-  "totalLoops": 16,
+  "totalLoops": 14,
   "templates": [
     {
       "id": "template-1",
