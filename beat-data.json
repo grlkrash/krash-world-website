@@ -1670,7 +1670,19 @@
       "fileFormat": "WAV + MP3",
       "featured": false,
       "genre": ["Drum Loop", "Bass"]
+    },
+    {
+      "id": "drumloop-3",
+      "title": "LONGFELLOW DRUM LOOP",
+      "description": "Drum loop ready to chop, flip, or drop straight into your session. Includes MP3 + WAV.",
+      "price": 5,
+      "previewUrl": "/audio/drumloop-3-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "fileFormat": "WAV + MP3",
+      "featured": false,
+      "genre": ["Drum Loop", "Lofi", "Boom Bap"]
     }
   ],
-  "totalDrumloops": 2
+  "totalDrumloops": 3
 }
