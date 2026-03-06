@@ -509,13 +509,14 @@
     {
       "id": "beat-40",
       "title": "ALIEN",
-      "description": "Premium beat for your next project. Includes full audio file.",
+      "description": "Premium beat for your next project. Includes full audio file with stems.",
       "price": 15,
       "tier": 3,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-40-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
+      "includesWav": true,
+      "includesStems": true,
+      "fileFormat": "WAV + Stems",
       "featured": false,
       "genre": [
         "Hyperpop",
