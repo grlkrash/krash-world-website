@@ -1381,6 +1381,51 @@
         "Boom Bap",
         "Hip Hop"
       ]
+    },
+    {
+      "id": "beat-109",
+      "title": "7.25_IDEA",
+      "description": "Premium beat for your next project. Includes full audio file.",
+      "price": 15,
+      "tier": 3,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-3-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": false,
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Alternative"
+      ]
+    },
+    {
+      "id": "beat-110",
+      "title": "7.26_IDEA",
+      "description": "Premium beat for your next project. Includes full audio file.",
+      "price": 15,
+      "tier": 3,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-4-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": false,
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Alternative"
+      ]
+    },
+    {
+      "id": "beat-111",
+      "title": "DESIRE",
+      "description": "Premium beat for your next project. Includes full audio file.",
+      "price": 15,
+      "tier": 3,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-7-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": false,
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Alternative"
+      ]
     }
   ],
   "loops": [
@@ -1404,34 +1449,6 @@
       "description": "Musical loop perfect for your projects. Includes full audio file.",
       "price": 5,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-2-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Loop"
-      ]
-    },
-    {
-      "id": "loop-3",
-      "title": "7.25_IDEA",
-      "description": "Musical loop perfect for your projects. Includes full audio file.",
-      "price": 5,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-3-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Loop"
-      ]
-    },
-    {
-      "id": "loop-4",
-      "title": "7.26_IDEA",
-      "description": "Musical loop perfect for your projects. Includes full audio file.",
-      "price": 5,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-4-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
@@ -1469,20 +1486,6 @@
       ]
     },
     {
-      "id": "loop-7",
-      "title": "DESIRE LOOP",
-      "description": "Musical loop perfect for your projects. Includes full audio file.",
-      "price": 5,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-7-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Loop"
-      ]
-    },
-    {
       "id": "loop-8",
       "title": "EA LOOP SPED",
       "description": "Musical loop perfect for your projects. Includes full audio file.",
@@ -1502,20 +1505,6 @@
       "description": "Musical loop perfect for your projects. Includes full audio file.",
       "price": 5,
       "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-9-preview.mp3",
-      "coverImage": "/images/beat-cover.jpg",
-      "includesWav": false,
-      "fileFormat": "MP3",
-      "featured": false,
-      "genre": [
-        "Loop"
-      ]
-    },
-    {
-      "id": "loop-10",
-      "title": "GOD LOOP",
-      "description": "Musical loop perfect for your projects. Includes full audio file.",
-      "price": 5,
-      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-10-preview.mp3",
       "coverImage": "/images/beat-cover.jpg",
       "includesWav": false,
       "fileFormat": "MP3",
@@ -1589,8 +1578,8 @@
       ]
     }
   ],
-  "totalBeats": 78,
-  "totalLoops": 14,
+  "totalBeats": 81,
+  "totalLoops": 10,
   "templates": [
     {
       "id": "template-1",
