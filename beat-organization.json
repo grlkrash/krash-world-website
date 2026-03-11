@@ -25,14 +25,6 @@
       "isMp3": false
     },
     {
-      "id": "beat-4",
-      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/10.9.wav",
-      "filename": "10.9.wav",
-      "sanitized": "10_9",
-      "isWav": true,
-      "isMp3": false
-    },
-    {
       "id": "beat-5",
       "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/11.16.wav",
       "filename": "11.16.wav",
@@ -391,14 +383,6 @@
       "sanitized": "in_my_dreams_152bpm__grl___rocco_",
       "isWav": true,
       "isMp3": false
-    },
-    {
-      "id": "beat-50",
-      "originalFile": "/Users/sonia/Downloads/BEATS 4 SITE/kaash-nomet.mp3",
-      "filename": "kaash-nomet.mp3",
-      "sanitized": "kaash_nomet",
-      "isWav": false,
-      "isMp3": true
     },
     {
       "id": "beat-51",
