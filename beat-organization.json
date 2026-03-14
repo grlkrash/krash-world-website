@@ -929,8 +929,40 @@
       "sanitized": "god_loop",
       "isWav": true,
       "isMp3": false
+    },
+    {
+      "id": "loop-16",
+      "originalFile": "/Users/sonia/Desktop/loops 2026/day three.wav",
+      "filename": "day-three.wav",
+      "sanitized": "day_three",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "loop-16-mp3",
+      "originalFile": "/Users/sonia/Desktop/loops 2026/day three.mp3",
+      "filename": "day-three.mp3",
+      "sanitized": "day_three",
+      "isWav": false,
+      "isMp3": true
+    },
+    {
+      "id": "loop-17",
+      "originalFile": "/Users/sonia/Desktop/loops 2026/day two loop.wav",
+      "filename": "day-two-loop.wav",
+      "sanitized": "day_two_loop",
+      "isWav": true,
+      "isMp3": false
+    },
+    {
+      "id": "loop-17-mp3",
+      "originalFile": "/Users/sonia/Desktop/loops 2026/day two loop.mp3",
+      "filename": "day-two-loop.mp3",
+      "sanitized": "day_two_loop",
+      "isWav": false,
+      "isMp3": true
     }
   ],
   "totalBeats": 107,
-  "totalLoops": 11
+  "totalLoops": 13
 }

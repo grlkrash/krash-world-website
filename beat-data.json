@@ -1542,10 +1542,34 @@
         "Punk",
         "Guitar"
       ]
+    },
+    {
+      "id": "loop-16",
+      "title": "DAY THREE",
+      "description": "Musical loop perfect for your projects. Includes WAV + MP3.",
+      "price": 10,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-16-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "fileFormat": "WAV + MP3",
+      "featured": false,
+      "genre": ["Loop"]
+    },
+    {
+      "id": "loop-17",
+      "title": "DAY TWO LOOP",
+      "description": "Musical loop perfect for your projects. Includes WAV + MP3.",
+      "price": 10,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/loop-17-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "fileFormat": "WAV + MP3",
+      "featured": false,
+      "genre": ["Loop"]
     }
   ],
   "totalBeats": 82,
-  "totalLoops": 9,
+  "totalLoops": 11,
   "templates": [
     {
       "id": "template-1",
