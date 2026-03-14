@@ -18,7 +18,7 @@ const fs = require('fs')
 // ============================================
 const S3_BUCKET_NAME = 'krash-beatstore-aws' // Your bucket name
 const S3_REGION = 'us-east-2' // US East (Ohio)
-const S3_PREFIX = 'previews' // Optional: folder prefix in S3
+const S3_PREFIX = 'beats' // Optional: folder prefix in S3
 const PUBLIC_ACCESS = true // Set to true to make files publicly accessible
 
 // ============================================
