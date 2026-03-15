@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Play, Pause, ShoppingCart, Check, Zap, Layers } from "lucide-react"
 import { useAudio } from "./audio-context"
 import { useCart } from "./cart-context"
-import { getAvailableLicenseOptions, type LicenseOption } from "@/app/services/beatstore/license-config"
+import { getAvailableLicenseOptions, type LicenseOption, type LicensePrices } from "@/app/services/beatstore/license-config"
 
 interface Beat {
   id: string
@@ -25,6 +25,8 @@ interface Beat {
   featured?: boolean
   genre?: string[]
   contents?: Record<string, number>
+  licensePrices?: LicensePrices
+  excludeUnlimited?: boolean
 }
 
 interface BeatCardProps {
@@ -48,6 +50,8 @@ export default function BeatCard({ beat, viewMode = "grid" }: BeatCardProps) {
         includesWav: beat.includesWav,
         includesStems: beat.includesStems,
         tier: beat.tier,
+        licensePrices: beat.licensePrices,
+        excludeUnlimited: beat.excludeUnlimited,
       })
   const [selectedLicenseId, setSelectedLicenseId] = useState<LicenseOption["id"]>(licenseOptions[0]?.id || "mp3")
   const selectedLicense = licenseOptions.find((license) => license.id === selectedLicenseId) || licenseOptions[0]

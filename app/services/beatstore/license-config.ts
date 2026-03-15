@@ -102,14 +102,14 @@ export function getLicenseRule(input: { licenseId: LicenseId }) {
   return LICENSE_RULES[input.licenseId]
 }
 
-export function getAvailableLicenseIds(input: { includesWav?: boolean; includesStems?: boolean }) {
+export function getAvailableLicenseIds(input: { includesWav?: boolean; includesStems?: boolean; excludeUnlimited?: boolean }) {
   const hasWav = Boolean(input.includesWav)
   const hasStems = Boolean(input.includesStems)
 
   const availableIds: LicenseId[] = ["mp3"]
   if (hasWav) availableIds.push("wav")
   if (hasStems) availableIds.push("stems")
-  if (hasWav && hasStems) availableIds.push("unlimited")
+  if (hasWav && hasStems && !input.excludeUnlimited) availableIds.push("unlimited")
 
   return availableIds
 }
@@ -138,10 +138,11 @@ export function getLicenseUsageText(input: { licenseId: LicenseId }) {
   return getUsageFromCaps({ caps: rule.caps })
 }
 
-export function getAvailableLicenseOptions(input: { includesWav?: boolean; includesStems?: boolean; tier?: number }) {
+export function getAvailableLicenseOptions(input: { includesWav?: boolean; includesStems?: boolean; tier?: number; licensePrices?: LicensePrices; excludeUnlimited?: boolean }) {
   const ids = getAvailableLicenseIds({
     includesWav: input.includesWav,
     includesStems: input.includesStems,
+    excludeUnlimited: input.excludeUnlimited,
   })
 
   return ids.map((licenseId) => {
@@ -149,7 +150,7 @@ export function getAvailableLicenseOptions(input: { includesWav?: boolean; inclu
     return {
       id: rule.id,
       name: rule.name,
-      price: getLicensePrice({ licenseId: rule.id, tier: input.tier }),
+      price: getLicensePrice({ licenseId: rule.id, tier: input.tier, licensePrices: input.licensePrices }),
       fileFormat: rule.fileFormat,
       usage: getUsageFromCaps({ caps: rule.caps }),
     }

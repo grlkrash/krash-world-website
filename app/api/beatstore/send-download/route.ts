@@ -10,40 +10,64 @@ const PRODUCER_CREDIT = "GRLKRASH a/k/a Sonia Gibbs"
 const PRODUCER_BMI_IPI = "01057188153"
 const SPLIT_TERMS = "Producer 50% / Licensee 50% for publishing, royalties, and distribution"
 
-async function getBeatPrices(): Promise<Record<string, number> | null> {
+interface BeatRecord {
+  id: string
+  price: number
+  licensePrices?: { mp3?: number; wav?: number; stems?: number }
+}
+
+async function getBeats(): Promise<BeatRecord[]> {
   try {
     const data = JSON.parse(await readFile(join(process.cwd(), "beat-data.json"), "utf8"))
-    const beats = data?.beats || []
-    return beats.reduce((acc: Record<string, number>, beat: { id: string; price: number }) => {
-      if (typeof beat?.id === "string" && typeof beat?.price === "number") acc[beat.id] = beat.price
-      return acc
-    }, {})
+    return data?.beats || []
   } catch {
-    return null
+    return []
   }
 }
 
+async function getValidBeatPrices(beatId: string): Promise<number[]> {
+  const beats = await getBeats()
+  const beat = beats.find((b) => b.id === beatId)
+  if (!beat) return []
+  const lp = beat.licensePrices
+  if (lp) return [lp.mp3, lp.wav, lp.stems].filter((p): p is number => typeof p === "number")
+  return typeof beat.price === "number" ? [beat.price] : []
+}
+
 async function getBeatPrice(beatId: string): Promise<number | null> {
-  const prices = await getBeatPrices()
-  return prices?.[beatId] ?? null
+  const beats = await getBeats()
+  const beat = beats.find((b) => b.id === beatId)
+  if (!beat) return null
+  const lp = beat.licensePrices
+  if (lp?.mp3 != null) return lp.mp3
+  return typeof beat.price === "number" ? beat.price : null
+}
+
+async function getBeatPrices(): Promise<Record<string, number>> {
+  const beats = await getBeats()
+  const acc: Record<string, number> = {}
+  for (const b of beats) {
+    if (typeof b?.id !== "string") continue
+    const lp = b.licensePrices
+    acc[b.id] = lp?.mp3 ?? (typeof b.price === "number" ? b.price : 0)
+  }
+  return acc
 }
 
 async function verifyPayPalPayment({
   orderId,
   expectedBeatId,
-  expectedAmount,
   isBundle,
 }: {
   orderId: string
   expectedBeatId: string
-  expectedAmount: number | null
   isBundle: boolean
-}): Promise<boolean> {
+}): Promise<{ ok: boolean; amount: number }> {
   const clientId = process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID
   const secret = process.env.PAYPAL_CLIENT_SECRET
   if (!clientId || !secret) {
     console.error("❌ PayPal verification skipped: missing credentials")
-    return false
+    return { ok: false, amount: 0 }
   }
   
   const auth = Buffer.from(`${clientId}:${secret}`).toString("base64")
@@ -52,38 +76,40 @@ async function verifyPayPalPayment({
     headers: { Authorization: `Basic ${auth}`, "Content-Type": "application/x-www-form-urlencoded" },
     body: "grant_type=client_credentials",
   })
-  if (!tokenRes.ok) return false
+  if (!tokenRes.ok) return { ok: false, amount: 0 }
   
   const { access_token } = await tokenRes.json()
   const orderRes = await fetch(`https://api-m.paypal.com/v2/checkout/orders/${orderId}`, {
     headers: { Authorization: `Bearer ${access_token}` },
   })
-  if (!orderRes.ok) return false
+  if (!orderRes.ok) return { ok: false, amount: 0 }
   
   const order = await orderRes.json()
-  if (order.status !== "COMPLETED") return false
+  if (order.status !== "COMPLETED") return { ok: false, amount: 0 }
 
   const purchaseUnit = order.purchase_units?.[0]
   const customId = purchaseUnit?.custom_id || ""
   const customIds = customId.split(",").map((value: string) => value.trim())
-  if (!customIds.includes(expectedBeatId)) return false
+  if (!customIds.includes(expectedBeatId)) return { ok: false, amount: 0 }
 
   const amountValue = Number(purchaseUnit?.amount?.value)
-  if (!Number.isFinite(amountValue)) return false
-  if (purchaseUnit?.amount?.currency_code && purchaseUnit.amount.currency_code !== "USD") return false
-  if (!isBundle && expectedAmount !== null && Number(amountValue.toFixed(2)) !== Number(expectedAmount.toFixed(2))) return false
-  if (isBundle) {
-    const prices = await getBeatPrices()
-    if (!prices) return false
-    const beatPrices = customIds.map((beatId: string) => prices[beatId])
-    if (beatPrices.some((price: number) => typeof price !== "number")) return false
-    const subtotal = beatPrices.reduce((sum: number, price: number) => sum + price, 0)
-    const cheapest = beatPrices.length >= 3 ? Math.min(...beatPrices) : 0
-    const expectedTotal = subtotal - cheapest * 0.5
-    if (Number(amountValue.toFixed(2)) !== Number(expectedTotal.toFixed(2))) return false
+  if (!Number.isFinite(amountValue)) return { ok: false, amount: 0 }
+  if (purchaseUnit?.amount?.currency_code && purchaseUnit.amount.currency_code !== "USD") return { ok: false, amount: 0 }
+  if (!isBundle) {
+    const validPrices = await getValidBeatPrices(expectedBeatId)
+    if (validPrices.length === 0) return { ok: false, amount: 0 }
+    const amt = Number(amountValue.toFixed(2))
+    if (!validPrices.some((p) => Number(p.toFixed(2)) === amt)) return { ok: false, amount: 0 }
+    return { ok: true, amount: amountValue }
   }
-
-  return true
+  const prices = await getBeatPrices()
+  const beatPrices = customIds.map((beatId: string) => prices[beatId])
+  if (beatPrices.some((p: number) => typeof p !== "number")) return { ok: false, amount: 0 }
+  const subtotal = beatPrices.reduce((sum: number, price: number) => sum + price, 0)
+  const cheapest = beatPrices.length >= 3 ? Math.min(...beatPrices) : 0
+  const expectedTotal = subtotal - cheapest * 0.5
+  if (Number(amountValue.toFixed(2)) !== Number(expectedTotal.toFixed(2))) return { ok: false, amount: 0 }
+  return { ok: true, amount: amountValue }
 }
 
 export async function POST(request: Request) {
@@ -101,6 +127,7 @@ export async function POST(request: Request) {
       licenseName,
       licenseTermsVersion,
       buyerName,
+      beatPrice: clientBeatPrice,
     }: {
       email?: string
       beatId?: string
@@ -114,6 +141,7 @@ export async function POST(request: Request) {
       licenseName?: string
       licenseTermsVersion?: string
       buyerName?: string
+      beatPrice?: number
     } = await request.json()
 
     if (!email || !beatId || !transactionId) {
@@ -126,13 +154,12 @@ export async function POST(request: Request) {
     }
 
     // Verify payment with PayPal before sending download
-    const isVerified = await verifyPayPalPayment({
+    const verifyResult = await verifyPayPalPayment({
       orderId: transactionId,
       expectedBeatId: beatId,
-      expectedAmount: serverBeatPrice,
       isBundle: !!isBundle,
     })
-    if (!isVerified) {
+    if (!verifyResult.ok) {
       console.error("❌ PayPal verification failed for order:", transactionId)
       return Response.json({ error: "Payment verification failed" }, { status: 403 })
     }
@@ -185,8 +212,8 @@ export async function POST(request: Request) {
     // SALES TRACKING & NOTIFICATIONS
     // ============================================
     
-    // Log sale to Redis for persistent tracking
-    const saleAmount = serverBeatPrice || 0
+    // Log sale to Redis (bundle: per-item price from client; single: verified PayPal amount)
+    const saleAmount = isBundle ? (clientBeatPrice ?? serverBeatPrice ?? 0) : (verifyResult.amount ?? serverBeatPrice ?? 0)
     await logSale({
       transactionId,
       beatId,

@@ -1406,6 +1406,21 @@
       "genre": [
         "Alternative"
       ]
+    },
+    {
+      "id": "beat-nascar",
+      "title": "NASCAR",
+      "description": "120 BPM, C# minor. Premium beat with MP3, WAV, and stems available.",
+      "price": 60,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-nascar-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "includesStems": true,
+      "fileFormat": "MP3 + WAV + Stems",
+      "featured": true,
+      "excludeUnlimited": true,
+      "licensePrices": { "mp3": 60, "wav": 100, "stems": 200 },
+      "genre": ["Rap", "Hip-Hop"]
     }
   ],
   "loops": [

@@ -839,6 +839,14 @@
       "sanitized": "ur_a_jerk_ik",
       "isWav": true,
       "isMp3": false
+    },
+    {
+      "id": "beat-nascar",
+      "originalFile": "/Users/sonia/Downloads/NASCAR (120BPM) CSHARP MIN.mp3",
+      "filename": "NASCAR (120BPM) CSHARP MIN.mp3",
+      "sanitized": "nascar_120bpm_csharp_min",
+      "isWav": false,
+      "isMp3": true
     }
   ],
   "loops": [

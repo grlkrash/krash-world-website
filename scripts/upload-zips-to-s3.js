@@ -63,21 +63,20 @@ function uploadAllZips() {
     process.exit(1)
   }
 
-  console.log(`\n📦 Uploading ZIP files to S3...\n`)
+  console.log(`\n📦 Uploading download files to S3...\n`)
   console.log(`   Bucket: ${S3_BUCKET_NAME}`)
   console.log(`   Region: ${S3_REGION}`)
   console.log(`   Prefix: ${S3_PREFIX}`)
   console.log(`   Source: ${DOWNLOADS_DIR}\n`)
 
   const files = fs.readdirSync(DOWNLOADS_DIR)
-    .filter(file => file.endsWith('.zip'))
+    .filter(file => /\.(zip|mp3|wav)$/i.test(file))
     .sort()
 
-  console.log(`Found ${files.length} ZIP files\n`)
+  console.log(`Found ${files.length} files\n`)
 
   if (files.length === 0) {
-    console.log('No ZIP files found to upload.')
-    console.log('Make sure you have .zip files in public/downloads/')
+    console.log('No .zip/.mp3/.wav files in public/downloads/')
     process.exit(0)
   }
 
