@@ -9,7 +9,7 @@ import { AudioProvider } from "../components/audio-context"
 import { CartProvider } from "../components/cart-context"
 import CartIcon from "../components/cart-icon"
 import CartDrawer from "../components/cart-drawer"
-import { getLicensePrice } from "@/app/services/beatstore/license-config"
+import { getLicensePrice, getMp3LeasePrice } from "@/app/services/beatstore/license-config"
 import { Menu, X, ArrowLeft, Grid3x3, List, Filter, ChevronDown, SlidersHorizontal, Search } from "lucide-react"
 import beatData from "../../beat-data.json"
 
@@ -59,9 +59,9 @@ export default function BeatstorePage() {
 
   // Tier configuration
   const tiers = [
-    { tier: 1, label: "TIER 1", price: "$50", color: "bg-[#ffda0f] text-black" },
-    { tier: 2, label: "TIER 2", price: "$25", color: "bg-[#00ff88] text-black" },
-    { tier: 3, label: "TIER 3", price: "$15", color: "bg-[#ff6b6b] text-white" },
+    { tier: 1, label: "TIER 1", price: `$${getMp3LeasePrice({ tier: 1 })}`, color: "bg-[#ffda0f] text-black" },
+    { tier: 2, label: "TIER 2", price: `$${getMp3LeasePrice({ tier: 2 })}`, color: "bg-[#00ff88] text-black" },
+    { tier: 3, label: "TIER 3", price: `$${getMp3LeasePrice({ tier: 3 })}`, color: "bg-[#ff6b6b] text-white" },
   ]
 
   // Toggle tier filter
@@ -139,12 +139,16 @@ export default function BeatstorePage() {
   const filteredAndSortedItems = useMemo(() => {
     let items = [...baseItems]
 
-    // Filter by search query (case-insensitive title match)
+    // Filter by search query (punctuation/spacing-insensitive title match)
     if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase().trim()
-      items = items.filter((item) => 
-        item.title.toLowerCase().includes(query)
-      )
+      const query = normalizeForSearch(searchQuery)
+      const queryTokens = query.split(" ").filter(Boolean)
+      items = items.filter((item) => {
+        const title = normalizeForSearch(item.title || "")
+        if (!title) return false
+        if (title.includes(query)) return true
+        return queryTokens.every((token) => title.includes(token))
+      })
     }
 
     // Filter by tier (only for beats)
@@ -675,4 +679,13 @@ export default function BeatstorePage() {
     </AudioProvider>
     </CartProvider>
   )
+}
+
+function normalizeForSearch(input: string) {
+  return input
+    .toLowerCase()
+    .normalize("NFKD")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
+    .trim()
+    .replace(/\s+/g, " ")
 }
