@@ -1419,8 +1419,61 @@
       "fileFormat": "MP3 + WAV + Stems",
       "featured": true,
       "excludeUnlimited": true,
-      "licensePrices": { "mp3": 60, "wav": 100, "stems": 200 },
-      "genre": ["Rap", "Hip-Hop"]
+      "licensePrices": {
+        "mp3": 60,
+        "wav": 100,
+        "stems": 200
+      },
+      "genre": [
+        "Rap",
+        "Hip-Hop"
+      ]
+    },
+    {
+      "id": "beat-113",
+      "title": "cc",
+      "description": "Premium beat for your next project. Includes full audio file.",
+      "price": 50,
+      "tier": 1,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-113-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": false,
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Rap"
+      ]
+    },
+    {
+      "id": "beat-114",
+      "title": "back in the day",
+      "description": "Premium beat for your next project. Includes full audio file.",
+      "price": 50,
+      "tier": 1,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-114-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": false,
+      "fileFormat": "MP3",
+      "featured": false,
+      "genre": [
+        "Rap"
+      ]
+    },
+    {
+      "id": "beat-115",
+      "title": "war horn",
+      "description": "Premium beat for your next project. Includes MP3, WAV, and stems.",
+      "price": 60,
+      "tier": 1,
+      "previewUrl": "https://krash-beatstore-aws.s3.us-east-2.amazonaws.com/beats/beat-115-preview.mp3",
+      "coverImage": "/images/beat-cover.jpg",
+      "includesWav": true,
+      "includesStems": true,
+      "fileFormat": "MP3 + WAV + Stems",
+      "featured": false,
+      "genre": [
+        "Horn"
+      ]
     }
   ],
   "loops": [
@@ -1587,7 +1640,7 @@
       ]
     }
   ],
-  "totalBeats": 83,
+  "totalBeats": 86,
   "totalLoops": 11,
   "templates": [
     {
