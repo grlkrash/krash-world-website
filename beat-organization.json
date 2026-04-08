@@ -839,6 +839,14 @@
       "sanitized": "ur_a_jerk_ik",
       "isWav": true,
       "isMp3": false
+    },
+    {
+      "id": "beat-nascar",
+      "originalFile": "/Volumes/T7/NASCAR Project/NASCAR (120BPM) CSHARP MIN.mp3",
+      "filename": "NASCAR (120BPM) CSHARP MIN.mp3",
+      "sanitized": "nascar_120bpm_csharp_min",
+      "isWav": false,
+      "isMp3": true
     }
   ],
   "loops": [
@@ -963,6 +971,6 @@
       "isMp3": true
     }
   ],
-  "totalBeats": 107,
+  "totalBeats": 108,
   "totalLoops": 13
 }

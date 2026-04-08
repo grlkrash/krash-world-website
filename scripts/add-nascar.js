@@ -5,10 +5,9 @@ const path = require('path')
 const { execSync } = require('child_process')
 let AdmZip; try { AdmZip = require('adm-zip') } catch { console.error('npm install adm-zip --save-dev'); process.exit(1) }
 
-const HOME = process.env.HOME
-const MP3 = path.join(HOME, 'Downloads', 'NASCAR (120BPM) CSHARP MIN.mp3')
-const WAV = path.join(HOME, 'Downloads', 'NASCAR (120BPM) CSHARP MIN.wav')
-const STEMS = path.join(HOME, 'Downloads', 'NASCAR STEMS 120BPM CSHARPMIN .zip')
+const MP3 = process.argv[2] || '/Volumes/T7/NASCAR Project/NASCAR (120BPM) CSHARP MIN.mp3'
+const WAV = process.argv[3] || '/Volumes/T7/NASCAR Project/NASCAR (120BPM) CSHARP MIN.wav'
+const STEMS = process.argv[4] || '/Volumes/T7/NASCAR Project/nascar stems 120bpm c sharp minor.zip'
 const ID = 'beat-nascar'
 const DL = path.join(__dirname, '../public/downloads')
 const BT = path.join(__dirname, '../public/beats')
