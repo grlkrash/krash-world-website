@@ -1,6 +1,7 @@
 import { storeTransaction } from "@/app/services/beatstore/transaction-store"
 import { logSale } from "@/app/services/beatstore/sales-log"
 import { notifySale, logSaleToGoogleSheets } from "@/app/services/beatstore/sale-notifications"
+import { getAvailableLicenseOptions, getMp3LeasePrice } from "@/app/services/beatstore/license-config"
 import type { LicenseId } from "@/app/services/beatstore/license-config"
 import emailjs from "@emailjs/nodejs"
 import { readFile } from "fs/promises"
@@ -13,6 +14,9 @@ const SPLIT_TERMS = "Producer 50% / Licensee 50% for publishing, royalties, and 
 interface BeatRecord {
   id: string
   price: number
+  tier?: number
+  includesWav?: boolean
+  includesStems?: boolean
   licensePrices?: { mp3?: number; wav?: number; stems?: number }
 }
 
@@ -25,13 +29,33 @@ async function getBeats(): Promise<BeatRecord[]> {
   }
 }
 
+// Returns every amount that could legitimately have been charged for this beat.
+// The storefront prices leases from the tier/license config (see beat-card.tsx),
+// so verification MUST use the same source. Relying only on the flat `price`
+// field caused valid payments to be rejected once tier pricing diverged from it
+// (e.g. a tier-1 beat charges $60 while `price` still reads $50 → false 403).
 async function getValidBeatPrices(beatId: string): Promise<number[]> {
   const beats = await getBeats()
   const beat = beats.find((b) => b.id === beatId)
   if (!beat) return []
+
+  const prices = new Set<number>()
+  if (typeof beat.price === "number") prices.add(beat.price)
+
   const lp = beat.licensePrices
-  if (lp) return [lp.mp3, lp.wav, lp.stems].filter((p): p is number => typeof p === "number")
-  return typeof beat.price === "number" ? [beat.price] : []
+  if (lp) {
+    for (const p of [lp.mp3, lp.wav, lp.stems]) if (typeof p === "number") prices.add(p)
+  } else {
+    for (const option of getAvailableLicenseOptions({
+      includesWav: beat.includesWav,
+      includesStems: beat.includesStems,
+      tier: beat.tier,
+    })) {
+      prices.add(option.price)
+    }
+  }
+
+  return [...prices]
 }
 
 async function getBeatPrice(beatId: string): Promise<number | null> {
@@ -49,7 +73,9 @@ async function getBeatPrices(): Promise<Record<string, number>> {
   for (const b of beats) {
     if (typeof b?.id !== "string") continue
     const lp = b.licensePrices
-    acc[b.id] = lp?.mp3 ?? (typeof b.price === "number" ? b.price : 0)
+    // Bundle totals are computed from the MP3 lease price — derive it the same
+    // way the storefront does (tier config) so bundle payments verify correctly.
+    acc[b.id] = lp?.mp3 ?? (b.tier != null ? getMp3LeasePrice({ tier: b.tier }) : (typeof b.price === "number" ? b.price : 0))
   }
   return acc
 }
