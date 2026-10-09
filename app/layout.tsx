@@ -101,7 +101,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <head>
         {/* Additional meta tags */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />

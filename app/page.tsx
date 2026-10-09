@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import { Canvas } from "@react-three/fiber"
 import { OrbitControls, Environment, Float } from "@react-three/drei"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Mail, Play, ShoppingBag } from "lucide-react"
+import { Menu, X, Mail, Play, ShoppingBag, ArrowDown } from "lucide-react"
 import Image from "next/image"
 import NewsletterPopup from "./components/newsletter-popup"
 import SocialLinks from "./components/social-links"
@@ -127,6 +127,13 @@ export default function KrashWorldWebsite() {
                   Darkness plagued the Earth… then God heard the cries of Jules, a 13-year-old with a humble spirit, and
                   breathed the breath of life into a toy. <span className="font-black text-[#ffda0f]">GRLKRASH.</span>
                 </p>
+                <a
+                  href="#story"
+                  className="mt-4 inline-flex items-center gap-2 text-[#ffda0f] text-sm font-mono hover:text-white transition-colors"
+                >
+                  EXPLORE THE STORY
+                  <ArrowDown size={16} />
+                </a>
               </div>
 
               <div className="flex flex-wrap gap-4">
@@ -221,6 +228,21 @@ export default function KrashWorldWebsite() {
           </div>
         </div>
       </main>
+
+      {/* Story Section */}
+      <section id="story" className="scroll-mt-24 py-16 border-t border-[#ffda0f]/20">
+        <div className="container mx-auto pl-6 pr-20 sm:px-6 text-center">
+          <div className="text-[#ffda0f] text-sm font-mono mb-4">THE STORY</div>
+          <blockquote className="max-w-2xl mx-auto text-gray-400 italic leading-relaxed">
+            “Above all, taking the shield of faith… And take… the sword of the Spirit, which is the word of God.”
+          </blockquote>
+          <cite className="block not-italic font-mono text-xs text-[#ffda0f] mt-2 mb-6">EPHESIANS 6:16–17</cite>
+          <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto text-balance">
+            God created GRLKRASH as a physical, earthly comfort to Jules, and for her joy. And as a teammate to Jules,
+            as she takes up her sword and shield in the battle against evil.
+          </p>
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="pt-16 pb-28 border-t border-[#ffda0f]/20">
