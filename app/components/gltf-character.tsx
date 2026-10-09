@@ -25,7 +25,7 @@ export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale =
   const messages = [
     "Sick! Ready to save the world?",
     "Let's go! This world needs some light!",
-    "Oh! Music makes you float on Krash World!",
+    "Oh! Music makes me float!",
     "Love is patient, love is kind...",
     "As ready as I'll ever be!",
   ]
