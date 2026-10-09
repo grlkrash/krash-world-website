@@ -115,12 +115,12 @@ export default function KrashWorldWebsite() {
                 </h1>
                 <blockquote className="max-w-md mb-4 border-l-2 border-[#ffda0f]/50 pl-4 pr-14 sm:pr-0 space-y-2 text-sm italic text-gray-400 leading-relaxed">
                   <p>
-                    “And darkness was upon the face of the deep.”{" "}
-                    <cite className="not-italic font-mono text-xs text-[#ffda0f]">GENESIS 1:2</cite>
+                    “And darkness was on the face of the deep.”{" "}
+                    <cite className="not-italic font-mono text-xs text-[#ffda0f]">GENESIS 1:2 (NKJV)</cite>
                   </p>
                   <p>
-                    “…and breathed into his nostrils the breath of life; and man became a living soul.”{" "}
-                    <cite className="not-italic font-mono text-xs text-[#ffda0f]">GENESIS 2:7</cite>
+                    “…and breathed into his nostrils the breath of life; and man became a living being.”{" "}
+                    <cite className="not-italic font-mono text-xs text-[#ffda0f]">GENESIS 2:7 (NKJV)</cite>
                   </p>
                 </blockquote>
                 <p className="text-gray-300 text-lg leading-relaxed max-w-md pr-14 sm:pr-0">
@@ -236,7 +236,7 @@ export default function KrashWorldWebsite() {
           <blockquote className="max-w-2xl mx-auto text-gray-400 italic leading-relaxed">
             “Above all, taking the shield of faith… And take… the sword of the Spirit, which is the word of God.”
           </blockquote>
-          <cite className="block not-italic font-mono text-xs text-[#ffda0f] mt-2 mb-6">EPHESIANS 6:16–17</cite>
+          <cite className="block not-italic font-mono text-xs text-[#ffda0f] mt-2 mb-6">EPHESIANS 6:16–17 (NKJV)</cite>
           <p className="text-gray-300 text-lg leading-relaxed max-w-2xl mx-auto text-balance">
             God created GRLKRASH as a physical, earthly comfort to Jules, and for her joy. And as a teammate to Jules,
             as she takes up her sword and shield in the battle against evil.
@@ -275,6 +275,11 @@ export default function KrashWorldWebsite() {
               <p className="text-[#ffda0f]">BY THE GRACE OF JESUS, WHO IS LORD.</p>
             </div>
           </div>
+
+          <p className="mt-12 text-gray-600 text-xs max-w-2xl mx-auto">
+            Scripture taken from the New King James Version®. Copyright © 1982 by Thomas Nelson. Used by permission.
+            All rights reserved.
+          </p>
         </div>
       </section>
 

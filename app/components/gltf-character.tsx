@@ -26,7 +26,7 @@ export default function GLTFCharacter({ position = [0, 0, 0], modelPath, scale =
     "Sick! Ready to save the world?",
     "Let's go! This world needs some light!",
     "Oh! Music makes me float!",
-    "Love is patient, love is kind...",
+    "Love suffers long and is kind...",
     "As ready as I'll ever be!",
   ]
 
