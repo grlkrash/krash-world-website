@@ -124,7 +124,8 @@ export default function KrashWorldWebsite() {
                   </p>
                 </blockquote>
                 <p className="text-gray-300 text-lg leading-relaxed max-w-md pr-14 sm:pr-0">
-                  Darkness plagued the earth. Then God heard the cries of Jules, a 13-year-old with a gift for music, and breathed the breath of life into a toy. GRLKRASH doesn't fit into this world, but she was made for a purpose: to comfort Jules, protect the meek, and fight the forces of evil.
+                  Darkness plagued the Earth… then God heard the cries of Jules, a 13-year-old with a humble spirit, and
+                  breathed the breath of life into a toy. <span className="font-black text-[#ffda0f]">GRLKRASH.</span>
                 </p>
               </div>
 

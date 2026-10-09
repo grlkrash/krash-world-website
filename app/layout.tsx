@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
     description:
-      "Enter the universe of GRLKRASH - a toy brought to life as a comfort to Jules, a 13-year-old with a gift for music. Together they protect the meek and fight the forces of evil.",
+      "Enter the universe of GRLKRASH - a toy brought to life as a comfort to Jules, a 13-year-old with a humble spirit. Together they protect the meek and fight the forces of evil.",
     url: "https://krash.world",
     siteName: "Krash World",
     images: [
