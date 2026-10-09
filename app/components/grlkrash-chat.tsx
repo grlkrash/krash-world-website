@@ -3,7 +3,10 @@
 import { useState, useRef, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { MessageCircle, X, Send, Music } from "lucide-react"
-import type { ChatMessage } from "@/app/services/chat/chatService"
+interface ChatMessage {
+  role: "user" | "assistant" | "system"
+  content: string
+}
 
 interface GRLKRASHChatProps {
   apiUrl?: string
