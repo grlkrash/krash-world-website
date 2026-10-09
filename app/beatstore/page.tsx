@@ -217,7 +217,7 @@ export default function BeatstorePage() {
             <Image src="/images/krash-logo.png" alt="KRASH" width={40} height={40} className="brightness-110" />
             <div className="hidden md:block">
               <div className="text-[#ffda0f] font-black text-lg">KRASH WORLD</div>
-              <div className="text-gray-400 text-xs">LA BASED</div>
+              <div className="text-gray-400 text-xs">CINCINNATI BASED</div>
             </div>
           </Link>
 
@@ -671,7 +671,7 @@ export default function BeatstorePage() {
 
       <div className="fixed bottom-4 right-6 text-xs text-gray-500 font-mono">
         <div>BEATSTORE</div>
-        <div>LA_BASED</div>
+        <div>CINCINNATI_BASED</div>
       </div>
       {/* Cart Drawer */}
       <CartDrawer isOpen={isCartOpen} onClose={() => setIsCartOpen(false)} />

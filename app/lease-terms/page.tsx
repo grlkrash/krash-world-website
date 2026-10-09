@@ -34,7 +34,7 @@ export default function LeaseTermsPage() {
             <Image src="/images/krash-logo.png" alt="KRASH" width={40} height={40} className="brightness-110" />
             <div className="hidden md:block">
               <div className="text-[#ffda0f] font-black text-lg">KRASH WORLD</div>
-              <div className="text-gray-400 text-xs">LA BASED</div>
+              <div className="text-gray-400 text-xs">CINCINNATI BASED</div>
             </div>
           </Link>
         </div>

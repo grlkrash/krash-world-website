@@ -63,7 +63,7 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
     },
     {
       title: "NEWSLETTER",
-      description: "Join the resistance",
+      description: "Join the fight against the darkness",
       action: () => {
         onNewsletterOpen()
         onClose()

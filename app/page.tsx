@@ -66,7 +66,7 @@ export default function KrashWorldWebsite() {
             <Image src="/images/krash-logo.png" alt="KRASH" width={40} height={40} className="brightness-110" />
             <div className="hidden md:block">
               <div className="text-[#ffda0f] font-black text-lg">KRASH WORLD</div>
-              <div className="text-gray-400 text-xs">LA BASED</div>
+              <div className="text-gray-400 text-xs">CINCINNATI BASED</div>
             </div>
           </div>
 
@@ -108,14 +108,14 @@ export default function KrashWorldWebsite() {
             {/* Left Side - Info */}
             <div className="space-y-8">
               <div>
-                <div className="text-[#ffda0f] text-sm font-mono mb-2">LA BASED</div>
+                <div className="text-[#ffda0f] text-sm font-mono mb-2">CINCINNATI BASED</div>
                 <h1 className="text-4xl md:text-6xl font-black mb-4">
                   <span className="text-white">WELCOME TO</span>
                   <br />
                   <span className="text-[#ffda0f]">KRASH WORLD</span>
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-                  Separated from everyone she loves, an exiled krashite becomes Earth's superpowered defender, fighting The Directorate through music and dance - protecting the free expression they fear most.
+                  Darkness plagued the earth, and then GRLKRASH was created. A toy come to life in a world she doesn't fit into, she teams up with Jules, a 13-year-old with a gift for music, to fight the forces of evil.
                 </p>
               </div>
 
@@ -214,16 +214,16 @@ export default function KrashWorldWebsite() {
       <section className="py-16 border-t border-[#ffda0f]/20">
         <div className="container mx-auto px-6 text-center">
           <div className="text-[#ffda0f] text-sm font-mono mb-4">TRANSMEDIA IP ART PROJECT</div>
-          <h2 className="text-2xl font-black text-white mb-4">BY LA-BASED MULTIMEDIA ARTIST GRLKRASH</h2>
+          <h2 className="text-2xl font-black text-white mb-4">BY CINCINNATI-BASED MULTIMEDIA ARTIST GRLKRASH</h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-2">
             Krash World is an immersive universe spanning music, games, art, and storytelling - exploring themes of
-            love, resistance, and authentic human connection.
+            love, faith, sacrifice, and the battle between light and darkness.
           </p>
           <p className="text-gray-500 text-sm italic max-w-2xl mx-auto mb-4">
             A transmedia IP art project by GRLKRASH, featuring the character GRLKRASH
           </p>
           <p className="text-gray-400 text-sm max-w-2xl mx-auto">
-            GRLKRASH is a multimedia artist from Cincinnati, now based in LA, creating immersive worlds that blend music, visual art, and interactive storytelling.
+            GRLKRASH is a Cincinnati-based multimedia artist creating immersive worlds that blend music, visual art, and interactive storytelling.
           </p>
         </div>
       </section>
@@ -258,7 +258,7 @@ export default function KrashWorldWebsite() {
 
       <div className="fixed bottom-4 right-6 text-xs text-gray-500 font-mono">
         <div>MULTIMEDIA_ART_PROJECT</div>
-        <div>LA_BASED</div>
+        <div>CINCINNATI_BASED</div>
       </div>
 
       {/* Floating Shop Button - persistent CTA */}
