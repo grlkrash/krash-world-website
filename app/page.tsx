@@ -220,8 +220,8 @@ export default function KrashWorldWebsite() {
       </main>
 
       {/* About Section */}
-      <section className="py-16 border-t border-[#ffda0f]/20">
-        <div className="container mx-auto px-6 text-center">
+      <section className="pt-16 pb-28 border-t border-[#ffda0f]/20">
+        <div className="container mx-auto pl-6 pr-20 sm:px-6 text-center">
           <div className="text-[#ffda0f] text-sm font-mono mb-4">TRANSMEDIA IP ART PROJECT</div>
           <h2 className="text-2xl font-black text-white mb-4">BY CINCINNATI-BASED MULTIMEDIA ARTIST GRLKRASH</h2>
           <p className="text-gray-400 max-w-2xl mx-auto mb-2">
@@ -234,6 +234,22 @@ export default function KrashWorldWebsite() {
           <p className="text-gray-400 text-sm max-w-2xl mx-auto">
             GRLKRASH is a Cincinnati-based multimedia artist creating immersive worlds that blend music, visual art, and interactive storytelling.
           </p>
+
+          {/* Ethos */}
+          <div className="max-w-2xl mx-auto mt-12">
+            <div className="text-[#ffda0f] text-sm font-mono mb-4">OUR ETHOS</div>
+            <blockquote className="text-gray-300 italic leading-relaxed">
+              “And do not be conformed to this world, but be transformed by the renewing of your mind, that you may
+              prove what is that good and acceptable and perfect will of God.”
+            </blockquote>
+            <cite className="block not-italic font-mono text-xs text-[#ffda0f] mt-2 mb-6">ROMANS 12:2 (NKJV)</cite>
+            <div className="space-y-1 text-base md:text-lg font-black text-white text-balance">
+              <p>WE DON'T CONFORM TO THE WORLD.</p>
+              <p>WE DON'T CARE WHAT'S TRENDY.</p>
+              <p>WE DO WHAT'S GOOD AND WHAT'S RIGHTEOUS,</p>
+              <p className="text-[#ffda0f]">BY THE GRACE OF JESUS, WHO IS LORD.</p>
+            </div>
+          </div>
         </div>
       </section>
 
