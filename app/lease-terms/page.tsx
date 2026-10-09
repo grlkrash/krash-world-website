@@ -43,6 +43,7 @@ export default function LeaseTermsPage() {
       {/* Main Content */}
       <main className="relative z-10 min-h-screen pt-24 pb-16">
         <div className="container mx-auto px-6 max-w-4xl">
+          {/* BEAT STORE HIDDEN FOR NOW
           <Link
             href="/beatstore"
             className="inline-flex items-center gap-2 text-[#ffda0f] hover:text-[#ffda0f]/80 transition-colors mb-8 font-mono text-sm"
@@ -50,6 +51,7 @@ export default function LeaseTermsPage() {
             <ArrowLeft size={16} />
             BACK TO BEATSTORE
           </Link>
+          */}
 
           <div className="bg-black/60 backdrop-blur-md border border-[#ffda0f]/30 rounded-lg p-8 md:p-12">
             <div className="text-center mb-8">

@@ -129,6 +129,7 @@ export default function KrashWorldWebsite() {
               </div>
 
               <div className="flex flex-wrap gap-4">
+                {/* BEAT STORE HIDDEN FOR NOW
                 <Button
                   size="lg"
                   className="bg-gradient-to-r from-[#00ff88] to-[#00cc6a] text-black hover:from-[#00ff88]/90 hover:to-[#00cc6a]/90 font-bold shadow-lg shadow-[#00ff88]/25 hover:scale-105 transition-transform"
@@ -138,6 +139,7 @@ export default function KrashWorldWebsite() {
                   <ShoppingBag className="mr-2 h-4 w-4" />
                   BEAT STORE
                 </Button>
+                */}
                 <Button
                   size="lg"
                   className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 font-bold"
@@ -286,7 +288,7 @@ export default function KrashWorldWebsite() {
         <div>CINCINNATI_BASED</div>
       </div>
 
-      {/* Floating Shop Button - persistent CTA */}
+      {/* BEAT STORE HIDDEN FOR NOW - Floating Shop Button
       <a
         href="/beatstore"
         className="fixed bottom-6 right-24 z-50 px-4 py-3 rounded-full bg-[#00ff88] text-black font-bold text-sm hover:scale-110 transition-all shadow-lg shadow-[#00ff88]/40 flex items-center gap-2 animate-[pulse_2s_ease-in-out_infinite]"
@@ -295,6 +297,7 @@ export default function KrashWorldWebsite() {
         <ShoppingBag size={18} />
         SHOP
       </a>
+      */}
     </div>
   )
 }

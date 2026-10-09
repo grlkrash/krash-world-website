@@ -229,6 +229,7 @@ export default function ContactPage() {
 
           {/* Quick Links */}
           <div className="mt-12 grid md:grid-cols-2 gap-6">
+            {/* BEAT STORE HIDDEN FOR NOW
             <Link
               href="/beatstore"
               className="bg-black/60 backdrop-blur-md border border-[#ffda0f]/30 rounded-lg p-6 hover:border-[#ffda0f]/50 transition-all"
@@ -236,6 +237,7 @@ export default function ContactPage() {
               <div className="text-[#ffda0f] font-bold mb-2">BEATSTORE</div>
               <div className="text-gray-300 text-sm">Browse beats and loops</div>
             </Link>
+            */}
             <Link
               href="/lease-terms"
               className="bg-black/60 backdrop-blur-md border border-[#ffda0f]/30 rounded-lg p-6 hover:border-[#ffda0f]/50 transition-all"

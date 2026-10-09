@@ -19,13 +19,14 @@ export default function NavigationMenu({ isOpen, onClose, onNewsletterOpen }: Na
   if (!isOpen) return null
 
   const menuItems = [
-    {
-      title: "BEATSTORE",
-      description: "Browse beats, loops & templates",
-      href: "/beatstore",
-      icon: <ShoppingBag size={20} />,
-      color: "#ffda0f",
-    },
+    // BEAT STORE HIDDEN FOR NOW
+    // {
+    //   title: "BEATSTORE",
+    //   description: "Browse beats, loops & templates",
+    //   href: "/beatstore",
+    //   icon: <ShoppingBag size={20} />,
+    //   color: "#ffda0f",
+    // },
     {
       title: "PLAY GAME",
       description: "Enter the Krash World universe",

@@ -216,6 +216,7 @@ export default function DownloadPage() {
       {/* Main Content */}
       <main className="relative z-10 min-h-screen pt-24 pb-16 flex items-center justify-center">
         <div className="container mx-auto px-6 max-w-2xl">
+          {/* BEAT STORE HIDDEN FOR NOW
           <Link
             href="/beatstore"
             className="inline-flex items-center gap-2 text-[#ffda0f] hover:text-[#ffda0f]/80 transition-colors mb-8 font-mono text-sm"
@@ -223,6 +224,7 @@ export default function DownloadPage() {
             <ArrowLeft size={16} />
             BACK TO BEATSTORE
           </Link>
+          */}
 
           <div className="bg-black/60 backdrop-blur-md border border-[#ffda0f]/30 rounded-lg p-8 md:p-12 text-center">
             {status === "loading" && (
@@ -252,12 +254,14 @@ export default function DownloadPage() {
                   >
                     Retry
                   </button>
+                  {/* BEAT STORE HIDDEN FOR NOW
                   <Link
                     href="/beatstore"
                     className="inline-block bg-[#ffda0f] text-black px-6 py-3 rounded font-bold hover:bg-[#ffda0f]/80 transition-colors"
                   >
                     Back to Beatstore
                   </Link>
+                  */}
                 </div>
               </div>
             )}
