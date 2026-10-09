@@ -7,19 +7,19 @@ import "./globals.css"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Krash World | LA-Based Multimedia Artist GRLKRASH",
+  title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
   description:
-    "Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and resistance. Transmedia IP art project spanning music, games, art, and storytelling.",
+    "Enter the universe of GRLKRASH - a toy brought to life, fighting the forces of darkness with love, light, and music. Transmedia IP art project spanning music, games, art, and storytelling.",
   keywords: [
     "Krash World",
     "GRLKRASH",
-    "LA artist",
+    "Cincinnati artist",
     "multimedia art",
     "transmedia",
     "music",
     "games",
-    "resistance",
-    "alien",
+    "good vs evil",
+    "toy come to life",
     "art project",
   ],
   authors: [{ name: "GRLKRASH" }],
@@ -28,9 +28,9 @@ export const metadata: Metadata = {
 
   // Open Graph
   openGraph: {
-    title: "Krash World | LA-Based Multimedia Artist GRLKRASH",
+    title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
     description:
-      "Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and resistance against oppressive forces.",
+      "Enter the universe of GRLKRASH - a toy brought to life, fighting the forces of darkness with love, light, and music.",
     url: "https://krash.world",
     siteName: "Krash World",
     images: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
         url: "/images/grlkrash-nature.png",
         width: 1200,
         height: 630,
-        alt: "GRLKRASH - Alien resistance fighter from Krash World",
+        alt: "GRLKRASH - the toy brought to life, from Krash World",
       },
     ],
     locale: "en_US",
@@ -48,9 +48,9 @@ export const metadata: Metadata = {
   // Twitter
   twitter: {
     card: "summary_large_image",
-    title: "Krash World | LA-Based Multimedia Artist GRLKRASH",
+    title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
     description:
-      "Enter the universe of GRLKRASH - an exiled alien action figure fighting for truth, love, and resistance.",
+      "Enter the universe of GRLKRASH - a toy brought to life, fighting the forces of darkness with love, light, and music.",
     images: ["/images/grlkrash-nature.png"],
     creator: "@grlkash",
   },
@@ -124,7 +124,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "GRLKRASH",
               alternateName: "Krash World",
-              description: "LA-based multimedia artist creating transmedia IP art projects",
+              description: "Cincinnati-based multimedia artist creating transmedia IP art projects",
               url: "https://krash.world",
               sameAs: [
                 "https://instagram.com/grlkrash",
@@ -139,8 +139,8 @@ export default function RootLayout({
               },
               address: {
                 "@type": "PostalAddress",
-                addressLocality: "Los Angeles",
-                addressRegion: "CA",
+                addressLocality: "Cincinnati",
+                addressRegion: "OH",
                 addressCountry: "US",
               },
             }),
