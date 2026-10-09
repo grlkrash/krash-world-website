@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
   description:
-    "Enter the universe of GRLKRASH - a toy come to life to fight the forces of evil. Transmedia IP art project spanning music, games, art, and storytelling.",
+    "Enter the universe of GRLKRASH - a toy brought to life to protect the meek and fight the forces of evil. Transmedia IP art project spanning music, games, art, and storytelling.",
   keywords: [
     "Krash World",
     "GRLKRASH",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
     description:
-      "Enter the universe of GRLKRASH - a toy come to life who teams up with Jules, a 13-year-old with a gift for music, to fight the forces of evil.",
+      "Enter the universe of GRLKRASH - a toy brought to life as a comfort to Jules, a 13-year-old with a gift for music. Together they protect the meek and fight the forces of evil.",
     url: "https://krash.world",
     siteName: "Krash World",
     images: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Krash World | Cincinnati-Based Multimedia Artist GRLKRASH",
     description:
-      "Enter the universe of GRLKRASH - a toy come to life to fight the forces of evil.",
+      "Enter the universe of GRLKRASH - a toy brought to life to protect the meek and fight the forces of evil.",
     images: ["/images/grlkrash-nature.png"],
     creator: "@grlkash",
   },

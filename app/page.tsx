@@ -113,8 +113,18 @@ export default function KrashWorldWebsite() {
                   <br />
                   <span className="text-[#ffda0f]">KRASH WORLD</span>
                 </h1>
-                <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-                  Darkness plagued the earth, and then GRLKRASH was created. A toy come to life in a world she doesn't fit into, she teams up with Jules, a 13-year-old with a gift for music, to fight the forces of evil.
+                <blockquote className="max-w-md mb-4 border-l-2 border-[#ffda0f]/50 pl-4 pr-14 sm:pr-0 space-y-2 text-sm italic text-gray-400 leading-relaxed">
+                  <p>
+                    “And darkness was upon the face of the deep.”{" "}
+                    <cite className="not-italic font-mono text-xs text-[#ffda0f]">GENESIS 1:2</cite>
+                  </p>
+                  <p>
+                    “…and breathed into his nostrils the breath of life; and man became a living soul.”{" "}
+                    <cite className="not-italic font-mono text-xs text-[#ffda0f]">GENESIS 2:7</cite>
+                  </p>
+                </blockquote>
+                <p className="text-gray-300 text-lg leading-relaxed max-w-md pr-14 sm:pr-0">
+                  Darkness plagued the earth. Then God heard the cries of Jules, a 13-year-old with a gift for music, and breathed the breath of life into a toy. GRLKRASH doesn't fit into this world, but she was made for a purpose: to comfort Jules, protect the meek, and fight the forces of evil.
                 </p>
               </div>
 
