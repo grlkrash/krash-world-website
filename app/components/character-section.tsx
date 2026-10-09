@@ -10,17 +10,17 @@ export default function CharacterSection() {
   const grlkrashTraits = {
     strengths: [
       { trait: "Super Strength", desc: "Can support objects 100x her size", icon: <Zap className="h-4 w-4" /> },
-      { trait: "Loyal & Brave", desc: "Will sacrifice herself for friends", icon: <Heart className="h-4 w-4" /> },
-      { trait: "Pragmatic", desc: "Does the right thing even if it means death", icon: <Shield className="h-4 w-4" /> },
-      { trait: "Musical Connection", desc: "Music can send her into overdrive", icon: <Music className="h-4 w-4" /> },
+      { trait: "Loyal & Brave", desc: "Always stands up for the weak", icon: <Heart className="h-4 w-4" /> },
+      { trait: "Pragmatic", desc: "Does what needs to be done", icon: <Shield className="h-4 w-4" /> },
+      { trait: "Faithful", desc: "Knows who made her, and why", icon: <Sparkles className="h-4 w-4" /> },
     ],
     weaknesses: [
       { trait: "Not the Sharpest", desc: "Sometimes misses obvious things", icon: <Brain className="h-4 w-4" /> },
       { trait: "Childlike Nature", desc: "Innocent and trusting", icon: <Sparkles className="h-4 w-4" /> },
       {
-        trait: "Prone to Depression",
-        desc: "Can fall into deep existential sadness",
-        icon: <Heart className="h-4 w-4" />,
+        trait: "Music Trance",
+        desc: "Music can send her into overdrive - for better or worse",
+        icon: <Music className="h-4 w-4" />,
       },
     ],
   }
@@ -45,7 +45,7 @@ export default function CharacterSection() {
       quote: "Love is patient, love is kind, love does not boast, love endures all.",
       color: "#ff6b9d",
     },
-    { character: "GRLKRASH", quote: "Let's go! The resistance needs us!", color: "#ffda0f" },
+    { character: "GRLKRASH", quote: "Let's go! Jules needs us!", color: "#ffda0f" },
     { character: "JULES", quote: "Sometimes I miss what's right in front of my face...", color: "#00aaff" },
   ]
 
@@ -58,8 +58,8 @@ export default function CharacterSection() {
             THE HEROES
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Meet the unlikely duo fighting to save Earth from the forces of oppression - an exiled alien warrior and a
-            musically gifted human companion.
+            Meet the unlikely duo pushing back the darkness - a toy brought to life, and the musically gifted
+            13-year-old she was made to comfort.
           </p>
         </div>
 
@@ -76,13 +76,12 @@ export default function CharacterSection() {
                   <div className="flex items-center mb-4">
                     <h2 className="text-4xl font-black text-[#00ff88] mr-4">GRLKRASH</h2>
                     <Badge variant="outline" className="text-[#00ff88] border-[#00ff88]">
-                      ALIEN WARRIOR
+                      TOY BROUGHT TO LIFE
                     </Badge>
                   </div>
                   <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                    An exiled toy-turned-resistance-leader from the distant planet Krash World. Driven by love and
-                    justice, she fights against Earth's oppressive forces using truth, art, and connection as her
-                    weapons.
+                    A toy brought to life by the breath of God. Confident, loyal, and not the sharpest tool in the
+                    shed, she protects the meek and pushes back the darkness with love, light, and super strength.
                   </p>
 
                   <div className="space-y-4">
@@ -127,12 +126,13 @@ export default function CharacterSection() {
                   <div className="flex items-center mb-4">
                     <h2 className="text-4xl font-black text-[#00aaff] mr-4">JULES</h2>
                     <Badge variant="outline" className="text-[#00aaff] border-[#00aaff]">
-                      HUMAN ALLY
+                      BEST FRIEND
                     </Badge>
                   </div>
                   <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                    A musically gifted human who becomes GRLKRASH's closest companion. Driven by a desire for purpose
-                    and belonging, she uses her wits and musical abilities to help save the world.
+                    A 13-year-old girl with a gift for music. When she cried, God heard her - and GRLKRASH was brought
+                    to life to comfort her. Longing for purpose and belonging, she uses her wits and her music to help
+                    save the world.
                   </p>
 
                   <div className="space-y-4">
@@ -209,10 +209,10 @@ export default function CharacterSection() {
             <h2 className="text-3xl md:text-4xl font-black mb-6 text-[#ffda0f]">THE PERFECT PARTNERSHIP</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               Together, GRLKRASH and Jules form an unstoppable team. Where one has weaknesses, the other provides
-              strength. Their friendship becomes the foundation of the resistance against Earth's oppressive forces.
+              strength. Their friendship is a light in the darkness.
             </p>
             <Button size="lg" className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 font-bold">
-              EXPLORE THE RESISTANCE
+              EXPLORE THE MISSION
             </Button>
           </CardContent>
         </Card>

@@ -115,8 +115,9 @@ export default function KrashWorldWebsite() {
                   <span className="text-[#ffda0f]">KRASH WORLD</span>
                 </h1>
                 <p className="text-gray-300 text-lg leading-relaxed max-w-md">
-                  Darkness plagued the earth - and then GRLKRASH was created. A toy brought to life in a world she doesn't quite fit into, she teams up with Jules, a 13-year-old with a gift for music, to fight the forces of evil.
+                  In the beginning, darkness was upon the face of the earth. Then God heard the cries of Jules, a 13-year-old girl with a gift for music - and He breathed the breath of life into a toy. GRLKRASH became a living soul. Together, they protect the meek and bring light into the darkness.
                 </p>
+                <p className="text-gray-500 text-xs font-mono mt-3">GENESIS 1:2 · PSALM 34:17 · GENESIS 2:7 · MATTHEW 5:5</p>
               </div>
 
               <div className="flex flex-wrap gap-4">
@@ -258,7 +259,7 @@ export default function KrashWorldWebsite() {
 
       <div className="fixed bottom-4 right-6 text-xs text-gray-500 font-mono">
         <div>MULTIMEDIA_ART_PROJECT</div>
-        <div>LA_BASED</div>
+        <div>CINCINNATI_BASED</div>
       </div>
 
       {/* Floating Shop Button - persistent CTA */}

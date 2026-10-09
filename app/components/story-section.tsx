@@ -9,25 +9,25 @@ import Image from "next/image"
 export default function StorySection() {
   const storyBeats = [
     {
-      title: "EXILE FROM PARADISE",
+      title: "IN THE BEGINNING",
       description:
-        "GRLKRASH lived on Krash World - a beautiful planet of green oases, waterfalls, and harmony with nature. But her curiosity went too far when she completed the sacred stone in the Tree of Life, accidentally destroying the moon of Ooo.",
+        "Darkness plagued the earth. But beyond it lies Krash World - paradise, where all life comes from and where God dwells. The Tree of Life grows there, and the music is so pure it makes you float.",
       icon: <Globe className="h-6 w-6" />,
       color: "#00ff88",
       image: "/images/grlkrash-nature.png",
     },
     {
-      title: "ARRIVAL ON EARTH",
+      title: "THE BREATH OF LIFE",
       description:
-        "Exiled and alone, GRLKRASH arrived on post-apocalyptic Earth. Her attempts to connect with humans failed terribly - they were terrified of her alien nature. Lonely and desperate, she cloned herself for company.",
+        "Jules, a 13-year-old girl with a gift for music, was crying - and God heard her cries. He breathed the breath of life into a toy, and GRLKRASH became a living soul, made to be a comfort to her.",
       icon: <Heart className="h-6 w-6" />,
       color: "#ff6b9d",
       image: "/images/grlkrash-sky.png",
     },
     {
-      title: "THE TOY EMPIRE",
+      title: "A TOY IN A STRANGE WORLD",
       description:
-        "A struggling woman discovered GRLKRASH and her clones, mistaking them for advanced toys. This sparked a multibillion-dollar toy empire - until some toys 'cracked' and revealed their sentience, causing worldwide panic.",
+        "A brightly colored, stylized toy walking around a world that wasn't built for her, GRLKRASH doesn't fit in - and people stare. But she knows who made her, and why.",
       icon: <Zap className="h-6 w-6" />,
       color: "#ffda0f",
       image: "/images/grlkrash-viral.png",
@@ -43,8 +43,8 @@ export default function StorySection() {
             THE ORIGIN STORY
           </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            From a distant paradise to Earth's resistance fighter - discover how GRLKRASH became the unlikely hero our
-            world desperately needs.
+            From an ordinary toy to a living soul - discover how GRLKRASH became the unlikely hero our world
+            desperately needs.
           </p>
         </div>
 
@@ -93,14 +93,14 @@ export default function StorySection() {
         {/* Current State */}
         <Card className="bg-gradient-to-r from-[#ffda0f]/10 to-[#00ff88]/10 border-[#ffda0f]/30">
           <CardContent className="p-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-black mb-6 text-[#ffda0f]">THE RESISTANCE BEGINS</h2>
+            <h2 className="text-3xl md:text-4xl font-black mb-6 text-[#ffda0f]">THE MISSION BEGINS</h2>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Now GRLKRASH fights against the New World Empire and their dark forces, using truth, art, and love as
-              weapons. She's no longer alone - she has Jules and a growing resistance movement.
+              Now GRLKRASH and Jules stand together against the darkness - protecting the meek, searching for the
+              other toys like her, and bringing light wherever the darkness spreads.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Button size="lg" className="bg-[#ffda0f] text-black hover:bg-[#ffda0f]/80 font-bold">
-                JOIN THE RESISTANCE
+                FOLLOW THE STORY
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
@@ -119,17 +119,17 @@ export default function StorySection() {
           {[
             {
               title: "LOVE & SACRIFICE",
-              desc: "Love is patient, love is kind, and love fights back against oppression",
+              desc: "Love is patient, love is kind - and love endures all things",
               color: "#ff6b9d",
             },
             {
-              title: "TRUTH & RESISTANCE",
-              desc: "Using art, music, and connection as weapons against dark forces",
+              title: "LIGHT & DARKNESS",
+              desc: "The light shines in the darkness, and the darkness has not overcome it",
               color: "#ffda0f",
             },
             {
-              title: "COMMUNITY & BELONGING",
-              desc: "Finding family and purpose in the fight for freedom",
+              title: "FAITH & BELONGING",
+              desc: "Made on purpose, for a purpose - even when you don't fit in",
               color: "#00ff88",
             },
           ].map((theme, index) => (
